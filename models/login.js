@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
 
     var Users = sequelize.define("Users", {
-        username: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -15,7 +15,6 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1,20]
             }
         }
-
     })
 
     return Users

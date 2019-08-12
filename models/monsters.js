@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   var Monsters = sequelize.define("Monsters", {
-    clubName: {
+    monsterName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -8,30 +8,24 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
 
-    clubMaker: {
+    strength: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1, 50]
       }
     },
-    clubDescription: {
+    monsterDescription: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1,100]
       }
     },
-    clubLocation: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    password:{
+    monsterImg: {
       type: DataTypes.STRING,
       allowNull: false
     },
-  
-
   });
 
 
