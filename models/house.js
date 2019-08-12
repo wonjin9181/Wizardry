@@ -1,22 +1,13 @@
 module.exports = function (sequelize, DataTypes) {
   var House = sequelize.define("House", {
-    title: {
+    houseName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
-    body: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      len: [1]
-    },
-    clubId:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    username:{
+    user:{
       type: DataTypes.STRING,
       allowNull: false,
     }
