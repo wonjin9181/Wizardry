@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "./utils/API"
 import Login from "./components/login/login"
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import MainStats from "./components/main-stats/main_stats"
 
 class App extends Component {
   state = {
@@ -26,11 +27,7 @@ class App extends Component {
       <Router>
       <div>
         <Route exact path="/" component={Login} />
-        <Route exact path="/createuser" component={CreateUser}/>
-        <Route exact path="/" component={Fight} />
-        <Route exact path="/" component={MainStats} />
-        
-        
+        <Route exact path="/main" component={MainStats} />
       </div>
     </Router>
     )

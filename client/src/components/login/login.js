@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, Jumbotron, Container } from "react-bootstrap";
-import waterfall from "./login.css"
+import "./login.css"
 
 class Login extends Component {
 
@@ -15,8 +15,7 @@ render(){
                   Cast spells to defeat monsters!
                 </p>
               </Container>
-            
-          <img src={waterfall} alt="Waterfall" />;
+
   
         <Form>
             <Form.Group controlId="formBasicEmail">

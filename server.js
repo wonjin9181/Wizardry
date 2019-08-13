@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-require('./routes/index')(app);
+require('./routes/monsters-api')(app);
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function(req, res) {
