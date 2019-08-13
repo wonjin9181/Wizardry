@@ -11,6 +11,7 @@ render(){
             <Jumbotron fluid>
               <Container>
                 <h1>Wizard Game Login</h1>
+                
                 <p>
                   Cast spells to defeat monsters!
                 </p>
