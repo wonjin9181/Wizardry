@@ -23,11 +23,11 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     monsterImg: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
   });
 
+  
 
   return Monsters;
 };
