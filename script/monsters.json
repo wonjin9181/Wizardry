@@ -1,0 +1,15 @@
+[
+    {
+        "monsterName": "fire",
+        "strength":100,
+        "monsterDescription":"Fire Monster",
+        "monsterImg":""
+
+    },
+    {
+        "monsterName": "ice",
+        "strength":100,
+        "monsterDescription":"Ice Monster",
+        "monsterImg":""
+    }
+]
