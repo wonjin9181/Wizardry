@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import waterfall from "./App.css"
 import { Button, Form, Jumbotron, Container } from "react-bootstrap";
 import waterfall from "./login.css"
 
