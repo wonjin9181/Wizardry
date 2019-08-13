@@ -6,7 +6,7 @@ class Login extends Component {
 
 render(){
     return (
-        <div id="waterfall">
+        <div>
             <Jumbotron fluid>
               <Container>
                 <h1>Wizard Game Login</h1>
