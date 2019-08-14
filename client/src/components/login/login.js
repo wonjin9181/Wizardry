@@ -1,12 +1,16 @@
+
 import React, { Component, Redirect } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import "./login.css"
-
+import API from "../../utils/API"
 
 class Login extends Component {
 
     state = {
+      email: "",
+      password: "",
         createUser: false,
+      
     };
     createAccount = () => {
         this.setState({ createUser: true })
@@ -22,6 +26,30 @@ class Login extends Component {
     }
 
 
+    
+  validateForm = () => {
+    return this.state.email.length > 0 && this.state.password.length > 0;
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    API.loginUser(this.state)
+    .then(function(){
+      //redirct page
+    })
+
+  }
+
+
+    
+    
     render() {
 
         if (this.state.createUser === true) {
