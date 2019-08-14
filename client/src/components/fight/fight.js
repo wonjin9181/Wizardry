@@ -10,8 +10,7 @@ import {
   Figure
 } from "react-bootstrap";
 import "./fight.css";
-console.log(window.innerWidth);
-console.log(window.innerHeight);
+
 class Fight extends Component {
   render() {
     return (
