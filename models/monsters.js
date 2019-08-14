@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     },
 
     strength: {
-      type: DataTypes.STRING,
+      type: DataTypes.INT,
       allowNull: false,
       validate: {
         len: [1, 50]

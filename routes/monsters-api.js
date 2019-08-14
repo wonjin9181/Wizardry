@@ -1,6 +1,4 @@
 db = require("../models");
-
-
 var monsterData = require(__dirname + "/../script/monsters.json")
 
 
@@ -15,10 +13,20 @@ module.exports = function(app) {
         .catch(function(err){
             console.log(err)
         })
-        // db.Monsters.findAll({})
-        // .then(function(dbMonsters){
-        //     res.json(dbMonsters)
-        // })
+    })
+
+    app.get("/api/monsters/:monster", function(req, res){
+        db.Monsters.findAll({
+            where:{
+                monsterName:req.params.monster
+            }
+        })
+        .then(function(dbMonster){
+            res.json(dbMonster)
+        })
+        .catch(function(err){
+            console.log(err)
+        })
     })
 
 }
