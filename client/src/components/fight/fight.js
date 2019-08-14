@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {} from "react-bootstrap";
+import "./fight.css"
 
 class Fight extends Component {
 
