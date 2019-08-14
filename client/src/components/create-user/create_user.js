@@ -44,7 +44,6 @@ class CreateUser extends Component {
 
             <Form.Check
               inline
-              inline
               type="radio"
               label="Water"
               name="formHorizontalRadios"
@@ -54,7 +53,6 @@ class CreateUser extends Component {
 
             <Form.Check
               inline
-              inline
               type="radio"
               label="Earth"
               name="formHorizontalRadios"
@@ -63,7 +61,6 @@ class CreateUser extends Component {
 
 
             <Form.Check
-              inline
               inline
               type="radio"
               label="Air"
