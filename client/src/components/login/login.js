@@ -1,20 +1,46 @@
-import React, { Component } from "react";
-import { Button, Form, Jumbotron, Container } from "react-bootstrap";
+import React, { Component, Redirect } from "react";
+import { Button, Form, Container } from "react-bootstrap";
 import "./login.css"
+
 
 class Login extends Component {
 
+    state = {
+        createUser: false,
+    };
+    createAccount = () => {
+        this.setState({ createUser: true })
+    };
+
+
+    state = {
+        play: false,
+    }
+
+    playGame = () => {
+        this.setState({ play: true })
+    }
+
+
     render() {
+
+        if (this.state.createUser === true) {
+            return <Redirect to='/createuser' />
+        };
+
+        if (this.state.play === true) {
+            return <Redirect to='/mainstats' />
+        };
+
         return (
             <div>
-                <Jumbotron fluid>
-                    <Container>
-                        <h1>Wizard Game Login</h1>
+                <Container>
+                    <h1>Wizard Game Login</h1>
 
-                        <p>
-                            Cast spells to defeat monsters!
+                    <p>
+                        Cast spells to defeat monsters!
                 </p>
-                    </Container>
+
                     <Form className="loginForm">
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Email address: </Form.Label>
@@ -25,17 +51,19 @@ class Login extends Component {
                             <Form.Label>Password: </Form.Label>
                             <Form.Control className="input" type="password" />
                         </Form.Group>
-                        <Button className="btn" variant="primary" type="submit">
+                        <Button className="btn" onClick={this.playGame} variant="primary" type="submit">
                             Play
           </Button>
                         <br></br>
-                        <Button className="btn" variant="primary" type="submit">
+                        <Button className="btn" onClick={this.createAccount} variant="primary" type="submit">
                             Create an account
           </Button>
                     </Form>
-                </Jumbotron>
+                </Container>
             </div>
         );
     }
 }
+
+
 export default Login;

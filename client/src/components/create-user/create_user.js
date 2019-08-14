@@ -1,14 +1,29 @@
-import React, { Component } from "react";
-import { Button, Form, Jumbotron, Container } from "react-bootstrap";
+import React, { Component, Redirect } from "react";
+import { Button } from "react-bootstrap";
+import "./create_user.css"
 
 
 class CreateUser extends Component {
 
-render(){
+  state = {
+    user: false,
+  };
+  makeUser = () => {
+    this.setState({ user: true })
+  };
+
+  render() {
+    
+    if (this.state.user === true) {
+      return <Redirect to='/' />
+    };
+
     return (
-        <div>
-          jello  
-        </div>
+      <div>
+        <Button className="btn" onClick={this.makeUser} variant="primary" type="submit">
+          Create an account
+          </Button>
+      </div>
     );
   }
 }
