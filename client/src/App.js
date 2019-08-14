@@ -7,6 +7,7 @@ import Fight from "./components/fight/fight";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
+
 class App extends Component {
   state = {
     monsters: []
@@ -34,6 +35,7 @@ class App extends Component {
         <Route exact path="/createuser" component={CreateUser}/>
         <Route exact path="/fight" component={Fight} />
         <Route exact path="/main" component={MainStats} />
+        <Route exact path="/fight" component={Fight} />
       </div>
     </Router>
 
