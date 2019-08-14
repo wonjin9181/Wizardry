@@ -3,6 +3,7 @@ import API from "./utils/API"
 import Login from "./components/login/login"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import MainStats from "./components/main-stats/main_stats"
+import Fight from "./components/fight/fight";
 
 class App extends Component {
   state = {
@@ -28,6 +29,7 @@ class App extends Component {
       <div>
         <Route exact path="/" component={Login} />
         <Route exact path="/main" component={MainStats} />
+        <Route exact path="/fight" component={Fight} />
       </div>
     </Router>
     )
