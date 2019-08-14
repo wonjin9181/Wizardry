@@ -3,14 +3,15 @@ import React, { Component, Redirect } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import "./login.css"
 import API from "../../utils/API"
+import { Link } from "react-router-dom";
 
 class Login extends Component {
 
     state = {
-      email: "",
-      password: "",
+        email: "",
+        password: "",
         createUser: false,
-      
+
     };
     createAccount = () => {
         this.setState({ createUser: true })
@@ -26,30 +27,30 @@ class Login extends Component {
     }
 
 
-    
-  validateForm = () => {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  }
+    validateForm = () => {
+        return this.state.email.length > 0 && this.state.password.length > 0;
+    }
 
-  handleSubmit = event => {
-    event.preventDefault();
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
 
-    API.loginUser(this.state)
-    .then(function(){
-      //redirct page
-    })
+    handleSubmit = event => {
+        event.preventDefault();
 
-  }
+        API.loginUser(this.state)
+            .then(function () {
+                //redirct page
+            })
+
+    }
 
 
-    
-    
+
+
     render() {
 
         if (this.state.createUser === true) {
@@ -81,11 +82,14 @@ class Login extends Component {
                         </Form.Group>
                         <Button className="btn" onClick={this.playGame} variant="primary" type="submit">
                             Play
-          </Button>
+                             </Button>
                         <br></br>
-                        <Button className="btn" onClick={this.createAccount} variant="primary" type="submit">
-                            Create an account
-          </Button>
+                        <Link to="/createuser">
+
+                            <Button className="btn" onClick={this.createAccount} variant="primary" type="submit">
+                                Create an account
+                           </Button>
+                        </Link>
                     </Form>
                 </Container>
             </div>

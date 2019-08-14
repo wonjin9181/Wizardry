@@ -43,23 +43,23 @@ module.exports = function(app) {
         })
     })
 
-    app.put("/api/users/:id", function(req, res){
+    // app.put("/api/users/:id", function(req, res){
 
-        db.User.update(
-            {
-                strength = req.body.strength
-            },
-            {
-                where: req.params.id
-            }
-        )
-        .then(function(rowUpdated){
-            res.json(rowUpdated)
-        })
-        .catch(function(err){
-            console.log(err)
-        })
-    })
+    //     db.User.update(
+    //         {
+    //             strength = req.body.strength
+    //         },
+    //         {
+    //             where: req.params.id
+    //         }
+    //     )
+    //     .then(function(rowUpdated){
+    //         res.json(rowUpdated)
+    //     })
+    //     .catch(function(err){
+    //         console.log(err)
+    //     })
+    // })
 
 
 }
