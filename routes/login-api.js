@@ -1,25 +1,24 @@
 db = require("../models");
+const { checkPassword } = require('../utilities/passwordService');
 
-module.exports= function(app){
-    app.post("/api/login", function(req, res){
-        const login = async (req, res) => {
-            try {
-              let user = Users.find(user => user.email === req.body.email);
-              let isMatch = await checkPassword(req.body.password, user.hashedPassword);
-              if (user) {
-                if (isMatch) {
-                  let token = await createToken(user);
-                  console.log('token', token);
-                  res.cookie('token', token, cookieOptions).redirect('/users/authorized');
-                } else {
-                  res.send('sorry password did not match');
-                }
-              } else {
-                res.send('sorry email does not match');
-              }
-            } catch (err) {
-              if (err) throw err;
+module.exports = function (app) {
+    app.post("/api/login", function (req, res) {
+
+        db.User.findAll({
+            where: {
+                email: req.body.email
             }
-          };
+        }).then(function (data) {
+            let isMatch = await checkPassword(req.body.password, data[0].password);
+            if (isMatch) {
+                res.status(200)
+                res.Json(data)
+            } else {
+                res.send('sorry password did not match');
+            }
+
+        })
+
+
     })
 }
