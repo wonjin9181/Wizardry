@@ -46,120 +46,120 @@ class CreateUser extends Component {
         <Container>
           <h1>Wizard game</h1>
 
-
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group as={Row} controlId="formHorizontalName">
-              <Form.Label column sm={2}>
-                Name
+          <aside>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group as={Row} controlId="formHorizontalName">
+                <Form.Label column sm={2}>
+                  Name
                 </Form.Label>
-              <Col sm={10}>
-                <Form.Control
-                  placeholder="Name"
-                  name="username"
-                  value={this.state.username}
-                  onChange={this.handleChange}
-                />
-              </Col>
-            </Form.Group>
+                <Col sm={10}>
+                  <Form.Control
+                    placeholder="Name"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                  />
+                </Col>
+              </Form.Group>
 
-            <Form.Group as={Row} controlId="formHorizontalName">
-              <Form.Label column sm={2}>
-                House
+              <Form.Group as={Row} controlId="formHorizontalName">
+                <Form.Label column sm={2}>
+                  House
                 </Form.Label>
-              <Col sm={10}>
-                <Form.Check
-                  inline
-                  type="radio"
+                <Col sm={10}>
+                  <Form.Check
+                    inline
+                    type="radio"
 
-                  value="fire"
-                  onClick={this.handleChange}
-                  label="Fire"
-                  name="house"
+                    value="fire"
+                    onClick={this.handleChange}
+                    label="Fire"
+                    name="house"
 
-                  id="formHorizontalRadios1"
-                />
+                    id="formHorizontalRadios1"
+                  />
 
-                <Form.Check
-                  inline
-                  type="radio"
+                  <Form.Check
+                    inline
+                    type="radio"
 
-                  value="water"
-                  onClick={this.handleChange}
-                  label="Water"
-                  name="house"
+                    value="water"
+                    onClick={this.handleChange}
+                    label="Water"
+                    name="house"
 
-                  id="formHorizontalRadios2"
-                />
-
-
-                <Form.Check
-                  inline
-                  type="radio"
-
-                  value="earth"
-                  onClick={this.handleChange}
-                  label="Earth"
-                  name="house"
-
-                  id="formHorizontalRadios3"
-                />
+                    id="formHorizontalRadios2"
+                  />
 
 
-                <Form.Check
-                  inline
-                  type="radio"
+                  <Form.Check
+                    inline
+                    type="radio"
 
-                  value="air"
-                  onClick={this.handleChange}
-                  label="Air"
-                  name="house"
+                    value="earth"
+                    onClick={this.handleChange}
+                    label="Earth"
+                    name="house"
 
-                  id="formHorizontalRadios4"
-                />
-              </Col>
-            </Form.Group>
+                    id="formHorizontalRadios3"
+                  />
 
-            <Form.Group as={Row} controlId="formHorizontalEmail">
-              <Form.Label column sm={2}>
-                Email
+
+                  <Form.Check
+                    inline
+                    type="radio"
+
+                    value="air"
+                    onClick={this.handleChange}
+                    label="Air"
+                    name="house"
+
+                    id="formHorizontalRadios4"
+                  />
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} controlId="formHorizontalEmail">
+                <Form.Label column sm={2}>
+                  Email
                 </Form.Label>
-              <Col sm={10}>
-                <Form.Control
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                />
-              </Col>
-            </Form.Group>
+                <Col sm={10}>
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </Col>
+              </Form.Group>
 
-            <Form.Group as={Row} controlId="formHorizontalPassword">
-              <Form.Label column sm={2}>
-                Password
+              <Form.Group as={Row} controlId="formHorizontalPassword">
+                <Form.Label column sm={2}>
+                  Password
               </Form.Label>
+                <Col>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </Col>
+              </Form.Group>
 
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                />
-              </Col>
-            </Form.Group>
+              <Button
+                id="createUserBtn"
+                variant="primary"
+                type="submit"
+                disabled={!this.validateForm()}>
 
-            <Button
-              id="createUserBtn"
-              variant="primary"
-              type="submit"
-              disabled={!this.validateForm()}>
-
-              Create account </Button>
+                Create account </Button>
 
 
-          </Form>
-        </aside>
+            </Form>
+          </aside>
 
 
         </Container>
