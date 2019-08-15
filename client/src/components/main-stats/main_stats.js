@@ -1,11 +1,25 @@
 import React, { Component } from "react";
 
+import "./main_stats.css";
+import { Link } from "react-router-dom";
 
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import "./main_stats.css"
 
 
 class MainStats extends Component {
+
+    state = {
+        fight: {
+            monster1: false,
+            monster2: false,
+            monster3: false,
+            monster4: false
+        }
+
+    };
+    fightMonster = () => {
+        this.setState({ fightMonster: true })
+    };
 
     render() {
         return (
@@ -32,21 +46,29 @@ class MainStats extends Component {
                         </Col>
                     </Row>
                     <br></br>
-                    <Row className="justify-content-md-center">
-                        <Col md={2}>
-                            <Button variant="primary" type="suBmit">Stage 1</Button>
-                        </Col>
-                        <Col md={2}>
-                            <Button variant="primary" type="submit">Stage 2</Button>
-                        </Col>
-                        <Col md={2}>
-                            <Button variant="primary" type="submit">Stage 3</Button>
-                        </Col>
-                        <Col md={2}>
-                            <Button variant="primary" type="submit">Stage 4</Button>
-                        </Col>
-                    </Row>
+         
                     <br></br>
+
+                    <div className="row">
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 1</p>
+                        </div>
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 2</p>
+                        </div>
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 3</p>
+                        </div>
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 4</p>
+                        </div>
+
+                    </div>              
+           
 
                     <Row className="justify-content-md-center">
                             <Card id="mainCard" style={{ width: '60rem' }}>

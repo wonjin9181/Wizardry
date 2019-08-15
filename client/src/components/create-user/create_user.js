@@ -70,20 +70,24 @@ class CreateUser extends Component {
                 <Form.Check
                   inline
                   type="radio"
+
                   value="fire"
                   onClick={this.handleChange}
                   label="Fire"
                   name="house"
+
                   id="formHorizontalRadios1"
                 />
 
                 <Form.Check
                   inline
                   type="radio"
+
                   value="water"
                   onClick={this.handleChange}
                   label="Water"
                   name="house"
+
                   id="formHorizontalRadios2"
                 />
 
@@ -91,10 +95,12 @@ class CreateUser extends Component {
                 <Form.Check
                   inline
                   type="radio"
+
                   value="earth"
                   onClick={this.handleChange}
                   label="Earth"
                   name="house"
+
                   id="formHorizontalRadios3"
                 />
 
@@ -102,10 +108,12 @@ class CreateUser extends Component {
                 <Form.Check
                   inline
                   type="radio"
+
                   value="air"
                   onClick={this.handleChange}
                   label="Air"
                   name="house"
+
                   id="formHorizontalRadios4"
                 />
               </Col>
@@ -130,7 +138,7 @@ class CreateUser extends Component {
               <Form.Label column sm={2}>
                 Password
               </Form.Label>
-              <Col sm={10}>
+
                 <Form.Control
                   type="password"
                   placeholder="Password"
@@ -155,6 +163,7 @@ class CreateUser extends Component {
 
 
         </Container>
+
 
       </div>
     )
