@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
-
 class MainStats extends Component {
 
     state = {
@@ -98,10 +97,9 @@ class MainStats extends Component {
                         </Card>
                     </Row>
 
-                </Container>
-
-            </div>
-        );
-    }
+        </Container>
+      </div>
+    );
+  }
 }
 export default MainStats;
