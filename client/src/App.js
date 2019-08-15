@@ -9,22 +9,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
 class App extends Component {
-  state = {
-    monsters: []
-  }
 
-  loadMonsters = () => {
-    API.getMonsters()
-      .then(res => {
-        // console.log(res.data)
-        this.setState({ monsters: res.data })
-      })
-      .catch(err => console.log(err));
-  };
-
-  componentDidMount() {
-    this.loadMonsters()
-  }
 
   render() {
     return (

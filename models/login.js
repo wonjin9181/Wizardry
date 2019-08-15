@@ -21,13 +21,14 @@ module.exports = function (sequelize, DataTypes) {
               type: DataTypes.STRING,
               allowNull: false,
           },
-          characterImg:{
-              type: DataTypes.STRING,
-              allowNull: true
-          },
+        //   characterImg:{
+        //       type: DataTypes.STRING,
+        //       allowNull: true
+        //   },
           strength:{
-              type: DataTypes.STRING,
-              defalut: 100
+              type: DataTypes.INTEGER,
+              allowNull: false,
+            defaultValue: '100'
           }
     })
 

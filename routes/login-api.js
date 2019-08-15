@@ -9,22 +9,29 @@ module.exports = (app) => {
         var password = req.body.password;
         console.log(email,password);
         if (email && password) {
-            db.User.findOne({
+            db.Users.findAll({
                 where: {
                     email: email
                 }
             }).then(async (results) => {
+                console.log(results[0].dataValues)
+
+                
                 if (!results) {
+                    console.log("no result")
                     res.send("Invalid user/login");
                     return;
                 }
                 let hasher = new PasswordHasher();
-                let cool = await hasher.verify(password, results.hash, results.salt);
+                let cool = await hasher.verify(password, results[0].dataValues.hash, results[0].dataValues.salt);
                 if (cool) {
-                    res.cookie("userData", results.id);
-                    res.redirect('/main');
+                    console.log("cool"+ results[0].dataValues.id)
+                    res.json(results[0].dataValues.id)
+                    // res.cookie("userData", results[0].dataValues.id);
+                    // res.redirect('/main');
                 } else {
-                    res.send('Incorrect Username and/or Password!');
+                    console.log("not cool")
+                    res.status(404).send('Incorrect Username and/or Password!');
                 }
                 res.end();
             });

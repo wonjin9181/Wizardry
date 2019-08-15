@@ -12,7 +12,7 @@ class CreateUser extends Component {
     house: "",
     email: "",
     password: "",
-
+    redirect: false
   };
 
 
@@ -35,18 +35,28 @@ class CreateUser extends Component {
     API.createUser(this.state)
       .then(function (data) {
         console.log(data)
-        if (data.status === 200)
-          return <Redirect to='/' />
+        this.setState({redirect:true})
       })
   }
 
   render() {
+    //
+    // return redirect
+    //
+    if(this.state.redirect === true) {
+      return<Redirect to='/' />
+    }
+    else{
+      alert("Username exists")
+    }
+
+
     return (
       <div>
         <Container>
           <h1>Wizard game</h1>
 
-          <aside>
+          <aside id="createuser">
             <Form onSubmit={this.handleSubmit}>
               <Form.Group as={Row} controlId="formHorizontalName">
                 <Form.Label column sm={2}>
@@ -70,24 +80,20 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-
                     value="fire"
                     onClick={this.handleChange}
                     label="Fire"
                     name="house"
-
                     id="formHorizontalRadios1"
                   />
 
                   <Form.Check
                     inline
                     type="radio"
-
                     value="water"
                     onClick={this.handleChange}
                     label="Water"
                     name="house"
-
                     id="formHorizontalRadios2"
                   />
 
@@ -95,12 +101,10 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-
                     value="earth"
                     onClick={this.handleChange}
                     label="Earth"
                     name="house"
-
                     id="formHorizontalRadios3"
                   />
 
@@ -108,12 +112,10 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-
                     value="air"
                     onClick={this.handleChange}
                     label="Air"
                     name="house"
-
                     id="formHorizontalRadios4"
                   />
                 </Col>
