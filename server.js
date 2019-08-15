@@ -12,6 +12,11 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+
 require('./routes/monsters-api')(app);
 require('./routes/createUser-api')(app);
 require('./routes/house-api')(app);
@@ -23,7 +28,6 @@ require('./routes/login-api')(app);
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
-app.use(cookieParser());
 
 
 const syncOptions = { force: false };

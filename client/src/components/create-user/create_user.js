@@ -2,14 +2,42 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import "./create_user.css";
-// import Dropdown  from "../DropDownMenue.js"
-class CreateUser extends Component {
+import API from "../../utils/API"
+import { Redirect } from 'react-router-dom'
 
-  handleCatChange(e) {
+
+class CreateUser extends Component {
+  state = {
+    username: "",
+    house: "",
+    email: "",
+    password: "",
+
+  };
+
+
+
+
+  validateForm() {
+    return this.state.email.length > 0 && this.state.password.length > 0;
+  }
+
+  handleChange = event => {
     this.setState({
-      storeType: e.target.value
-    })
-    console.log(this.state.storeType)
+      [event.target.name]: event.target.value
+    });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(this.state)
+
+    API.createUser(this.state)
+      .then(function (data) {
+        console.log(data)
+        if (data.status === 200)
+          return <Redirect to='/' />
+      })
   }
 
   render() {
@@ -19,13 +47,18 @@ class CreateUser extends Component {
         <aside id="createuser">
           <h1>Wizard game</h1>
 
-          <Form >
+          <Form onSubmit={this.handleSubmit}>
             <Form.Group as={Row} controlId="formHorizontalName">
               <Form.Label column sm={2}>
                 Name
                 </Form.Label>
               <Col sm={10}>
-                <Form.Control type="email" placeholder="Name" />
+                <Form.Control
+                  placeholder="Name"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                />
               </Col>
             </Form.Group>
 
@@ -34,40 +67,48 @@ class CreateUser extends Component {
                 House
                 </Form.Label>
               <Col sm={10}>
-            <Form.Check
-              inline
-              type="radio"
-              label="Fire"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios1"
-            />
+                <Form.Check
+                  inline
+                  type="radio"
+                  value="fire"
+                  onClick={this.handleChange}
+                  label="Fire"
+                  name="house"
+                  id="formHorizontalRadios1"
+                />
 
-            <Form.Check
-              inline
-              type="radio"
-              label="Water"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-
-
-            <Form.Check
-              inline
-              type="radio"
-              label="Earth"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios3"
-            />
+                <Form.Check
+                  inline
+                  type="radio"
+                  value="water"
+                  onClick={this.handleChange}
+                  label="Water"
+                  name="house"
+                  id="formHorizontalRadios2"
+                />
 
 
-            <Form.Check
-              inline
-              type="radio"
-              label="Air"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios4"
-            />
-            </Col>
+                <Form.Check
+                  inline
+                  type="radio"
+                  value="earth"
+                  onClick={this.handleChange}
+                  label="Earth"
+                  name="house"
+                  id="formHorizontalRadios3"
+                />
+
+
+                <Form.Check
+                  inline
+                  type="radio"
+                  value="air"
+                  onClick={this.handleChange}
+                  label="Air"
+                  name="house"
+                  id="formHorizontalRadios4"
+                />
+              </Col>
             </Form.Group>
 
             <Form.Group as={Row} controlId="formHorizontalEmail">
@@ -75,7 +116,13 @@ class CreateUser extends Component {
                 Email
                 </Form.Label>
               <Col sm={10}>
-                <Form.Control type="email" placeholder="Email" />
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
               </Col>
             </Form.Group>
 
@@ -84,12 +131,25 @@ class CreateUser extends Component {
                 Password
               </Form.Label>
               <Col sm={10}>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
               </Col>
             </Form.Group>
 
-            <Button id="createUserBtn" variant="primary" type="submit">
+            <Button
+              id="createUserBtn"
+              variant="primary"
+              type="submit"
+              disabled={!this.validateForm()}>
+
               Create account </Button>
+
+
           </Form>
         </aside>
 
