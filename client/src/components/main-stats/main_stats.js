@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+
 import "./main_stats.css";
 import { Link } from "react-router-dom";
+
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+
 
 class MainStats extends Component {
 

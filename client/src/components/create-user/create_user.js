@@ -2,13 +2,42 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import "./create_user.css";
-class CreateUser extends Component {
 
-  handleCatChange(e) {
+import API from "../../utils/API"
+import { Redirect } from 'react-router-dom'
+
+class CreateUser extends Component {
+  state = {
+    username: "",
+    house: "",
+    email: "",
+    password: "",
+
+  };
+
+
+
+
+  validateForm() {
+    return this.state.email.length > 0 && this.state.password.length > 0;
+  }
+
+  handleChange = event => {
     this.setState({
-      storeType: e.target.value
-    })
-    console.log(this.state.storeType)
+      [event.target.name]: event.target.value
+    });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(this.state)
+
+    API.createUser(this.state)
+      .then(function (data) {
+        console.log(data)
+        if (data.status === 200)
+          return <Redirect to='/' />
+      })
   }
 
   render() {
@@ -17,35 +46,48 @@ class CreateUser extends Component {
         <Container>
           <h1>Wizard game</h1>
 
-          <aside id="createuser">
-            <Form >
-              <Form.Group as={Row} controlId="formHorizontalName">
-                <Form.Label column sm={2}>
-                  Name
-                </Form.Label>
-                <Col sm={10}>
-                  <Form.Control type="email" placeholder="Name" />
-                </Col>
-              </Form.Group>
 
-              <Form.Group as={Row} controlId="formHorizontalName">
-                <Form.Label column sm={2}>
-                  House
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group as={Row} controlId="formHorizontalName">
+              <Form.Label column sm={2}>
+                Name
+                </Form.Label>
+              <Col sm={10}>
+                <Form.Control
+                  placeholder="Name"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} controlId="formHorizontalName">
+              <Form.Label column sm={2}>
+                House
                 </Form.Label>
               <Col sm={10}>
                 <Form.Check
                   inline
                   type="radio"
+
+                  value="fire"
+                  onClick={this.handleChange}
                   label="Fire"
-                  name="formHorizontalRadios"
+                  name="house"
+
                   id="formHorizontalRadios1"
                 />
 
                 <Form.Check
                   inline
                   type="radio"
+
+                  value="water"
+                  onClick={this.handleChange}
                   label="Water"
-                  name="formHorizontalRadios"
+                  name="house"
+
                   id="formHorizontalRadios2"
                 />
 
@@ -53,8 +95,12 @@ class CreateUser extends Component {
                 <Form.Check
                   inline
                   type="radio"
+
+                  value="earth"
+                  onClick={this.handleChange}
                   label="Earth"
-                  name="formHorizontalRadios"
+                  name="house"
+
                   id="formHorizontalRadios3"
                 />
 
@@ -62,8 +108,12 @@ class CreateUser extends Component {
                 <Form.Check
                   inline
                   type="radio"
+
+                  value="air"
+                  onClick={this.handleChange}
                   label="Air"
-                  name="formHorizontalRadios"
+                  name="house"
+
                   id="formHorizontalRadios4"
                 />
               </Col>
@@ -73,24 +123,48 @@ class CreateUser extends Component {
               <Form.Label column sm={2}>
                 Email
                 </Form.Label>
-                <Col sm={10}>
-                  <Form.Control type="email" placeholder="Email" />
-                </Col>
-              </Form.Group>
-
-              <Form.Group as={Row} controlId="formHorizontalPassword">
-                <Form.Label column sm={2}>
-                  Password
-              </Form.Label>
               <Col sm={10}>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
               </Col>
             </Form.Group>
-              <Button id="createUserBtn" variant="primary" type="submit">
-                Create account </Button>
+
+            <Form.Group as={Row} controlId="formHorizontalPassword">
+              <Form.Label column sm={2}>
+                Password
+              </Form.Label>
+
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Form.Group>
+
+            <Button
+              id="createUserBtn"
+              variant="primary"
+              type="submit"
+              disabled={!this.validateForm()}>
+
+              Create account </Button>
+
+
           </Form>
-        </aside> 
+        </aside>
+
+
         </Container>
+
+
       </div>
     )
 

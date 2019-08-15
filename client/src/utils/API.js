@@ -9,8 +9,11 @@ export default {
     return axios.get("/api/monsters/:monster")
   },
 
-  loginUser: (data) => {axios.post("/api/login", data)}
+  loginUser: (data) => {axios.post("/api/login", data)},
 
-  
+  createUser: (userData) => {
+    console.log("this: " + userData)
+    return axios.post("/api/users", userData)
+  },
    
 }

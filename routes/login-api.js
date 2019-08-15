@@ -34,23 +34,23 @@ module.exports = (app) => {
         }
     });
 
-    app.post('/user/createuser', async (req, res) => {
-        let hasher = new PasswordHasher();
-        let hash = await hasher.create(req.body.password);
-        console.log(hash);
+    // app.post('/user/createuser', async (req, res) => {
+    //     let hasher = new PasswordHasher();
+    //     let hash = await hasher.create(req.body.password);
+    //     console.log(hash);
 
-        db.User.create({
-            email: req.body.email,
-            hash: hash.hash,
-            salt: hash.salt,
-            characterName: req.body.username,
-            house: req.body.house,
-            characterImg: req.body.img
-        }).then(dbUser => {
-            console.log(dbUser);
-            res.redirect('/');
-        });
-    });
+    //     db.User.create({
+    //         email: req.body.email,
+    //         hash: hash.hash,
+    //         salt: hash.salt,
+    //         characterName: req.body.username,
+    //         house: req.body.house,
+    //         characterImg: req.body.img
+    //     }).then(dbUser => {
+    //         console.log(dbUser);
+    //         res.redirect('/');
+    //     });
+    // });
 }
 
 
