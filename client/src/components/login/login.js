@@ -8,6 +8,13 @@ import { Link } from "react-router-dom";
 class Login extends Component {
 
     state = {
+        play: false,
+    }
+    playGame = () => {
+        this.setState({ play: true })
+    }
+
+    state = {
         email: "",
         password: "",
         createUser: false,
@@ -16,17 +23,6 @@ class Login extends Component {
     createAccount = () => {
         this.setState({ createUser: true })
     };
-
-
-    state = {
-        play: false,
-    }
-
-    playGame = () => {
-        this.setState({ play: true })
-    }
-
-
 
     validateForm = () => {
         return this.state.email.length > 0 && this.state.password.length > 0;
@@ -41,9 +37,12 @@ class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
+
         API.loginUser(this.state)
             .then(function () {
                 //redirct page
+
+
             })
 
     }
@@ -52,14 +51,14 @@ class Login extends Component {
 
 
     render() {
-
+        if (this.state.play === true) {
+            return <Redirect to='/main' />
+        };
         if (this.state.createUser === true) {
             return <Redirect to='/createuser' />
         };
 
-        if (this.state.play === true) {
-            return <Redirect to='/mainstats' />
-        };
+
 
         return (
             <div>
@@ -96,7 +95,6 @@ class Login extends Component {
                                 <Button className="btn" onClick={this.createAccount} variant="primary" type="submit" >
                                     Create an account
                            </Button>
-
                             </Link>
                         </Form>
                     </aside>

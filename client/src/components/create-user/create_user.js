@@ -32,46 +32,46 @@ class CreateUser extends Component {
                 <Form.Label column sm={2}>
                   House
                 </Form.Label>
-                <Col sm={10}>
-                  <Form.Check
-                    inline
-                    type="radio"
-                    label="Fire"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios1"
-                  />
+              <Col sm={10}>
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Fire"
+                  name="formHorizontalRadios"
+                  id="formHorizontalRadios1"
+                />
 
-                  <Form.Check
-                    inline
-                    type="radio"
-                    label="Water"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios2"
-                  />
-
-
-                  <Form.Check
-                    inline
-                    type="radio"
-                    label="Earth"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios3"
-                  />
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Water"
+                  name="formHorizontalRadios"
+                  id="formHorizontalRadios2"
+                />
 
 
-                  <Form.Check
-                    inline
-                    type="radio"
-                    label="Air"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios4"
-                  />
-                </Col>
-              </Form.Group>
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Earth"
+                  name="formHorizontalRadios"
+                  id="formHorizontalRadios3"
+                />
 
-              <Form.Group as={Row} controlId="formHorizontalEmail">
-                <Form.Label column sm={2}>
-                  Email
+
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Air"
+                  name="formHorizontalRadios"
+                  id="formHorizontalRadios4"
+                />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} controlId="formHorizontalEmail">
+              <Form.Label column sm={2}>
+                Email
                 </Form.Label>
                 <Col sm={10}>
                   <Form.Control type="email" placeholder="Email" />
@@ -82,18 +82,15 @@ class CreateUser extends Component {
                 <Form.Label column sm={2}>
                   Password
               </Form.Label>
-                <Col sm={10}>
-                  <Form.Control type="password" placeholder="Password" />
-                </Col>
-              </Form.Group>
-
+              <Col sm={10}>
+                <Form.Control type="password" placeholder="Password" />
+              </Col>
+            </Form.Group>
               <Button id="createUserBtn" variant="primary" type="submit">
                 Create account </Button>
-            </Form>
-
-          </aside>
+          </Form>
+        </aside> 
         </Container>
-        
       </div>
     )
 

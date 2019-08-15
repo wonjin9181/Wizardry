@@ -1,22 +1,29 @@
 import React, { Component } from "react";
 import {
   Button,
-  Form,
-  Jumbotron,
   Container,
   Row,
   Col,
-  Image,
   Figure
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./fight.css";
 
+
 class Fight extends Component {
+
+  state = {
+    spell: false,
+  }
+  castSpell = () => {
+    this.setState({ spell: true })
+  }
+
   render() {
     return (
       <Container>
         <Row >
-          <Col xs={{span: 4, offset: 2}}>
+          <Col xs={{ span: 4, offset: 2 }}>
             <Figure>
               <Figure.Image
                 width={300}
@@ -29,7 +36,7 @@ class Fight extends Component {
             </Figure>
           </Col>
           <Col xs={4} class="justify-content-end">
-          <Figure>
+            <Figure>
               <Figure.Image
                 width={300}
                 height={300}
@@ -40,11 +47,11 @@ class Fight extends Component {
               <Figure.Caption className="justify-content-center">Player 1</Figure.Caption>
             </Figure>
           </Col>
-          </Row>
+        </Row>
         <Row className="justify-content-center">
-          <Button variant="primary" size="lg">
+          <Link to="/main"><Button onClick={this.castSpell} variant="primary" size="lg">
             Fight!
-          </Button>
+          </Button></Link>
         </Row>
       </Container>
     );

@@ -35,7 +35,6 @@ class App extends Component {
         <Route exact path="/createuser" component={CreateUser}/>
         <Route exact path="/fight" component={Fight} />
         <Route exact path="/main" component={MainStats} />
-        <Route exact path="/fight" component={Fight} />
       </div>
     </Router>
 
