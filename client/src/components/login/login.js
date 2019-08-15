@@ -1,6 +1,6 @@
 
 import React, { Component, Redirect } from "react";
-import { Button, Form, Container } from "react-bootstrap";
+import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import "./login.css"
 import API from "../../utils/API"
 import { Link } from "react-router-dom";
@@ -69,28 +69,37 @@ class Login extends Component {
                     <p>
                         Cast spells to defeat monsters!
                 </p>
+                    <aside id= "loginaside">
+                        <Form className="loginForm">
+                            <Form.Group as={Row} controlId="formHorizontalEmail">
+                                <Form.Label column sm={2}>
+                                    Email
+                        </Form.Label>
+                                <Col sm={10}>
+                                    <Form.Control type="email" placeholder="Email" />
+                                </Col>
+                            </Form.Group>
 
-                    <Form className="loginForm">
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address: </Form.Label>
-                            <Form.Control className="input" type="email" />
-                        </Form.Group>
+                            <Form.Group as={Row} controlId="formHorizontalPassword">
+                                <Form.Label column sm={2}>
+                                    Password
+                         </Form.Label>
+                                <Col sm={10}>
+                                    <Form.Control type="password" placeholder="Password" />
+                                </Col>
+                            </Form.Group>
 
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password: </Form.Label>
-                            <Form.Control className="input" type="password" />
-                        </Form.Group>
-                        <Button className="btn" onClick={this.playGame} variant="primary" type="submit">
-                            Play
+                            <Button className="btn" onClick={this.playGame} variant="primary" type="submit">
+                                Play
                              </Button>
-                        <br></br>
-                        <Link to="/createuser">
-
-                            <Button className="btn" onClick={this.createAccount} variant="primary" type="submit">
-                                Create an account
+                            <Link to="/createuser">
+                                <Button className="btn" onClick={this.createAccount} variant="primary" type="submit" >
+                                    Create an account
                            </Button>
-                        </Link>
-                    </Form>
+
+                            </Link>
+                        </Form>
+                    </aside>
                 </Container>
             </div>
         );
