@@ -5,24 +5,22 @@ import "./login.css"
 import API from "../../utils/API"
 import { Link, Redirect } from "react-router-dom";
 
+
 class Login extends Component {
 
-    state = {
-        play: false
-    };
 
     state = {
         email: "",
         password: "",
-        createUser: false
-        
-    };
-    createAccount = () => {
-        this.setState({ createUser: true })
+        userid: "",
+        play: false
+
     };
     playGame = () => {
         this.setState({ play: true })
     }
+
+
 
     validateForm = () => {
         return this.state.email.length > 0 && this.state.password.length > 0;
@@ -35,14 +33,26 @@ class Login extends Component {
     }
 
     handleSubmit = event => {
+        let self = this;
         event.preventDefault();
-
+        console.log(this.state)
 
         API.loginUser(this.state)
-            .then(function () {
-                //redirct page
+            .then(function (result) {
 
+                console.log(result)
+                if (result.data) {
+                    self.setState({
+                        userId: result.data,
+                        play: true
+                    })
+                }
+                else {
+                    alert('Incorrect Username and/or Password!');
+                }
 
+            }).catch(err => {
+                alert(err);
             })
 
     }
@@ -51,13 +61,10 @@ class Login extends Component {
 
 
     render() {
-        if (this.state.play === true) {
-            return <Redirect to='/main' />
-        };
-        if (this.state.createUser === true) {
-            return <Redirect to='/createuser' />
-        };
 
+        if (this.state.play === true) {
+            return <Redirect to="/main" />
+        }
 
 
         return (
@@ -68,14 +75,20 @@ class Login extends Component {
                     <p>
                         Cast spells to defeat monsters!
                 </p>
-                    <aside id= "loginaside">
-                        <Form className="loginForm">
+                    <aside id="loginaside">
+                        <Form className="loginForm" onSubmit={this.handleSubmit}>
                             <Form.Group as={Row} controlId="formHorizontalEmail">
                                 <Form.Label column sm={2}>
                                     Email
                         </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control type="email" placeholder="Email" />
+                                    <Form.Control
+                                        type="email"
+                                        placeholder="Email"
+                                        name="email"
+                                        value={this.state.email}
+                                        onChange={this.handleChange}
+                                    />
                                 </Col>
                             </Form.Group>
 
@@ -84,15 +97,26 @@ class Login extends Component {
                                     Password
                          </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control type="password" placeholder="Password" />
+                                    <Form.Control
+                                        type="password"
+                                        placeholder="Password"
+                                        name="password"
+                                        value={this.state.password}
+                                        onChange={this.handleChange}
+                                    />
                                 </Col>
                             </Form.Group>
 
-                            <Button className="btn" onClick={this.playGame} variant="primary" type="submit">
+                            <Button
+                                className="btn"
+                                variant="primary"
+                                type="submit"
+                                disabled={!this.validateForm()}>
                                 Play
                              </Button>
+
                             <Link to="/createuser">
-                                <Button className="btn" onClick={this.createAccount} variant="primary" type="submit" >
+                                <Button className="btn" variant="primary">
                                     Create an account
                            </Button>
                             </Link>

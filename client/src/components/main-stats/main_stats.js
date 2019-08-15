@@ -3,20 +3,35 @@ import React, { Component } from "react";
 import "./main_stats.css";
 import { Link } from "react-router-dom";
 
-import { Container, Row, Col, Card } from "react-bootstrap";
+import API from "../../utils/API"
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 
 class MainStats extends Component {
 
     state = {
+        monsters: [],
         fight: {
             monster1: false,
             monster2: false,
             monster3: false,
             monster4: false
         }
-
     };
+
+    loadMonsters = () => {
+        API.getMonsters()
+            .then(res => {
+                // console.log(res.data)
+                this.setState({ monsters: res.data })
+            })
+            .catch(err => console.log(err));
+    };
+
+    componentDidMount() {
+        this.loadMonsters()
+    }
+
     fightMonster = () => {
         this.setState({ fightMonster: true })
     };
@@ -30,6 +45,7 @@ class MainStats extends Component {
                         <Col md="auto">
                             <Card id="mainCard" style={{ width: '13rem' }}>
                             <img src ={"https://picsum.photos/id/122/200/200"} alt="main-stats"/>
+
                             </Card>
                         </Col>
 
@@ -46,7 +62,7 @@ class MainStats extends Component {
                         </Col>
                     </Row>
                     <br></br>
-         
+
                     <br></br>
 
                     <div className="row">
@@ -67,27 +83,26 @@ class MainStats extends Component {
                             <p>Stage 4</p>
                         </div>
 
-                    </div>              
-           
+                    </div>
+
 
                     <Row className="justify-content-md-center">
-                            <Card id="mainCard" style={{ width: '60rem' }}>
+                        <Card id="mainCard" style={{ width: '60rem' }}>
                             <Col>
-                                <h3 id= "userInfo">House Members</h3>
+                                <h3 id="userInfo">House Members</h3>
                                 <ul>
                                     <li>1</li>
                                     <li>2</li>
                                     <li>3</li>
                                     <li>4</li>
                                 </ul>
-                                </Col>
-                            </Card>
+                            </Col>
+                        </Card>
                     </Row>
 
-                </Container>
-
-            </div>
-        );
-    }
+        </Container>
+      </div>
+    );
+  }
 }
 export default MainStats;

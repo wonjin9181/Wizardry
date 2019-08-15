@@ -12,7 +12,7 @@ class CreateUser extends Component {
     house: "",
     email: "",
     password: "",
-
+    redirect: false
   };
 
   validateForm() {
@@ -30,6 +30,7 @@ class CreateUser extends Component {
     console.log(this.state)
 
     API.createUser(this.state)
+
       .then(function (result) {
         console.log(result)
         if (!result.data) {
@@ -43,12 +44,13 @@ class CreateUser extends Component {
 
   render() {
 
+
     return (
       <div>
         <Container>
           <h1>Wizard game</h1>
 
-          <aside>
+          <aside id="createuser">
             <Form onSubmit={this.handleSubmit}>
               <Form.Group as={Row} controlId="formHorizontalName">
                 <Form.Label column sm={2}>
@@ -72,24 +74,20 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-
                     value="fire"
                     onClick={this.handleChange}
                     label="Fire"
                     name="house"
-
                     id="formHorizontalRadios1"
                   />
 
                   <Form.Check
                     inline
                     type="radio"
-
                     value="water"
                     onClick={this.handleChange}
                     label="Water"
                     name="house"
-
                     id="formHorizontalRadios2"
                   />
 
@@ -97,12 +95,10 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-
                     value="earth"
                     onClick={this.handleChange}
                     label="Earth"
                     name="house"
-
                     id="formHorizontalRadios3"
                   />
 
@@ -110,12 +106,10 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-
                     value="air"
                     onClick={this.handleChange}
                     label="Air"
                     name="house"
-
                     id="formHorizontalRadios4"
                   />
                 </Col>
