@@ -17,7 +17,9 @@ class App extends Component {
     API.getMonsters()
       .then(res => {
         // console.log(res.data)
-        this.setState({ monsters: res.data })
+        this.setState({ 
+          monsters: res.data
+         })
       })
       .catch(err => console.log(err));
   };

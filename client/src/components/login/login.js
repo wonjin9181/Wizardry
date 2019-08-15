@@ -1,28 +1,28 @@
 
-import React, { Component, Redirect } from "react";
+import React, { Component } from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import "./login.css"
 import API from "../../utils/API"
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Login extends Component {
 
     state = {
-        play: false,
-    }
-    playGame = () => {
-        this.setState({ play: true })
-    }
+        play: false
+    };
 
     state = {
         email: "",
         password: "",
-        createUser: false,
-
+        createUser: false
+        
     };
     createAccount = () => {
         this.setState({ createUser: true })
     };
+    playGame = () => {
+        this.setState({ play: true })
+    }
 
     validateForm = () => {
         return this.state.email.length > 0 && this.state.password.length > 0;

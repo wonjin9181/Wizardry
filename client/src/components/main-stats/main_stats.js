@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "./main_stats.css";
 import { Link } from "react-router-dom";
 
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 
 class MainStats extends Component {
@@ -29,7 +29,7 @@ class MainStats extends Component {
                     <Row className="justify-content-md-center">
                         <Col md="auto">
                             <Card id="mainCard" style={{ width: '13rem' }}>
-                            <img src ={"https://picsum.photos/id/122/200/200"}/>
+                            <img src ={"https://picsum.photos/id/122/200/200"} alt="main-stats"/>
                             </Card>
                         </Col>
 

@@ -4,7 +4,7 @@ import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import "./create_user.css";
 
 import API from "../../utils/API"
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 class CreateUser extends Component {
   state = {
@@ -14,9 +14,6 @@ class CreateUser extends Component {
     password: "",
 
   };
-
-
-
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -33,14 +30,19 @@ class CreateUser extends Component {
     console.log(this.state)
 
     API.createUser(this.state)
-      .then(function (data) {
-        console.log(data)
-        if (data.status === 200)
-          return <Redirect to='/' />
-      })
-  }
+      .then(function (result) {
+        console.log(result)
+        if (!result.data) {
+          alert("Email already exists!")
+          result.redirect("/login");
+        } else {
+          result.redirect("/main");
+        }
+      });
+  };
 
   render() {
+
     return (
       <div>
         <Container>
