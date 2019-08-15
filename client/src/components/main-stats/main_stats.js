@@ -2,91 +2,101 @@ import React, { Component } from "react";
 
 import "./main_stats.css";
 import { Link } from "react-router-dom";
-
+import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 class MainStats extends Component {
-  state = {
-    fight: {
-      monster1: false,
-      monster2: false,
-      monster3: false,
-      monster4: false
+
+    state = {
+        monsters: [],
+        fight: {
+            monster1: false,
+            monster2: false,
+            monster3: false,
+            monster4: false
+        }
+    };
+
+    loadMonsters = () => {
+        API.getMonsters()
+            .then(res => {
+                // console.log(res.data)
+                this.setState({ monsters: res.data })
+            })
+            .catch(err => console.log(err));
+    };
+
+    componentDidMount() {
+        this.loadMonsters()
     }
-  };
-  fightMonster = () => {
-    this.setState({ fightMonster: true });
-  };
 
-  render() {
-    return (
-      <div>
-        <Container id="mainContainer">
-          <Row className="justify-content-md-center">
-            <Col md="auto">
-              <Card id="mainCard" style={{ width: "13rem" }}>
-                <img
-                  id="character"
-                  src={"https://picsum.photos/id/122/200/200"}
-                />
-              </Card>
-            </Col>
+    fightMonster = () => {
+        this.setState({ fightMonster: true })
+    };
 
-            <Col md="auto">
-              <Card id="mainCard" style={{ width: "18rem" }}>
-                <h3 id="userInfo">User Info</h3>
-                <ul>
-                  <li>Name: </li>
-                  <li>House:</li>
-                  <li>Strength: </li>
-                  <li>Spells: </li>
-                </ul>
-              </Card>
-            </Col>
-          </Row>
-          <br />
+    render() {
+        return (
+            <div>
 
-          <br />
+                <Container id="mainContainer">
+                    <Row className="justify-content-md-center">
+                        <Col md="auto">
+                            <Card id="mainCard" style={{ width: '13rem' }}>
+                                <img src={"https://picsum.photos/id/122/200/200"} />
+                            </Card>
+                        </Col>
 
-          <Row className="justify-content-xl-center">
-            <Col xs={2}>
-              <Link to="/fight">
-                <Button variant="primary" onClick={this.fightMonster}>
-                  Stage 1
-                </Button>
-              </Link>
-            </Col>
-            <Col xs={2}>
-              <Link to="/fight">
-                <Button onClick={this.fightMonster}>Stage 2 </Button>
-              </Link>
-            </Col>
-            <Col xs={2}>
-              <Link to="/fight">
-                <Button onClick={this.fightMonster}>Stage 3</Button>
-              </Link>
-            </Col>
-            <Col xs={2}>
-              <Link to="/fight">
-                <Button onClick={this.fightMonster}>Stage 4</Button>
-              </Link>
-            </Col>
-          </Row>
-          <br />
+                        <Col md="auto">
+                            <Card id="mainCard" style={{ width: '18rem' }}>
+                                <h3 id="userInfo">User Info</h3>
+                                <ul>
+                                    <li>Name: </li>
+                                    <li>House:</li>
+                                    <li>Strength: </li>
+                                    <li>Spells: </li>
+                                </ul>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <br></br>
 
-          <Row className="justify-content-md-center">
-            <Card id="mainCard" style={{ width: "60rem" }}>
-              <Col>
-                <h3 id="userInfo">House Members</h3>
-                <ul>
-                  <li>1</li>
-                  <li>2</li>
-                  <li>3</li>
-                  <li>4</li>
-                </ul>
-              </Col>
-            </Card>
-          </Row>
+                    <br></br>
+
+                    <div className="row">
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 1</p>
+                        </div>
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 2</p>
+                        </div>
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 3</p>
+                        </div>
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 4</p>
+                        </div>
+
+                    </div>
+
+
+                    <Row className="justify-content-md-center">
+                        <Card id="mainCard" style={{ width: '60rem' }}>
+                            <Col>
+                                <h3 id="userInfo">House Members</h3>
+                                <ul>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                </ul>
+                            </Col>
+                        </Card>
+                    </Row>
+
         </Container>
       </div>
     );
