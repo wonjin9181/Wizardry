@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./main_stats.css";
-import { } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 class MainStats extends Component {
 
@@ -23,21 +21,31 @@ class MainStats extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-sm-8">img</div>
-                        <div className="col-sm-4">
-                            <h1>User Info</h1>
-                            <ul>
-                                <li>Name: </li>
-                                <li>House:</li>
-                                <li>Strength: </li>
-                                <li>Spells: </li>
-                            </ul>
-                        </div>
-                    </div>
+
+                <Container id="mainContainer">
+                    <Row className="justify-content-md-center">
+                        <Col md="auto">
+                            <Card id="mainCard" style={{ width: '13rem' }}>
+                            <img src ={"https://picsum.photos/id/122/200/200"}/>
+                            </Card>
+                        </Col>
+
+                        <Col md="auto">
+                            <Card id="mainCard" style={{ width: '18rem' }}>
+                                <h3 id="userInfo">User Info</h3>
+                                <ul>
+                                    <li>Name: </li>
+                                    <li>House:</li>
+                                    <li>Strength: </li>
+                                    <li>Spells: </li>
+                                </ul>
+                            </Card>
+                        </Col>
+                    </Row>
                     <br></br>
+         
                     <br></br>
+
                     <div className="row">
                         <div className="col-sm">
                             <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
@@ -56,19 +64,25 @@ class MainStats extends Component {
                             <p>Stage 4</p>
                         </div>
 
-                    </div>
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <h1>House Members</h1>
-                            <ul>
-                                <li>1</li>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                    </div>              
+           
+
+                    <Row className="justify-content-md-center">
+                            <Card id="mainCard" style={{ width: '60rem' }}>
+                            <Col>
+                                <h3 id= "userInfo">House Members</h3>
+                                <ul>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                </ul>
+                                </Col>
+                            </Card>
+                    </Row>
+
+                </Container>
+
             </div>
         );
     }
