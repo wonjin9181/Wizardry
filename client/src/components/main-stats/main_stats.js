@@ -1,10 +1,24 @@
 import React, { Component } from "react";
+import "./main_stats.css";
+import { } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import { Button, Form, Jumbotron, Container } from "react-bootstrap";
-// import "./main_stats.css"
 
 
 class MainStats extends Component {
+
+    state = {
+        fight: {
+            monster1: false,
+            monster2: false,
+            monster3: false,
+            monster4: false
+        }
+
+    };
+    fightMonster = () => {
+        this.setState({ fightMonster: true })
+    };
 
     render() {
         return (
@@ -26,22 +40,22 @@ class MainStats extends Component {
                     <br></br>
                     <div className="row">
                         <div className="col-sm">
-                            <button></button>
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
                             <p>Stage 1</p>
                         </div>
                         <div className="col-sm">
-                            <button></button>
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
                             <p>Stage 2</p>
                         </div>
                         <div className="col-sm">
-                            <button></button>
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
                             <p>Stage 3</p>
                         </div>
                         <div className="col-sm">
-                            <button></button>
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
                             <p>Stage 4</p>
                         </div>
-                        
+
                     </div>
                     <div className="row">
                         <div className="col-lg-12">

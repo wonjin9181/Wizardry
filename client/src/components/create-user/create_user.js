@@ -5,6 +5,11 @@ import "./create_user.css";
 // import Dropdown  from "../DropDownMenue.js"
 class CreateUser extends Component {
 
+  playGame = () => {
+    this.setState({ play: true })
+  };
+
+
   handleCatChange(e) {
     this.setState({
       storeType: e.target.value
@@ -34,40 +39,40 @@ class CreateUser extends Component {
                 House
                 </Form.Label>
               <Col sm={10}>
-            <Form.Check
-              inline
-              type="radio"
-              label="Fire"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios1"
-            />
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Fire"
+                  name="formHorizontalRadios"
+                  id="formHorizontalRadios1"
+                />
 
-            <Form.Check
-              inline
-              type="radio"
-              label="Water"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios2"
-            />
-
-
-            <Form.Check
-              inline
-              type="radio"
-              label="Earth"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios3"
-            />
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Water"
+                  name="formHorizontalRadios"
+                  id="formHorizontalRadios2"
+                />
 
 
-            <Form.Check
-              inline
-              type="radio"
-              label="Air"
-              name="formHorizontalRadios"
-              id="formHorizontalRadios4"
-            />
-            </Col>
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Earth"
+                  name="formHorizontalRadios"
+                  id="formHorizontalRadios3"
+                />
+
+
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Air"
+                  name="formHorizontalRadios"
+                  id="formHorizontalRadios4"
+                />
+              </Col>
             </Form.Group>
 
             <Form.Group as={Row} controlId="formHorizontalEmail">
@@ -87,9 +92,8 @@ class CreateUser extends Component {
                 <Form.Control type="password" placeholder="Password" />
               </Col>
             </Form.Group>
-
-            <Button id="createUserBtn" variant="primary" type="submit">
-              Create account </Button>
+              <Button id="createUserBtn" variant="primary" type="submit">
+                Create account </Button>
           </Form>
         </aside>
 
