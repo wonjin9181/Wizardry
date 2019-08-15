@@ -1,10 +1,10 @@
 
 import React, { Component } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import "./create_user.css";
+
 import API from "../../utils/API"
 import { Redirect } from 'react-router-dom'
-
 
 class CreateUser extends Component {
   state = {
@@ -43,9 +43,9 @@ class CreateUser extends Component {
   render() {
     return (
       <div>
-
-        <aside id="createuser">
+        <Container>
           <h1>Wizard game</h1>
+
 
           <Form onSubmit={this.handleSubmit}>
             <Form.Group as={Row} controlId="formHorizontalName">
@@ -152,6 +152,9 @@ class CreateUser extends Component {
 
           </Form>
         </aside>
+
+
+        </Container>
 
       </div>
     )
