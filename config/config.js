@@ -1,7 +1,9 @@
-{
+
+
+module.exports = {
   "development": {
     "username": "root",
-    "password": "DB_PASSWORD",
+    "password": process.env.DB_PASSWORD,
     "database": "wizard_db",
     "host": "localhost",
     "dialect": "mysql"

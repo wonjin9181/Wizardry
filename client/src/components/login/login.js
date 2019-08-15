@@ -1,20 +1,24 @@
 
 import React, { Component } from "react";
-import {Redirect} from "react-router-dom";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import "./login.css"
 import API from "../../utils/API"
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 
 class Login extends Component {
+
 
     state = {
         email: "",
         password: "",
         userid: "",
         play: false
+
     };
+    playGame = () => {
+        this.setState({ play: true })
+    }
 
 
 
