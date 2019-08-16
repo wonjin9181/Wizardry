@@ -43,7 +43,7 @@ class Login extends Component {
                 password:"",
                 id: data.id
               })
-              localStorage.setItem("key", self.state.id)
+              localStorage.setItem("key", self.state.id.toString())
             }
             else {
               alert('Incorrect Username and/or Password!');
