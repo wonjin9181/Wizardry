@@ -3,11 +3,16 @@ import "./main_stats.css";
 import { Link } from "react-router-dom";
 import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { runInThisContext } from "vm";
 
 
 class MainStats extends Component {
 
     state = {
+        id: "",
+        characterName: "",
+        house: "",
+        strength: "",
         monsters: [],
         fight: {
             monster1: false,
@@ -21,92 +26,113 @@ class MainStats extends Component {
     loadMonsters = () => {
         API.getMonsters()
             .then(res => {
+
               console.log(res.data)
+
                 this.setState({ monsters: res.data })
             })
             .catch(err => console.log(err));
     };
 
+    fightMonster = () => {
+        this.setState({ fightMonster: true })
+    };
+    
+
     componentDidMount() {
-        this.loadMonsters()
+      this.loadMonsters();
+      
+        let self= this
+        var key = localStorage.getItem("key")
+        
+            API.loadUser(key)
+                .then(function (result) {
+                    console.log(result.data);
+                    self.setState({
+                        characterName: result.data.characterName,
+                        house: result.data.house,
+                        strength: result.data.strength
+                    });
+                }).catch(err => {
+                    alert(err);
+                });
+    
+    
+        
+
+        
+    };
+
+
+
+
+    render() {
+        return (
+            <div>
+
+                <Container id="mainContainer">
+                    <Row className="justify-content-md-center">
+                        <Col md="auto">
+                            <Card id="mainCard" style={{ width: '13rem' }}>
+                                <img src={"https://picsum.photos/id/122/200/200"} alt="main-stats" />
+
+                            </Card>
+                        </Col>
+
+                        <Col md="auto">
+                            <Card id="mainCard" style={{ width: '18rem' }}>
+                                <h3 id="userInfo">User Info</h3>
+                                <ul>
+                                    <li>Name: {this.state.characterName}</li>
+                                    <li>House: {this.state.house}</li>
+                                    <li>Strength: {this.state.strength}</li>
+                                    <li>Spells: </li>
+                                </ul>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <br></br>
+
+                    <br></br>
+
+                    <div className="row">
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 1</p>
+                        </div>
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 2</p>
+                        </div>
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 3</p>
+                        </div>
+                        <div className="col-sm">
+                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
+                            <p>Stage 4</p>
+                        </div>
+
+                    </div>
+
+
+                    <Row className="justify-content-md-center">
+                        <Card id="mainCard" style={{ width: '60rem' }}>
+                            <Col>
+                                <h3 id="userInfo">House Members</h3>
+                                <ul>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                </ul>
+                            </Col>
+                        </Card>
+                    </Row>
+
+                </Container>
+            </div>
+        );
     }
-
-  fightMonster = () => {
-    this.setState({ fightMonster: true });
-  };
-
-  render() {
-    return (
-      <div>
-        <Container id="mainContainer">
-          <Row className="justify-content-md-center">
-            <Col md="auto">
-              <Card id="mainCard" style={{ width: "13rem" }}>
-                <img
-                  id="character"
-                  src={"https://picsum.photos/id/122/200/200"}
-                />
-              </Card>
-            </Col>
-
-            <Col md="auto">
-              <Card id="mainCard" style={{ width: "18rem" }}>
-                <h3 id="userInfo">User Info</h3>
-                <ul>
-                  <li>Name: </li>
-                  <li>House:</li>
-                  <li>Strength: </li>
-                  <li>Spells: </li>
-                </ul>
-              </Card>
-            </Col>
-          </Row>
-          <br />
-
-          <br />
-
-          <Row className="justify-content-xl-center">
-            <Col xs={2}>
-              <Link to="/fight?monster=1">
-                <Button variant="primary" onClick={this.fightMonster}>
-                  Stage 1
-                </Button>
-              </Link>
-            </Col>
-            <Col xs={2}>
-              <Link to="/fight?monster=2">
-                <Button onClick={this.fightMonster}>Stage 2 </Button>
-              </Link>
-            </Col>
-            <Col xs={2}>
-              <Link id="3" to="/fight?monster=3">
-                <Button onClick={this.fightMonster}>Stage 3</Button>
-              </Link>
-            </Col>
-            <Col xs={2}>
-              <Link to="/fight?monster=4">
-                <Button onClick={this.fightMonster}>Stage 4</Button>
-              </Link>
-            </Col>
-          </Row>
-          <br />
-
-          <Row className="justify-content-md-center">
-            <Card id="mainCard" style={{ width: "60rem" }}>
-              <Col>
-                <h3 id="userInfo">House Members</h3>
-                <ul>
-                  <li>1</li>
-                  <li>2</li>
-                  <li>3</li>
-                  <li>4</li>
-                </ul>
-              </Col>
-            </Card>
-          </Row>
-        </Container>
-      </div>
-    );
-  }
 }
 export default MainStats;
