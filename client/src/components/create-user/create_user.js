@@ -42,6 +42,13 @@ class CreateUser extends Component {
           })
         }
       });
+
+
+    API.postHouse(this.state)
+    .then(function(result){
+      console.log(result)
+    })
+
   };
 
   render() {

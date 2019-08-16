@@ -14,6 +14,9 @@ export default {
     return axios.post("/api/login", data)
   },
 
+
+
+
   createUser: (userData) => {
     console.log("this: " + userData)
     return axios.post("/api/users", userData)
@@ -25,5 +28,8 @@ export default {
   },
 
 
-
+  postHouse: (userData) => {
+    return axios.post("/api/house", userData)
+  }
+   
 }
