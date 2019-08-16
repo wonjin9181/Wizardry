@@ -95,25 +95,24 @@ class MainStats extends Component {
 
                     <br></br>
 
-                    <div className="row">
-                        <div className="col-sm">
-                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
-                            <p>Stage 1</p>
-                        </div>
-                        <div className="col-sm">
-                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
-                            <p>Stage 2</p>
-                        </div>
-                        <div className="col-sm">
-                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
-                            <p>Stage 3</p>
-                        </div>
-                        <div className="col-sm">
-                            <Link to="/fight"><button onClick={this.fightMonster}></button></Link>
-                            <p>Stage 4</p>
-                        </div>
-
-                    </div>
+                    <Row className="justify-conent-x1-center">
+                        <Col xs={2}>
+                            <Link to="/fight?monster=1"><Button onClick={this.fightMonster}>1</Button></Link>
+                            
+                        </Col>
+                        <Col xs={2}>
+                            <Link to="/fight?monster=2"><Button onClick={this.fightMonster}>2</Button></Link>
+                        
+                        </Col>
+                        <Col xs={2}>
+                            <Link to="/fight?monster=3"><Button onClick={this.fightMonster}>3</Button></Link>
+                           
+                        </Col>
+                        <Col xs={2}>
+                            <Link to="/fight?monster=4"><Button onClick={this.fightMonster}>4</Button></Link>
+                         
+                        </Col>
+                    </Row>
 
 
                     <Row className="justify-content-md-center">

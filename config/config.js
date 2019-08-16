@@ -3,7 +3,7 @@
 module.exports = {
   "development": {
     "username": "root",
-    "password": "thegman69!",
+    "password": process.env.DB_PASSWORD,
     "database": "wizard_db",
     "host": "localhost",
     "dialect": "mysql"
