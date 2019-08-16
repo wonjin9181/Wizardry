@@ -5,7 +5,7 @@ const { hashedPassword } = require('../util/passwordService')
 module.exports = function (app) {
 
     app.post("/api/users", async function (req, res) {
-        console.log(req.body)
+
         let hasher = new PasswordHasher();
         let hash = await hasher.create(req.body.password);
         //find info from database user
@@ -47,20 +47,11 @@ module.exports = function (app) {
             });
 
 
-        // console.log("========="+req.body)
-        // db.House.create({
-        //     where:{
-        //         houseName:req.body.house,
-        //         user:req.body.username
-        //     }
-        // })
-        // .then(function(dbHouse){
-        //     res.json(dbHouse)
-        // })
-        // .catch(function(err){
-        //     console.log(err)
-        // })
     })
+
+
+
+
 
     app.get("/api/users/:id", function (req, res) {
 
