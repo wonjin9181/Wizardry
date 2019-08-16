@@ -15,13 +15,15 @@ module.exports = function(app) {
         })
     })
 
-    app.get("/api/monsters/:monster", function(req, res){
+    app.get("/api/monsters/:id", function(req, res){
+        console.log(req.params.id)
         db.Monsters.findAll({
             where:{
-                monsterName:req.params.monster
+                id:req.params.id
             }
         })
         .then(function(dbMonster){
+            console.log("dbMonster", dbMonster)
             res.json(dbMonster)
         })
         .catch(function(err){

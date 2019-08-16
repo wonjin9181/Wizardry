@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "DB_PASSWORD",
+    "password": "thegman69!",
     "database": "wizard_db",
     "host": "localhost",
     "dialect": "mysql"

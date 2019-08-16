@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-
 import "./main_stats.css";
 import { Link } from "react-router-dom";
-
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 class MainStats extends Component {
@@ -50,24 +48,24 @@ class MainStats extends Component {
 
           <Row className="justify-content-xl-center">
             <Col xs={2}>
-              <Link to="/fight">
+              <Link to="/fight?monster=1">
                 <Button variant="primary" onClick={this.fightMonster}>
                   Stage 1
                 </Button>
               </Link>
             </Col>
             <Col xs={2}>
-              <Link to="/fight">
+              <Link to="/fight?monster=2">
                 <Button onClick={this.fightMonster}>Stage 2 </Button>
               </Link>
             </Col>
             <Col xs={2}>
-              <Link to="/fight">
+              <Link id="3" to="/fight?monster=3">
                 <Button onClick={this.fightMonster}>Stage 3</Button>
               </Link>
             </Col>
             <Col xs={2}>
-              <Link to="/fight">
+              <Link to="/fight?monster=4">
                 <Button onClick={this.fightMonster}>Stage 4</Button>
               </Link>
             </Col>
