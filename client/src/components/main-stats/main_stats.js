@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 
 import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { runInThisContext } from "vm";
 
 
 class MainStats extends Component {
 
     state = {
+        id: "",
+        characterName: "",
+        house: "",
+        strength: "",
         monsters: [],
         fight: {
             monster1: false,
@@ -23,7 +28,6 @@ class MainStats extends Component {
     loadMonsters = () => {
         API.getMonsters()
             .then(res => {
-                // console.log(res.data)
                 this.setState({ monsters: res.data })
             })
             .catch(err => console.log(err));
@@ -31,17 +35,30 @@ class MainStats extends Component {
     fightMonster = () => {
         this.setState({ fightMonster: true })
     };
-
     
+
     componentDidMount() {
-        this.loadMonsters()
-        var key = localStorage.getItem('key')
-        this.setState({
-            id: key
-        })
+        let self= this
+        var key = localStorage.getItem("key")
+        
+            API.loadUser(key)
+                .then(function (result) {
+                    console.log(result.data);
+                    self.setState({
+                        characterName: result.data.characterName,
+                        house: result.data.house,
+                        strength: result.data.strength
+                    });
+                }).catch(err => {
+                    alert(err);
+                });
+    
+    
+        
 
+        
+    };
 
-    }
 
 
 
@@ -62,9 +79,9 @@ class MainStats extends Component {
                             <Card id="mainCard" style={{ width: '18rem' }}>
                                 <h3 id="userInfo">User Info</h3>
                                 <ul>
-                                    <li>Name: {this.props.characterName}</li>
-                                    <li>House:{this.props.house}</li>
-                                    <li>Strength: </li>
+                                    <li>Name: {this.state.characterName}</li>
+                                    <li>House: {this.state.house}</li>
+                                    <li>Strength: {this.state.strength}</li>
                                     <li>Spells: </li>
                                 </ul>
                             </Card>
