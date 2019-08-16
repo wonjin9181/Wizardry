@@ -19,11 +19,10 @@ module.exports = function (app) {
             }
         })
             .then(function (results) {
-
-                if (results) {
-                    console.log("username exists")
-                    res.end()
-                } else {
+                console.log("------"+results)
+                //when result comes out as []
+                //it creates user
+                if(results.length === 0){
                     db.Users.create({
                         email: req.body.email,
                         house: req.body.house,
@@ -39,6 +38,12 @@ module.exports = function (app) {
                             console.log(err)
                         })
                 }
+                //when we get a user
+                //we send status 404?
+                else{
+                    console.log("username exists")
+                    res.end()
+                } 
             });
 
 

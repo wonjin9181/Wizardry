@@ -2,39 +2,43 @@
 const db = require('../models');
 
 module.exports = (app) => {
-   
+
 
     app.post('/api/login', (req, res) => {
         var email = req.body.email;
         var password = req.body.password;
-        console.log(email,password);
+        console.log(email, password);
         if (email && password) {
             db.Users.findAll({
                 where: {
                     email: email
                 }
             }).then(async (results) => {
-                console.log(results[0].dataValues)
-
-                
-                if (!results) {
+                if (results.length === 0) {
                     console.log("no result")
-                    res.send("Invalid user/login");
-                    return;
+                    res.json({
+                        isUser:false
+                    })
                 }
                 let hasher = new PasswordHasher();
                 let cool = await hasher.verify(password, results[0].dataValues.hash, results[0].dataValues.salt);
                 if (cool) {
-                    console.log("cool"+ results[0].dataValues.id)
-                    res.json(results[0].dataValues.id)
-                    // res.cookie("userData", results[0].dataValues.id);
-                    // res.redirect('/main');
+                    console.log(results[0].dataValues)
+                    let data= results[0].dataValues
+                    res.json({
+                        isUser:true,
+                        characterName:data.characterName,
+                        house: data.house,
+                        strength: data.strength
+                    })
                 } else {
                     console.log("not cool")
-                    res.status(404).send('Incorrect Username and/or Password!');
+                    res.json({
+                        isUser:false
+                    })
                 }
                 res.end();
-            });
+            })
         } else {
             res.send('Please enter Username and Password!');
             res.end();
@@ -66,31 +70,31 @@ const crypto = require('crypto');
 
 function PasswordHasher() {
 }
-    PasswordHasher.prototype.create = async function (password) {
-        let salt = crypto.randomBytes(32).toString('hex');
-        let rval = await this.hash(password, salt);
-        return rval;
-    }
-    PasswordHasher.prototype.verify = async function (password, hashed, salt) {
-        let hash = await this.hash(password, salt);
-        return hashed === hash.hash;
-    }
-    PasswordHasher.prototype.hash = async function (password, salt) {
-        return new Promise((resolve, reject) => {
-            let hasher = crypto.createHmac('sha512', salt);
-            let hash = hasher.update(password);
-            let iterations = 25000;
-            function doOne() {
-                hash.update(password);
-                if (iterations--) {
-                    process.nextTick(doOne);
-                } else {
-                    resolve({
-                        salt: salt,
-                        hash: hash.digest('hex')
-                    });
-                }
+PasswordHasher.prototype.create = async function (password) {
+    let salt = crypto.randomBytes(32).toString('hex');
+    let rval = await this.hash(password, salt);
+    return rval;
+}
+PasswordHasher.prototype.verify = async function (password, hashed, salt) {
+    let hash = await this.hash(password, salt);
+    return hashed === hash.hash;
+}
+PasswordHasher.prototype.hash = async function (password, salt) {
+    return new Promise((resolve, reject) => {
+        let hasher = crypto.createHmac('sha512', salt);
+        let hash = hasher.update(password);
+        let iterations = 25000;
+        function doOne() {
+            hash.update(password);
+            if (iterations--) {
+                process.nextTick(doOne);
+            } else {
+                resolve({
+                    salt: salt,
+                    hash: hash.digest('hex')
+                });
             }
-            doOne();
-        });
-    }
+        }
+        doOne();
+    });
+}
