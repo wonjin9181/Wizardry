@@ -1,18 +1,27 @@
 import React, { Component } from "react";
-import { Button, Container, Row, Col, Figure } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Row,
+  Col,
+  Figure,
+  Image,
+  ImageProps
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./fight.css";
 import axios from "axios";
 import API from "../../utils/API";
-// import monsterData from "../../../../script/monsters.json"
+import { timingSafeEqual } from "crypto";
+import fighterImages from './fighterImages';
 
 class Fight extends Component {
   state = {
     spell: false,
-    monsterType: "",
-    monsterStrength: "",
+    monsterDescription: "",
+    strength: "",
     monsterName: "",
-    monsterImage: ""
+    monsterImg: ""
   };
   castSpell = () => {
     this.setState({ spell: true });
@@ -22,23 +31,19 @@ class Fight extends Component {
     let equ = document.location.search.indexOf("=");
     let id = parseInt(document.location.search.substr(equ + 1));
     let self = this;
-    console.log(id);
-    API.getOneMonster(id).then(function(res) {
-      console.log("response", res);
-      self.setState({
-        monsterType: res.data[0].monsterDescription
-      });
-      console.log("STATE", self.state.monsterType);
+    API.getOneMonster(id).then(function({
+      data: { monsterDescription, imageIndex }
+    }) {
+      // if imageIndex is an id (from database) that correlates to index value of the id in fightersImage array, then
+      //  this.state.imageIndex = fighterImages[imageIndex]
+      let {src} = fighterImages[imageIndex]; {}
+      self.setState({ monsterDescription, monsterImg: src });
     });
   };
 
-  //api call
-  //.then(data)
-  //setstate of monster
   render() {
-    // if (monsterElement === "Fire Monster") {
-    //   console.log("did it work?")
-    // }
+    const { monsterImg } = this.state;
+    console.log('state.monsterImg', monsterImg);
     return (
       <Container>
         <Row>
@@ -48,13 +53,13 @@ class Fight extends Component {
                 width={300}
                 height={300}
                 alt="175x175"
-                src="https://picsum.photos/id/660/300/300"
+                src={monsterImg}
                 className="fighters"
               />
               <Figure.Caption>Monster!</Figure.Caption>
             </Figure>
           </Col>
-          <Col xs={4} class="justify-content-end">
+          <Col xs={4} className="justify-content-end">
             <Figure>
               <Figure.Image
                 width={300}

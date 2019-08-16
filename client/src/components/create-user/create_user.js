@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import "./create_user.css";
-
 import API from "../../utils/API"
 import { Redirect } from 'react-router-dom'
 
@@ -12,11 +11,8 @@ class CreateUser extends Component {
     house: "",
     email: "",
     password: "",
-
+    madeUser: false,
   };
-
-
-
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -29,24 +25,37 @@ class CreateUser extends Component {
   }
 
   handleSubmit = event => {
+    let self = this;
     event.preventDefault();
     console.log(this.state)
 
     API.createUser(this.state)
-      .then(function (data) {
-        console.log(data)
-        if (data.status === 200)
-          return <Redirect to='/' />
-      })
-  }
+
+      .then(function (result) {
+        console.log(result)
+        if (!result.data) {
+          alert("Email already exists!")
+         
+        } else {
+          self.setState({
+            madeUser: true
+          })
+        }
+      });
+  };
 
   render() {
+
+    if (this.state.madeUser === true) {
+      return <Redirect to="/" />
+    }
+
     return (
       <div>
         <Container>
           <h1>Wizard game</h1>
 
-          <aside>
+          <aside id="createuser">
             <Form onSubmit={this.handleSubmit}>
               <Form.Group as={Row} controlId="formHorizontalName">
                 <Form.Label column sm={2}>
@@ -70,24 +79,20 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-
                     value="fire"
                     onClick={this.handleChange}
                     label="Fire"
                     name="house"
-
                     id="formHorizontalRadios1"
                   />
 
                   <Form.Check
                     inline
                     type="radio"
-
                     value="water"
                     onClick={this.handleChange}
                     label="Water"
                     name="house"
-
                     id="formHorizontalRadios2"
                   />
 
@@ -95,12 +100,10 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-
                     value="earth"
                     onClick={this.handleChange}
                     label="Earth"
                     name="house"
-
                     id="formHorizontalRadios3"
                   />
 
@@ -108,12 +111,10 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-
                     value="air"
                     onClick={this.handleChange}
                     label="Air"
                     name="house"
-
                     id="formHorizontalRadios4"
                   />
                 </Col>

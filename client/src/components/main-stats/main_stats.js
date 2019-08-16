@@ -1,17 +1,36 @@
 import React, { Component } from "react";
 import "./main_stats.css";
 import { Link } from "react-router-dom";
+import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
+
 class MainStats extends Component {
-  state = {
-    fight: {
-      monster1: false,
-      monster2: false,
-      monster3: false,
-      monster4: false
+
+    state = {
+        monsters: [],
+        fight: {
+            monster1: false,
+            monster2: false,
+            monster3: false,
+            monster4: false
+        }
+    };
+
+
+    loadMonsters = () => {
+        API.getMonsters()
+            .then(res => {
+              console.log(res.data)
+                this.setState({ monsters: res.data })
+            })
+            .catch(err => console.log(err));
+    };
+
+    componentDidMount() {
+        this.loadMonsters()
     }
-  };
+
   fightMonster = () => {
     this.setState({ fightMonster: true });
   };

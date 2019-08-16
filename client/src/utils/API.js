@@ -10,7 +10,9 @@ export default {
     return axios.get("/api/monsters/"+id)
   },
 
-  loginUser: (data) => {axios.post("/api/login", data)},
+  loginUser: (data) => {
+    console.log("this: "+ data)
+    return axios.post("/api/login", data)},
 
   createUser: (userData) => {
     console.log("this: " + userData)
