@@ -5,8 +5,11 @@ export default {
   getMonsters: () => {
     return axios.get("/api/monsters");
   },
-  getOneMonster: () => {
-    return axios.get("/api/monsters/:monster")
+
+  getOneMonster:(id)=>{
+    console.log('ID????',id);
+    return axios.get("/api/monsters/"+id)
+
   },
 
   loginUser: (data) => {

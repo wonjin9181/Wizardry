@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-
 import "./main_stats.css";
 import { Link } from "react-router-dom";
-
 import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { runInThisContext } from "vm";
@@ -28,16 +26,22 @@ class MainStats extends Component {
     loadMonsters = () => {
         API.getMonsters()
             .then(res => {
+
+              console.log(res.data)
+
                 this.setState({ monsters: res.data })
             })
             .catch(err => console.log(err));
     };
+
     fightMonster = () => {
         this.setState({ fightMonster: true })
     };
     
 
     componentDidMount() {
+      this.loadMonsters();
+      
         let self= this
         var key = localStorage.getItem("key")
         

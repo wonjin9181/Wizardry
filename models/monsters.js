@@ -22,8 +22,9 @@ module.exports = function (sequelize, DataTypes) {
         len: [1,100]
       }
     },
-    monsterImg: {
-      type: DataTypes.STRING
+    imageIndex: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
   });
 
