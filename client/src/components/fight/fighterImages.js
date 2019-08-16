@@ -1,6 +1,6 @@
 const fighterImages = [
-    { src: '/images/fire.jpeg' },
-    { src: 'images/ice.jpg'},
+    { src: '/images/fire.jpg' },
+    { src: 'images/water.jpg'},
     { src: 'images/air.jpg'},
     { src: 'images/earth.jpg'}
 ];
