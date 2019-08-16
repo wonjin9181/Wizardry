@@ -28,14 +28,22 @@ class MainStats extends Component {
             })
             .catch(err => console.log(err));
     };
-
-    componentDidMount() {
-        this.loadMonsters()
-    }
-
     fightMonster = () => {
         this.setState({ fightMonster: true })
     };
+
+    
+    componentDidMount() {
+        this.loadMonsters()
+        var key = localStorage.getItem('key')
+        this.setState({
+            id: key
+        })
+
+
+    }
+
+
 
     render() {
         return (
@@ -45,7 +53,7 @@ class MainStats extends Component {
                     <Row className="justify-content-md-center">
                         <Col md="auto">
                             <Card id="mainCard" style={{ width: '13rem' }}>
-                            <img src ={"https://picsum.photos/id/122/200/200"} alt="main-stats"/>
+                                <img src={"https://picsum.photos/id/122/200/200"} alt="main-stats" />
 
                             </Card>
                         </Col>
@@ -54,8 +62,8 @@ class MainStats extends Component {
                             <Card id="mainCard" style={{ width: '18rem' }}>
                                 <h3 id="userInfo">User Info</h3>
                                 <ul>
-                                    <li>Name: </li>
-                                    <li>House:</li>
+                                    <li>Name: {this.props.characterName}</li>
+                                    <li>House:{this.props.house}</li>
                                     <li>Strength: </li>
                                     <li>Spells: </li>
                                 </ul>
@@ -101,9 +109,9 @@ class MainStats extends Component {
                         </Card>
                     </Row>
 
-        </Container>
-      </div>
-    );
-  }
+                </Container>
+            </div>
+        );
+    }
 }
 export default MainStats;

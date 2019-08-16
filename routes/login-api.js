@@ -27,9 +27,7 @@ module.exports = (app) => {
                     let data= results[0].dataValues
                     res.json({
                         isUser:true,
-                        characterName:data.characterName,
-                        house: data.house,
-                        strength: data.strength
+                        id: data.id
                     })
                 } else {
                     console.log("not cool")
