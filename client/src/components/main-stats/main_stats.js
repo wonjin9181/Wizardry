@@ -19,6 +19,7 @@ class MainStats extends Component {
         }
     };
 
+
     loadMonsters = () => {
         API.getMonsters()
             .then(res => {

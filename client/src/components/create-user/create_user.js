@@ -2,9 +2,8 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import "./create_user.css";
-
 import API from "../../utils/API"
-// import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class CreateUser extends Component {
   state = {
@@ -12,7 +11,7 @@ class CreateUser extends Component {
     house: "",
     email: "",
     password: "",
-    redirect: false
+    madeUser: false,
   };
 
   validateForm() {
@@ -26,6 +25,7 @@ class CreateUser extends Component {
   }
 
   handleSubmit = event => {
+    let self = this;
     event.preventDefault();
     console.log(this.state)
 
@@ -35,15 +35,20 @@ class CreateUser extends Component {
         console.log(result)
         if (!result.data) {
           alert("Email already exists!")
-          result.redirect("/login");
+         
         } else {
-          result.redirect("/main");
+          self.setState({
+            madeUser: true
+          })
         }
       });
   };
 
   render() {
 
+    if (this.state.madeUser === true) {
+      return <Redirect to="/" />
+    }
 
     return (
       <div>
