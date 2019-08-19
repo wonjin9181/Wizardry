@@ -10,7 +10,7 @@ class MainStats extends Component {
 
     state = {
         id: "",
-        
+        houseMembers: [],
         monsters: [],
         fight: {
             monster1: false,
@@ -47,11 +47,24 @@ class MainStats extends Component {
 
             API.loadUser(key)
                 .then(function (result) {
-                    console.log(result.data);
+                    // console.log(result.data);
                     self.setState({
                         characterName: result.data.characterName,
                         house: result.data.house,
                         strength: result.data.strength
+                    }, function () {
+
+                        console.log("house:" + self.state.house)
+                        API.getHouseMembers(self.state.house)
+
+                            .then(function (result) {
+                                console.log(result.data)
+                                self.setState({
+                                    houseMembers: result.data
+                                })
+                            })
+
+
                     });
                 }).catch(err => {
                     alert(err);
@@ -118,13 +131,9 @@ class MainStats extends Component {
                     <Row className="justify-content-md-center">
                         <Card id="mainCard" style={{ width: '60rem' }}>
                             <Col>
-                                <h3 id="userInfo">House Members</h3>
-                                <ul>
-                                    <li>1</li>
-                                    <li>2</li>
-                                    <li>3</li>
-                                    <li>4</li>
-                                </ul>
+                            {this.state.houseMembers.map(house=>(
+                                <li>{house.user}</li>
+                            ))}
                             </Col>
                         </Card>
                     </Row>
