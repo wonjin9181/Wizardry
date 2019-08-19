@@ -1,13 +1,15 @@
 var db = require("../models");
 
 module.exports = function (app) {
-    app.get("/api/house", function (req, res) {
+    app.get("/api/house/:house", function (req, res) {
+        
         db.House.findAll({
             where: {
                 houseName: req.params.house
             }
         })
             .then(function (dbHouse) {
+                console.log(dbHouse)
                 res.json(dbHouse)
             })
             .catch(function (err) {
