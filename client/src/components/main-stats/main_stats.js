@@ -10,9 +10,7 @@ class MainStats extends Component {
 
     state = {
         id: "",
-        characterName: "",
-        house: "",
-        strength: "",
+        
         monsters: [],
         fight: {
             monster1: false,
@@ -27,7 +25,7 @@ class MainStats extends Component {
         API.getMonsters()
             .then(res => {
 
-              console.log(res.data)
+                console.log(res.data)
 
                 this.setState({ monsters: res.data })
             })
@@ -37,14 +35,16 @@ class MainStats extends Component {
     fightMonster = () => {
         this.setState({ fightMonster: true })
     };
-    
+
 
     componentDidMount() {
-      this.loadMonsters();
-      
-        let self= this
+        this.loadMonsters();
+
+        let self = this
         var key = localStorage.getItem("key")
-        
+        if (key) {
+
+
             API.loadUser(key)
                 .then(function (result) {
                     console.log(result.data);
@@ -56,11 +56,11 @@ class MainStats extends Component {
                 }).catch(err => {
                     alert(err);
                 });
-    
-    
-        
 
-        
+        }
+
+
+
     };
 
 
@@ -98,19 +98,19 @@ class MainStats extends Component {
                     <Row className="justify-conent-x1-center">
                         <Col xs={2}>
                             <Link to="/fight?monster=1"><Button onClick={this.fightMonster}>1</Button></Link>
-                            
+
                         </Col>
                         <Col xs={2}>
                             <Link to="/fight?monster=2"><Button onClick={this.fightMonster}>2</Button></Link>
-                        
+
                         </Col>
                         <Col xs={2}>
                             <Link to="/fight?monster=3"><Button onClick={this.fightMonster}>3</Button></Link>
-                           
+
                         </Col>
                         <Col xs={2}>
                             <Link to="/fight?monster=4"><Button onClick={this.fightMonster}>4</Button></Link>
-                         
+
                         </Col>
                     </Row>
 
