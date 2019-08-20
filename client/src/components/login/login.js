@@ -50,8 +50,14 @@ class Login extends Component {
                         play: true,
                         password: "",
                         id: data.id
+                    }, function () {
+                        localStorage.setItem("key", self.state.id.toString())
                     })
-                    localStorage.setItem("key", self.state.id.toString())
+
+                    self.setState({
+                        play: true
+                    })
+                
                 }
                 else {
                     alert('Incorrect Username and/or Password!');
