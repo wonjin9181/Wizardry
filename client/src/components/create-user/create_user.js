@@ -33,17 +33,18 @@ class CreateUser extends Component {
         characterImage: parseInt(imgId)
       });
     } else {
-    this.setState({
-      [event.target.name]: event.target.value
-    }, function () {
+      this.setState({
+        [event.target.name]: event.target.value
+      }, function () {
 
-      let image = backgroundImages.find(object => {
-        return object.name === this.state.house;
-      })
-      this.setState({ bgImage: image })
-    });
+        let image = backgroundImages.find(object => {
+          return object.name === this.state.house;
+        })
+        this.setState({ bgImage: image })
+      });
     }
- 
+
+
   }
 
 
@@ -53,7 +54,7 @@ class CreateUser extends Component {
 
     console.log(this.state);
 
-    API.createUser(this.state).then(function(result) {
+    API.createUser(this.state).then(function (result) {
       console.log(result);
       if (!result.data) {
         alert("Email already exists!");
@@ -65,7 +66,7 @@ class CreateUser extends Component {
     });
 
 
-    API.postHouse(this.state).then(function(result) {
+    API.postHouse(this.state).then(function (result) {
       console.log(result);
     });
   };
