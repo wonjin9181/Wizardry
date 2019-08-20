@@ -17,7 +17,6 @@ class Login extends Component {
         localStorage.clear()
     }
 
-
     validateForm = () => {
         return this.state.email.length > 0 && this.state.password.length > 0;
     }
@@ -37,10 +36,9 @@ class Login extends Component {
         API.loginUser(this.state)
             .then(function (result) {
 
-                console.log(result)
+                console.log("RESULTSSSSS", result)
                 let data = result.data
                 if (result.data.isUser) {
-
 
                     self.setState({
                         password: "",
@@ -62,9 +60,6 @@ class Login extends Component {
             })
 
     }
-
-
-
 
     render() {
 

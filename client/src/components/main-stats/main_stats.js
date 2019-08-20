@@ -4,29 +4,26 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { runInThisContext } from "vm";
-
+import userAvatars from './userAvatars';
 
 class MainStats extends Component {
 
     state = {
         id: "",
-        
         monsters: [],
         fight: {
             monster1: false,
             monster2: false,
             monster3: false,
             monster4: false
-        }
+        },
+        characterImage: "",
     };
-
 
     loadMonsters = () => {
         API.getMonsters()
             .then(res => {
-
                 console.log(res.data)
-
                 this.setState({ monsters: res.data })
             })
             .catch(err => console.log(err));
@@ -36,46 +33,38 @@ class MainStats extends Component {
         this.setState({ fightMonster: true })
     };
 
-
     componentDidMount() {
         this.loadMonsters();
 
         let self = this
         var key = localStorage.getItem("key")
         if (key) {
-
-
+            console.log(key)
             API.loadUser(key)
                 .then(function (result) {
+                    let {src} = userAvatars[result.data.characterImage]
                     console.log(result.data);
                     self.setState({
                         characterName: result.data.characterName,
                         house: result.data.house,
-                        strength: result.data.strength
+                        strength: result.data.strength,
+                        characterImage: src
                     });
                 }).catch(err => {
                     alert(err);
                 });
-
         }
-
-
-
     };
 
-
-
-
     render() {
+        const { characterImage } = this.state;
         return (
             <div>
-
                 <Container id="mainContainer">
                     <Row className="justify-content-md-center">
                         <Col md="auto">
                             <Card id="mainCard" style={{ width: '13rem' }}>
-                                <img src={"https://picsum.photos/id/122/200/200"} alt="main-stats" />
-
+                                <img src={characterImage} alt="main-stats" />
                             </Card>
                         </Col>
 
@@ -92,9 +81,7 @@ class MainStats extends Component {
                         </Col>
                     </Row>
                     <br></br>
-
                     <br></br>
-
                     <Row className="justify-conent-x1-center">
                         <Col xs={2}>
                             <Link to="/fight?monster=1"><Button onClick={this.fightMonster}>1</Button></Link>
@@ -113,7 +100,6 @@ class MainStats extends Component {
 
                         </Col>
                     </Row>
-
 
                     <Row className="justify-content-md-center">
                         <Card id="mainCard" style={{ width: '60rem' }}>

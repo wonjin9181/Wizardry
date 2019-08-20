@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
   getMonsters: () => {
     return axios.get("/api/monsters");
   },
@@ -9,7 +8,6 @@ export default {
   getOneMonster:(id)=>{
     console.log('ID????',id);
     return axios.get("/api/monsters/"+id)
-
   },
 
   loginUser: (data) => {
@@ -17,11 +15,8 @@ export default {
     return axios.post("/api/login", data)
   },
 
-
-
-
   createUser: (userData) => {
-    console.log("this: " + userData)
+    console.log("this: ", userData)
     return axios.post("/api/users", userData)
   },
 
@@ -30,9 +25,7 @@ export default {
     return axios.get("/api/users/" + userData)
   },
 
-
   postHouse: (userData) => {
     return axios.post("/api/house", userData)
   }
-   
 }
