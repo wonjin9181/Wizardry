@@ -32,12 +32,10 @@ class Fight extends Component {
     this.setState({ spell: true });
   };
 
-  endGame = () => {
+  withdraw = () => {
     this.setState({
-      withdraw: true,
-      userStrength: "100"
+      withdraw: true
     });
-    console.log(this.state);
   };
 
   componentDidMount = () => {
@@ -73,7 +71,7 @@ class Fight extends Component {
     let userStrength = this.state.userStrength
     let monsterStrength = this.state.strength
     let key = localStorage.getItem("key")
-
+    console.log(userStrength)
 
 
     if (userStrength > monsterStrength) {
@@ -147,9 +145,9 @@ class Fight extends Component {
             Fight!
             </Button>
         </Row>
-        <Link to="/">
-          <Button className="endGameBtn" onClick={this.endGame} variant="primary">
-            End Game
+        <Link to="/main">
+          <Button className="withdrawBtn" onClick={this.withdraw} variant="primary">
+            Withdraw
            </Button>
         </Link>
       </Container>
