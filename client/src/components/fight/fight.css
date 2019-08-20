@@ -1,12 +1,16 @@
 #fightContainer {
-    margin-top:100px;
-    margin-bottom: 50vh
+  margin-top: 100px;
+  margin-bottom: 50vh;
 }
 
 .fighters {
-    border: 1px red solid
+  border: 1px red solid;
+}
+
+.withdrawBtn {
+  float: right;
 }
 
 #fightBtn {
-    margin-top: 35vh
+  margin-top: 35vh;
 }

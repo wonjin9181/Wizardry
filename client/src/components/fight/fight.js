@@ -20,7 +20,6 @@ import backgroundImage from '../main-stats/backgroundImages'
 
 class Fight extends Component {
   state = {
-    spell: false,
     userStrength: "",
     monsterDescription: "",
     monsterStrength: "",
@@ -117,6 +116,11 @@ class Fight extends Component {
 
       <div style={{ hight: "100vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
         <Container>
+          <Link to="/main">
+            <Button className="withdrawBtn" onClick={this.withdraw} variant="primary">
+              Withdraw
+           </Button>
+          </Link>
           <Row >
             {/* <Col xs={{ span: 4, offset: 2 }}> */}
             <Col xs={{ span: 4, offset: 1 }}>
@@ -132,12 +136,13 @@ class Fight extends Component {
               </Figure>
             </Col>
 
+
             <Col>
-
-              <Button id="fightBtn" onClick={this.fight} variant="primary" size="lg">
-                Fight!
+              <Link to="/main">
+                <Button id="fightBtn" onClick={this.fight} variant="primary" size="lg">
+                  Cast spell!
             </Button>
-
+              </Link>
             </Col>
 
             <Col className="justify-content-end" xs={5}>
@@ -160,15 +165,9 @@ class Fight extends Component {
             </Col>
           </Row>
 
-          <Link to="/main">
-            <Button className="withdrawBtn" onClick={this.withdraw} variant="primary">
-              Withdraw
-           </Button>
-          </Link>
 
         </Container>
-      </div>
-
+      </div >
     );
   }
 }

@@ -109,6 +109,11 @@ class MainStats extends Component {
             <div style={{ hight: "150vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
                 <Container id="mainContainer">
+                    <Link to="/">
+                        <Button className="logoutBtn" variant="primary">
+                            Logout
+                           </Button>
+                    </Link>
                     <Row className="justify-content-md-center">
                         <Col md="auto">
                             <Card id="mainCard" style={{ width: '13rem' }}>
@@ -157,27 +162,22 @@ class MainStats extends Component {
 
                     <Row className="justify-content-md-center">
                         <Card id="houseMembers" style={{ width: '25rem' }}>
-                        <Col>
+                            <Col>
 
 
 
-                            {this.state.houseMembers.map(house=>(
-                                
-                                <li
-                                key={house.id}>{house.user}</li>
-                            ))}
+                                {this.state.houseMembers.map(house => (
+
+                                    <li
+                                        key={house.id}>{house.user}</li>
+                                ))}
 
 
                             </Col>
 
                         </Card>
                     </Row>
-                    <Link to="/">
-                        <Button className="logoutBtn" variant="primary">
-                            Logout
-                           </Button>
-                    </Link>
-            
+
                 </Container>
             </div>
         );
