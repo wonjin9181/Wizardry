@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
   getMonsters: () => {
     return axios.get("/api/monsters");
   },
@@ -20,7 +19,9 @@ export default {
   },
 
   createUser: (userData) => {
+
     // console.log("this: " + userData)
+
     return axios.post("/api/users", userData)
   },
 
@@ -28,7 +29,6 @@ export default {
     // console.log("this: " + userData)
     return axios.get("/api/users/" + userData)
   },
-
 
   updateUser: (userData, id) => {
     console.log(userData)

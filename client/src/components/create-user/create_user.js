@@ -1,6 +1,5 @@
-
 import React, { Component } from "react";
-import { Button, Form, Row, Col, Container } from "react-bootstrap";
+import { Button, Form, Row, Col, Container, Image } from "react-bootstrap";
 import "./create_user.css";
 import API from "../../utils/API";
 import { Link, Redirect } from 'react-router-dom';
@@ -12,6 +11,7 @@ class CreateUser extends Component {
     house: "waterfall",
     email: "",
     password: "",
+    characterImage: "",
     madeUser: false,
     bgImage: backgroundImages[0]
   };
@@ -23,6 +23,16 @@ class CreateUser extends Component {
   }
 
   handleChange = event => {
+
+    let selected = event.target.name.split("-"); // 'characterImage-1' > ['characterImage','1']
+    let [characterImage] = selected; // storing index 0 in variable 'characterImage'
+    let [imgId] = selected.reverse(); // reverse array and THEN store index 0 in variable imgId (which when reversed is the #!)
+
+    if (characterImage === "characterImage") {
+      this.setState({
+        characterImage: parseInt(imgId)
+      });
+    } else {
     this.setState({
       [event.target.name]: event.target.value
     }, function () {
@@ -32,49 +42,45 @@ class CreateUser extends Component {
       })
       this.setState({ bgImage: image })
     });
+    }
+ 
   }
+
 
   handleSubmit = event => {
     let self = this;
     event.preventDefault();
 
+    console.log(this.state);
+
+    API.createUser(this.state).then(function(result) {
+      console.log(result);
+      if (!result.data) {
+        alert("Email already exists!");
+      } else {
+        self.setState({
+          madeUser: true
+        });
+      }
+    });
 
 
-
-
-    API.createUser(this.state)
-
-      .then(function (result) {
-        console.log(result)
-        if (!result.data) {
-          alert("Email already exists!")
-
-        } else {
-          self.setState({
-            madeUser: true
-          })
-        }
-      });
-
-
-    API.postHouse(this.state)
-      .then(function (result) {
-        console.log(result)
-      })
-
+    API.postHouse(this.state).then(function(result) {
+      console.log(result);
+    });
   };
 
   render() {
-
     if (this.state.madeUser === true) {
-      return <Redirect to="/" />
+      return <Redirect to="/" />;
     }
 
     return (
       <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
         <Container>
-          <h1>Wizard game</h1>
+
+          <h1>Wizard Game</h1>
           <aside id="createuser">
             <Form onSubmit={this.handleSubmit}>
               <Form.Group as={Row} controlId="formHorizontalName">
@@ -99,7 +105,7 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-                    value="fire"
+                    value="Fire"
                     onClick={this.handleChange}
                     label="Fire"
                     name="house"
@@ -109,29 +115,27 @@ class CreateUser extends Component {
                   <Form.Check
                     inline
                     type="radio"
-                    value="water"
+                    value="Water"
                     onClick={this.handleChange}
                     label="Water"
                     name="house"
                     id="formHorizontalRadios2"
                   />
 
-
                   <Form.Check
                     inline
                     type="radio"
-                    value="earth"
+                    value="Earth"
                     onClick={this.handleChange}
                     label="Earth"
                     name="house"
                     id="formHorizontalRadios3"
                   />
 
-
                   <Form.Check
                     inline
                     type="radio"
-                    value="air"
+                    value="Air"
                     onClick={this.handleChange}
                     label="Air"
                     name="house"
@@ -158,7 +162,7 @@ class CreateUser extends Component {
               <Form.Group as={Row} controlId="formHorizontalPassword">
                 <Form.Label column sm={2}>
                   Password
-              </Form.Label>
+                </Form.Label>
                 <Col>
                   <Form.Control
                     type="password"
@@ -169,11 +173,53 @@ class CreateUser extends Component {
                   />
                 </Col>
               </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm={1}>
+                  Avatar
+                </Form.Label>
+                <Col>
+                  <Image
+                    type="image"
+                    name="characterImage-1"
+                    value="1"
+                    onClick={this.handleChange}
+                    src="images/rincewind.png"
+                    thumbnail
+                  />
+                </Col>
+                <Col>
+                  <Image
+                    name="characterImage-2"
+                    onClick={this.handleChange}
+                    src="images/blackwizard.png"
+                    thumbnail
+                  />
+                </Col>
+                <Col>
+                  <Image
+                    type="image"
+                    name="characterImage-3"
+                    onClick={this.handleChange}
+                    src="images/killer.png"
+                    thumbnail
+                  />
+                </Col>
+                <Col>
+                  <Image
+                    type="image"
+                    name="characterImage-4"
+                    onClick={this.handleChange}
+                    src="images/spritey.png"
+                    thumbnail
+                  />
+                </Col>
+              </Form.Group>
 
               <Button
                 id="createUserBtn"
                 variant="primary"
                 type="submit"
+
                 disabled={!this.validateForm()}>
 
                 Create account </Button>
@@ -185,17 +231,10 @@ class CreateUser extends Component {
 
             </Form>
           </aside>
-
-
         </Container>
-
-
       </div>
-    )
-
+    );
   }
-
 }
-
 
 export default CreateUser;

@@ -21,10 +21,10 @@ module.exports = function (sequelize, DataTypes) {
               type: DataTypes.STRING,
               allowNull: false,
           },
-        //   characterImg:{
-        //       type: DataTypes.STRING,
-        //       allowNull: true
-        //   },
+          characterImage:{
+              type: DataTypes.INTEGER,
+              allowNull: false
+          },
           strength:{
               type: DataTypes.INTEGER,
               allowNull: false,
