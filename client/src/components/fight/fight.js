@@ -33,10 +33,6 @@ class Fight extends Component {
 
   };
 
-  castSpell = () => {
-    this.setState({ spell: true });
-  };
-
   withdraw = () => {
     this.setState({
       withdraw: true
@@ -134,17 +130,17 @@ class Fight extends Component {
                 />
                 <Figure.Caption>Monster!</Figure.Caption>
               </Figure>
-                </Col>
+            </Col>
 
-              <Col>
-                <Link to="/main">
-                  <Button id="fightBtn" onClick={this.castSpell} variant="primary" size="lg">
-                    Fight!
+            <Col>
+
+              <Button id="fightBtn" onClick={this.fight} variant="primary" size="lg">
+                Fight!
             </Button>
-                </Link>
-              </Col>
 
-            <Col className="justify-content-end"  xs={5}>
+            </Col>
+
+            <Col className="justify-content-end" xs={5}>
               <Figure>
                 <Figure.Image id="fightContainer"
                   width={300}
@@ -154,29 +150,24 @@ class Fight extends Component {
                   className="fighters"
                 />
                 <Figure.Caption className="justify-content-center">
-                   <ul>
-                  <li>Name: {this.state.characterName}</li>
-                  <li>House: {this.state.house}</li>
-                  <li>Strength: {this.state.userStrength}</li>
-                </ul>
-              </Figure.Caption>
+                  <ul>
+                    <li>Name: {this.state.characterName}</li>
+                    <li>House: {this.state.house}</li>
+                    <li>Strength: {this.state.userStrength}</li>
+                  </ul>
+                </Figure.Caption>
               </Figure>
             </Col>
           </Row>
-      </div >
 
-
-          <Button onClick={this.fight} variant="primary" size="lg">
-            Fight!
-            </Button>
-        </Row>
-        <Link to="/main">
-          <Button className="withdrawBtn" onClick={this.withdraw} variant="primary">
-            Withdraw
+          <Link to="/main">
+            <Button className="withdrawBtn" onClick={this.withdraw} variant="primary">
+              Withdraw
            </Button>
-        </Link>
+          </Link>
 
-      </Container>
+        </Container>
+      </div>
 
     );
   }
@@ -184,11 +175,4 @@ class Fight extends Component {
 
 export default Fight;
 
-/* <Row className="justify-content-md-center">
-<Col xs lg="4">
-  <Image className="fighters" src="https://picsum.photos/id/660/200/200" />
-</Col>
-<Col xs lg="4">
-<Image className="fighters" src="https://picsum.photos/id/660/200/200" />
-</Col>
-</Row> */
+
