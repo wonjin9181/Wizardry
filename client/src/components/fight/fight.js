@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./fight.css";
-import axios from "axios";
+// import axios from "axios";
 import API from "../../utils/API";
 import { timingSafeEqual } from "crypto";
 import fighterImages from './fighterImages';
