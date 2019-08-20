@@ -1,26 +1,26 @@
 [
     {
         "monsterName": "fire",
-        "strength":100,
+        "strength":80,
         "monsterDescription":"Fire Monster",
         "imageIndex": 0
 
     },
     {
         "monsterName": "ice",
-        "strength":100,
+        "strength":80,
         "monsterDescription":"Ice Monster",
         "imageIndex": 1
     },
     {
         "monsterName": "air",
-        "strength":100,
+        "strength":80,
         "monsterDescription":"Air Monster",
         "imageIndex": 2
     },
     {
         "monsterName": "earth",
-        "strength":100,
+        "strength":120,
         "monsterDescription":"Earth Monster",
         "imageIndex": 3
     }

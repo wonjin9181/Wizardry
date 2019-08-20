@@ -2,23 +2,28 @@ import React, { Component } from "react";
 import { Button, Form, Row, Col, Container, Image } from "react-bootstrap";
 import "./create_user.css";
 import API from "../../utils/API";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from 'react-router-dom';
+import backgroundImages from '../main-stats/backgroundImages'
 
 class CreateUser extends Component {
   state = {
     username: "",
-    house: "",
+    house: "waterfall",
     email: "",
     password: "",
     characterImage: "",
-    madeUser: false
+    madeUser: false,
+    bgImage: backgroundImages[0]
   };
+
+
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
   handleChange = event => {
+
     let selected = event.target.name.split("-"); // 'characterImage-1' > ['characterImage','1']
     let [characterImage] = selected; // storing index 0 in variable 'characterImage'
     let [imgId] = selected.reverse(); // reverse array and THEN store index 0 in variable imgId (which when reversed is the #!)
@@ -28,15 +33,24 @@ class CreateUser extends Component {
         characterImage: parseInt(imgId)
       });
     } else {
-      this.setState({
-        [event.target.name]: event.target.value
-      });
+    this.setState({
+      [event.target.name]: event.target.value
+    }, function () {
+
+      let image = backgroundImages.find(object => {
+        return object.name === this.state.house;
+      })
+      this.setState({ bgImage: image })
+    });
     }
-  };
+ 
+  }
+
 
   handleSubmit = event => {
     let self = this;
     event.preventDefault();
+
     console.log(this.state);
 
     API.createUser(this.state).then(function(result) {
@@ -50,6 +64,7 @@ class CreateUser extends Component {
       }
     });
 
+
     API.postHouse(this.state).then(function(result) {
       console.log(result);
     });
@@ -61,10 +76,11 @@ class CreateUser extends Component {
     }
 
     return (
-      <div>
-        <Container>
-          <h1>Wizard Game</h1>
+      <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
+        <Container>
+
+          <h1>Wizard Game</h1>
           <aside id="createuser">
             <Form onSubmit={this.handleSubmit}>
               <Form.Group as={Row} controlId="formHorizontalName">
@@ -203,10 +219,16 @@ class CreateUser extends Component {
                 id="createUserBtn"
                 variant="primary"
                 type="submit"
-                disabled={!this.validateForm()}
-              >
-                Create account{" "}
-              </Button>
+
+                disabled={!this.validateForm()}>
+
+                Create account </Button>
+              <Link to="/">
+                <Button className="btn">
+                  Login
+                </Button>
+              </Link>
+
             </Form>
           </aside>
         </Container>

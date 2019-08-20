@@ -22,7 +22,7 @@ require('./routes/monsters-api')(app);
 require('./routes/createUser-api')(app);
 require('./routes/house-api')(app);
 require('./routes/login-api')(app);
-
+require('./routes/fight-api')(app)
 
 // Send every request to the React app
 // Define any API routes before this runs

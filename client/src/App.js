@@ -4,7 +4,7 @@ import CreateUser from "./components/create-user/create_user";
 import MainStats from "./components/main-stats/main_stats";
 import Fight from "./components/fight/fight";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import API from "./utils/API"
+// import API from "./utils/API"
 
 
 
