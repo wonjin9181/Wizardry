@@ -131,13 +131,18 @@ class MainStats extends Component {
                     <Row className="justify-content-md-center">
                         <Card id="mainCard" style={{ width: '60rem' }}>
                             <Col>
-                            {this.state.houseMembers.map(house=>(
-                                <li>{house.user}</li>
-                            ))}
+                                {this.state.houseMembers.map(house => (
+                                    <li>{house.user}</li>
+                                ))}
                             </Col>
                         </Card>
                     </Row>
-
+                    <Link to="/">
+                        <Button className="logoutBtn" variant="primary">
+                            Logout
+                           </Button>
+                    </Link>
+            
                 </Container>
             </div>
         );

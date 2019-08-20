@@ -104,7 +104,6 @@ class Login extends Component {
                          </Form.Label>
                                 <Col sm={10}>
                                     <Form.Control
-                                        autoFocus
                                         type="password"
                                         placeholder="Password"
                                         name="password"

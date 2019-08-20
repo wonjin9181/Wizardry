@@ -35,7 +35,7 @@ class CreateUser extends Component {
         console.log(result)
         if (!result.data) {
           alert("Email already exists!")
-         
+
         } else {
           self.setState({
             madeUser: true
@@ -45,9 +45,9 @@ class CreateUser extends Component {
 
 
     API.postHouse(this.state)
-    .then(function(result){
-      console.log(result)
-    })
+      .then(function (result) {
+        console.log(result)
+      })
 
   };
 
@@ -85,6 +85,7 @@ class CreateUser extends Component {
                 <Col sm={10}>
                   <Form.Check
                     inline
+                    checked="true"
                     type="radio"
                     value="fire"
                     onClick={this.handleChange}
