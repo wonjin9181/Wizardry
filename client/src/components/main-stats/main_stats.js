@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { runInThisContext } from "vm";
-
+import backgroundImages from './backgroundImages';
 
 class MainStats extends Component {
 
@@ -13,6 +13,7 @@ class MainStats extends Component {
         characterName: "",
         house: "",
         strength: "",
+        bgImage: '',
         monsters: [],
         fight: {
             monster1: false,
@@ -27,7 +28,7 @@ class MainStats extends Component {
         API.getMonsters()
             .then(res => {
 
-              console.log(res.data)
+                console.log(res.data)
 
                 this.setState({ monsters: res.data })
             })
@@ -37,30 +38,31 @@ class MainStats extends Component {
     fightMonster = () => {
         this.setState({ fightMonster: true })
     };
-    
 
     componentDidMount() {
-      this.loadMonsters();
-      
-        let self= this
-        var key = localStorage.getItem("key")
-        
-            API.loadUser(key)
-                .then(function (result) {
-                    console.log(result.data);
-                    self.setState({
-                        characterName: result.data.characterName,
-                        house: result.data.house,
-                        strength: result.data.strength
-                    });
-                }).catch(err => {
-                    alert(err);
-                });
-    
-    
-        
+        this.loadMonsters();
 
-        
+        let self = this
+        var key = localStorage.getItem("key")
+
+        API.loadUser(key)
+            .then(function (result) {
+                console.log(result.data);
+                self.setState({
+                    characterName: result.data.characterName,
+                    house: result.data.house,
+                    strength: result.data.strength
+                }, function () {
+
+                    let image = backgroundImages.find(object => {
+                        return object.name === this.state.house;
+                    })
+                    this.setState({ bgImage: image })
+                });
+            }).catch(err => {
+                alert(err);
+            });
+
     };
 
 
@@ -68,13 +70,13 @@ class MainStats extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{ hight: "150vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
                 <Container id="mainContainer">
                     <Row className="justify-content-md-center">
                         <Col md="auto">
                             <Card id="mainCard" style={{ width: '13rem' }}>
-                                <img src={"https://picsum.photos/id/122/200/200"} alt="main-stats" />
+                                <img id="character" src={"https://picsum.photos/id/122/200/200"} alt="main-stats" />
 
                             </Card>
                         </Col>
@@ -95,36 +97,34 @@ class MainStats extends Component {
 
                     <br></br>
 
-                    <Row className="justify-conent-x1-center">
+                    <Row className="justify-content-md-center">
                         <Col xs={2}>
-                            <Link to="/fight?monster=1"><Button onClick={this.fightMonster}>1</Button></Link>
-                            
+                            <Link to="/fight?monster=1"><Button onClick={this.fightMonster}> Stage 1</Button></Link>
+
                         </Col>
                         <Col xs={2}>
-                            <Link to="/fight?monster=2"><Button onClick={this.fightMonster}>2</Button></Link>
-                        
+                            <Link to="/fight?monster=2"><Button onClick={this.fightMonster}> Stage 2</Button></Link>
+
                         </Col>
                         <Col xs={2}>
-                            <Link to="/fight?monster=3"><Button onClick={this.fightMonster}>3</Button></Link>
-                           
+                            <Link to="/fight?monster=3"><Button onClick={this.fightMonster}> Stage 3</Button></Link>
+
                         </Col>
                         <Col xs={2}>
-                            <Link to="/fight?monster=4"><Button onClick={this.fightMonster}>4</Button></Link>
-                         
+                            <Link to="/fight?monster=4"><Button onClick={this.fightMonster}>  Stage 4</Button></Link>
+
                         </Col>
                     </Row>
-
+                    <br></br>
 
                     <Row className="justify-content-md-center">
-                        <Card id="mainCard" style={{ width: '60rem' }}>
+                        <Card id="houseMembers" style={{ width: '60rem' }}>
                             <Col>
                                 <h3 id="userInfo">House Members</h3>
-                                <ul>
-                                    <li>1</li>
-                                    <li>2</li>
-                                    <li>3</li>
-                                    <li>4</li>
-                                </ul>
+                                <h5>1</h5>
+                                <h5>2</h5>
+                                <h5>3</h5>
+
                             </Col>
                         </Card>
                     </Row>
