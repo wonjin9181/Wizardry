@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import "./login.css"
 import { Link, Redirect } from "react-router-dom";
-import API from "../../utils/API"
+import API from "../../utils/API";
+import backgroundImages from '../main-stats/backgroundImages';
+
 
 class Login extends Component {
 
@@ -11,10 +13,14 @@ class Login extends Component {
         email: "",
         password: "",
         id: "",
-        play: false
+
+        play: false,
+        bgImage: backgroundImages[0]
+
     }
     componentDidMount() {
         localStorage.clear()
+
     }
 
 
@@ -40,6 +46,27 @@ class Login extends Component {
                 console.log(result)
                 let data = result.data
                 if (result.data.isUser) {
+                    self.setState({
+                        play: true,
+                        password: "",
+                        id: data.id
+                    })
+                    localStorage.setItem("key", self.state.id.toString())
+                }
+                else {
+                    alert('Incorrect Username and/or Password!');
+                }
+
+            }).catch(err => {
+                alert(err);
+            })
+
+    }
+
+
+                console.log(result)
+                let data = result.data
+                if (result.data.isUser) {
 
 
                     self.setState({
@@ -61,6 +88,7 @@ class Login extends Component {
                 alert(err);
             })
 
+
     }
 
 
@@ -73,7 +101,8 @@ class Login extends Component {
         }
 
         return (
-            <div>
+           <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
+
                 <Container>
                     <h1>Wizard Game Login</h1>
 

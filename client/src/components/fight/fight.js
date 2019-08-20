@@ -31,12 +31,12 @@ class Fight extends Component {
     let equ = document.location.search.indexOf("=");
     let id = parseInt(document.location.search.substr(equ + 1));
     let self = this;
-    API.getOneMonster(id).then(function({
+    API.getOneMonster(id).then(function ({
       data: { monsterDescription, imageIndex }
     }) {
       // if imageIndex is an id (from database) that correlates to index value of the id in fightersImage array, then
       //  this.state.imageIndex = fighterImages[imageIndex]
-      let {src} = fighterImages[imageIndex]; {}
+      let { src } = fighterImages[imageIndex]; { }
       self.setState({ monsterDescription, monsterImg: src });
     });
   };
