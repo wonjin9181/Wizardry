@@ -50,28 +50,6 @@ class Login extends Component {
                         play: true,
                         password: "",
                         id: data.id
-                    })
-                    localStorage.setItem("key", self.state.id.toString())
-                }
-                else {
-                    alert('Incorrect Username and/or Password!');
-                }
-
-            }).catch(err => {
-                alert(err);
-            })
-
-    }
-
-
-                console.log(result)
-                let data = result.data
-                if (result.data.isUser) {
-
-
-                    self.setState({
-                        password: "",
-                        id: data.id
                     }, function () {
                         localStorage.setItem("key", self.state.id.toString())
                     })
@@ -79,6 +57,7 @@ class Login extends Component {
                     self.setState({
                         play: true
                     })
+                
                 }
                 else {
                     alert('Incorrect Username and/or Password!');
@@ -88,8 +67,9 @@ class Login extends Component {
                 alert(err);
             })
 
-
     }
+
+
 
 
 
