@@ -3,7 +3,9 @@ const backgroundImages = [
     { id: 2, name: 'fire', src: '/images/fireImage.jpg' },
     { id: 3, name: 'water', src: 'images/waterImage.jpg' },
     { id: 4, name: 'air', src: 'images/airImage.jpg' },
-    { id: 5, name: 'earth', src: 'images/earthImage.jpg' }
+    { id: 5, name: 'earth', src: 'images/earthImage.jpg' },
+    { id: 6, name: 'fight', src: 'images/fightImage.jpg' }
+
 ];
 
 module.exports = backgroundImages;

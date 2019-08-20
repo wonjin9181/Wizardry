@@ -57,7 +57,7 @@ class MainStats extends Component {
                     strength: result.data.strength
                 }, function () {
 
-                    
+
                 });
             }).catch(err => {
                 alert(err);
@@ -76,10 +76,10 @@ class MainStats extends Component {
                         strength: result.data.strength
                     }, function () {
                         let image = backgroundImages.find(object => {
-                        return object.name === this.state.house;
-                    })
-                    this.setState({ bgImage: image })
-                        
+                            return object.name === this.state.house;
+                        })
+                        this.setState({ bgImage: image })
+
                         API.getHouseMembers(self.state.house)
 
                             .then(function (result) {
@@ -121,10 +121,10 @@ class MainStats extends Component {
                             <Card id="mainCard" style={{ width: '18rem' }}>
                                 <h3 id="userInfo">User Info</h3>
                                 <ul>
-                                    <li>Name: {this.state.characterName}</li>
-                                    <li>House: {this.state.house}</li>
-                                    <li>Strength: {this.state.strength}</li>
-                                    <li>Spells: </li>
+                                    <h6>Name: {this.state.characterName}</h6>
+                                    <h6>House: {this.state.house}</h6>
+                                    <h6>Strength: {this.state.strength}</h6>
+                                    <h6>Spells: </h6>
                                 </ul>
                             </Card>
                         </Col>
@@ -156,8 +156,9 @@ class MainStats extends Component {
                     <br></br>
 
                     <Row className="justify-content-md-center">
-                        <Card id="houseMembers" style={{ width: '60rem' }}>
-                            <Col>
+                        <Card id="houseMembers" style={{ width: '25rem' }}>
+                        <Col>
+
 
 
                             {this.state.houseMembers.map(house=>(
@@ -168,6 +169,7 @@ class MainStats extends Component {
 
 
                             </Col>
+
                         </Card>
                     </Row>
                     <Link to="/">
