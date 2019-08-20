@@ -18,8 +18,9 @@ import fighterImages from './fighterImages';
 class Fight extends Component {
   state = {
     spell: false,
+    userStrength: "",
     monsterDescription: "",
-    strength: "",
+    monsterStrength: "",
     monsterName: "",
     monsterImg: ""
   };
@@ -31,14 +32,25 @@ class Fight extends Component {
     let equ = document.location.search.indexOf("=");
     let id = parseInt(document.location.search.substr(equ + 1));
     let self = this;
+    var key = localStorage.getItem("key");
     API.getOneMonster(id).then(function ({
       data: { monsterDescription, imageIndex }
     }) {
       // if imageIndex is an id (from database) that correlates to index value of the id in fightersImage array, then
       //  this.state.imageIndex = fighterImages[imageIndex]
-      let { src } = fighterImages[imageIndex]; { }
+      let { src } = fighterImages[imageIndex]; 
       self.setState({ monsterDescription, monsterImg: src });
     });
+
+    API.loadUser(key)
+      .then(function (result) {
+        self.setState({
+          characterName: result.data.characterName,
+          house: result.data.house,
+          userStrength: result.data.strength
+        })
+      })
+    //api call to get user
   };
 
   render() {
@@ -69,7 +81,11 @@ class Fight extends Component {
                 className="fighters"
               />
               <Figure.Caption className="justify-content-center">
-                Player 1
+                <ul>
+                  <li>Name: {this.state.characterName}</li>
+                  <li>House: {this.state.house}</li>
+                  <li>Strength: {this.state.userStrength}</li>
+                </ul>
               </Figure.Caption>
             </Figure>
           </Col>
