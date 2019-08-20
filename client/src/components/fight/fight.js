@@ -138,11 +138,11 @@ class Fight extends Component {
 
 
             <Col>
-              <Link to="/main">
+              
                 <Button id="fightBtn" onClick={this.fight} variant="primary" size="lg">
                   Cast spell!
             </Button>
-              </Link>
+
             </Col>
 
             <Col className="justify-content-end" xs={5}>

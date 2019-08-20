@@ -68,7 +68,7 @@ class MainStats extends Component {
             API.loadUser(key)
                 .then(function (result) {
 
-                       let {src} = userAvatars[result.data.characterImage]
+                       let {src} = userAvatars[result.data.characterImage -1]
                     // console.log(result.data);
                     self.setState({
                         characterName: result.data.characterName,
