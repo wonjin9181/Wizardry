@@ -14,6 +14,7 @@ import axios from "axios";
 import API from "../../utils/API";
 import { timingSafeEqual } from "crypto";
 import fighterImages from './fighterImages';
+import backgroundImage from '../main-stats/backgroundImages'
 
 class Fight extends Component {
   state = {
@@ -21,7 +22,8 @@ class Fight extends Component {
     monsterDescription: "",
     strength: "",
     monsterName: "",
-    monsterImg: ""
+    monsterImg: "",
+    bgImage: backgroundImage[5]
   };
   castSpell = () => {
     this.setState({ spell: true });
@@ -45,46 +47,49 @@ class Fight extends Component {
     const { monsterImg } = this.state;
     console.log('state.monsterImg', monsterImg);
     return (
-      <Container>
-        <Row>
-          <Col xs={{ span: 4, offset: 2 }}>
-            <Figure>
-              <Figure.Image
-                width={300}
-                height={300}
-                alt="175x175"
-                src={monsterImg}
-                className="fighters"
-              />
-              <Figure.Caption>Monster!</Figure.Caption>
-            </Figure>
-          </Col>
-          <Col xs={4} className="justify-content-end">
-            <Figure>
-              <Figure.Image
-                width={300}
-                height={300}
-                alt="175x175"
-                src="https://picsum.photos/id/660/300/300"
-                className="fighters"
-              />
-              <Figure.Caption className="justify-content-center">
-                Player 1
+      <div style={{ hight: "150vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
+        <Container>
+          <Row>
+            <Col xs={{ span: 4, offset: 2 }}>
+              <Figure>
+                <Figure.Image
+                  width={300}
+                  height={300}
+                  alt="175x175"
+                  src={monsterImg}
+                  className="fighters"
+                />
+                <Figure.Caption>Monster!</Figure.Caption>
+              </Figure>
+            </Col>
+            <Col xs={4} className="justify-content-end">
+              <Figure>
+                <Figure.Image
+                  width={300}
+                  height={300}
+                  alt="175x175"
+                  src="https://picsum.photos/id/660/300/300"
+                  className="fighters"
+                />
+                <Figure.Caption className="justify-content-center">
+                  Player 1
               </Figure.Caption>
-            </Figure>
-          </Col>
-        </Row>
-        <Row className="justify-content-center">
-          <Link to="/main">
-            <Button onClick={this.castSpell} variant="primary" size="lg">
-              Fight!
+              </Figure>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Link to="/main">
+              <Button id="fightBtn" onClick={this.castSpell} variant="primary" size="lg">
+                Fight!
             </Button>
-          </Link>
-        </Row>
-      </Container>
+            </Link>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
+
 export default Fight;
 
 /* <Row className="justify-content-md-center">
