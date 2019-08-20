@@ -47,12 +47,13 @@ class Fight extends Component {
     const { monsterImg } = this.state;
     console.log('state.monsterImg', monsterImg);
     return (
-      <div style={{ hight: "150vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
+      <div style={{ hight: "100vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
         <Container>
-          <Row>
-            <Col xs={{ span: 4, offset: 2 }}>
+          <Row >
+            {/* <Col xs={{ span: 4, offset: 2 }}> */}
+            <Col xs={{ span: 4, offset: 1 }}>
               <Figure>
-                <Figure.Image
+                <Figure.Image id="fightContainer"
                   width={300}
                   height={300}
                   alt="175x175"
@@ -61,10 +62,19 @@ class Fight extends Component {
                 />
                 <Figure.Caption>Monster!</Figure.Caption>
               </Figure>
-            </Col>
-            <Col xs={4} className="justify-content-end">
+                </Col>
+
+              <Col>
+                <Link to="/main">
+                  <Button id="fightBtn" onClick={this.castSpell} variant="primary" size="lg">
+                    Fight!
+            </Button>
+                </Link>
+              </Col>
+
+            <Col className="justify-content-end"  xs={5}>
               <Figure>
-                <Figure.Image
+                <Figure.Image id="fightContainer"
                   width={300}
                   height={300}
                   alt="175x175"
@@ -77,15 +87,15 @@ class Fight extends Component {
               </Figure>
             </Col>
           </Row>
-          <Row className="justify-content-center">
-            <Link to="/main">
-              <Button id="fightBtn" onClick={this.castSpell} variant="primary" size="lg">
-                Fight!
+          {/* <Row className="justify-content-center">
+          <Link to="/main">
+            <Button id="fightBtn" onClick={this.castSpell} variant="primary" size="lg">
+              Fight!
             </Button>
-            </Link>
-          </Row>
+          </Link>
+        </Row> */}
         </Container>
-      </div>
+      </div >
     );
   }
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./main_stats.css";
 import { Link } from "react-router-dom";
 import API from "../../utils/API"
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 import { runInThisContext } from "vm";
 import backgroundImages from './backgroundImages';
 
@@ -57,7 +57,7 @@ class MainStats extends Component {
                     strength: result.data.strength
                 }, function () {
 
-                    
+
                 });
             }).catch(err => {
                 alert(err);
@@ -76,10 +76,10 @@ class MainStats extends Component {
                         strength: result.data.strength
                     }, function () {
                         let image = backgroundImages.find(object => {
-                        return object.name === this.state.house;
-                    })
-                    this.setState({ bgImage: image })
-                        
+                            return object.name === this.state.house;
+                        })
+                        this.setState({ bgImage: image })
+
                         API.getHouseMembers(self.state.house)
 
                             .then(function (result) {
@@ -121,10 +121,10 @@ class MainStats extends Component {
                             <Card id="mainCard" style={{ width: '18rem' }}>
                                 <h3 id="userInfo">User Info</h3>
                                 <ul>
-                                    <li>Name: {this.state.characterName}</li>
-                                    <li>House: {this.state.house}</li>
-                                    <li>Strength: {this.state.strength}</li>
-                                    <li>Spells: </li>
+                                    <h6>Name: {this.state.characterName}</h6>
+                                    <h6>House: {this.state.house}</h6>
+                                    <h6>Strength: {this.state.strength}</h6>
+                                    <h6>Spells: </h6>
                                 </ul>
                             </Card>
                         </Col>
@@ -156,14 +156,14 @@ class MainStats extends Component {
                     <br></br>
 
                     <Row className="justify-content-md-center">
-                        <Card id="houseMembers" style={{ width: '60rem' }}>
-                            <Col>
+                        <Card id="houseMembers" style={{ width: '25rem' }}>
+                        <Col>
 
-                            {this.state.houseMembers.map(house=>(
-                                <li>{house.user}</li>
+                             {this.state.houseMembers.map(house => (
+                                <h5>{house.user}</h5>
                             ))}
-
-                            </Col>
+                            
+                        </Col>
                         </Card>
                     </Row>
 
