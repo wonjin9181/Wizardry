@@ -6,9 +6,9 @@ export default {
     return axios.get("/api/monsters");
   },
 
-  getOneMonster:(id)=>{
-    console.log('ID????',id);
-    return axios.get("/api/monsters/"+id)
+  getOneMonster: (id) => {
+    console.log('ID????', id);
+    return axios.get("/api/monsters/" + id)
 
   },
 
@@ -32,9 +32,8 @@ export default {
     return axios.get("/api/users/" + userData)
   },
 
-
   postHouse: (userData) => {
     return axios.post("/api/house", userData)
   }
-   
+
 }
