@@ -1,3 +1,12 @@
+#fightContainer {
+    margin-top:100px;
+    margin-bottom: 50vh
+}
+
 .fighters {
     border: 1px red solid
+}
+
+#fightBtn {
+    margin-top: 35vh
 }
