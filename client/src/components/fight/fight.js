@@ -23,12 +23,21 @@ class Fight extends Component {
     monsterStrength: "",
     monsterName: "",
     monsterImg: "",
-    userStrength: 100,
+    withdraw: false,
     fight: false
+
   };
 
   castSpell = () => {
     this.setState({ spell: true });
+  };
+
+  endGame = () => {
+    this.setState({
+      withdraw: true,
+      userStrength: "100"
+    });
+    console.log(this.state);
   };
 
   componentDidMount = () => {
@@ -138,6 +147,11 @@ class Fight extends Component {
             Fight!
             </Button>
         </Row>
+        <Link to="/">
+          <Button className="endGameBtn" onClick={this.endGame} variant="primary">
+            End Game
+           </Button>
+        </Link>
       </Container>
     );
   }

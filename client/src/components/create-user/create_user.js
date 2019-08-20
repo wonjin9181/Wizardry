@@ -98,6 +98,7 @@ class CreateUser extends Component {
                 <Col sm={10}>
                   <Form.Check
                     inline
+                    checked="true"
                     type="radio"
                     value="fire"
                     onClick={this.handleChange}

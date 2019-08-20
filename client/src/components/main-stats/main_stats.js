@@ -159,16 +159,23 @@ class MainStats extends Component {
                         <Card id="houseMembers" style={{ width: '60rem' }}>
                             <Col>
 
+
                             {this.state.houseMembers.map(house=>(
                                 
                                 <li
                                 key={house.id}>{house.user}</li>
                             ))}
 
+
                             </Col>
                         </Card>
                     </Row>
-
+                    <Link to="/">
+                        <Button className="logoutBtn" variant="primary">
+                            Logout
+                           </Button>
+                    </Link>
+            
                 </Container>
             </div>
         );
