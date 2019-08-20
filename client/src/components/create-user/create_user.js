@@ -2,17 +2,21 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import "./create_user.css";
-import API from "../../utils/API"
-import { Redirect } from 'react-router-dom'
+import API from "../../utils/API";
+import { Link, Redirect } from 'react-router-dom';
+import backgroundImages from '../main-stats/backgroundImages'
 
 class CreateUser extends Component {
   state = {
     username: "",
-    house: "",
+    house: "waterfall",
     email: "",
     password: "",
     madeUser: false,
+    bgImage: backgroundImages[0]
   };
+
+
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -21,13 +25,22 @@ class CreateUser extends Component {
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
+    }, function () {
+
+      let image = backgroundImages.find(object => {
+        return object.name === this.state.house;
+      })
+      this.setState({ bgImage: image })
     });
   }
 
   handleSubmit = event => {
     let self = this;
     event.preventDefault();
-    console.log(this.state)
+
+
+
+
 
     API.createUser(this.state)
 
@@ -58,10 +71,10 @@ class CreateUser extends Component {
     }
 
     return (
-      <div>
+      <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
+
         <Container>
           <h1>Wizard game</h1>
-
           <aside id="createuser">
             <Form onSubmit={this.handleSubmit}>
               <Form.Group as={Row} controlId="formHorizontalName">
@@ -165,7 +178,11 @@ class CreateUser extends Component {
                 disabled={!this.validateForm()}>
 
                 Create account </Button>
-
+              <Link to="/">
+                <Button className="btn">
+                  Login
+                </Button>
+              </Link>
 
             </Form>
           </aside>

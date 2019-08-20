@@ -3,13 +3,17 @@ import "./main_stats.css";
 import { Link } from "react-router-dom";
 import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { runInThisContext } from "vm";
-
+// import { runInThisContext } from "vm";
+import backgroundImages from './backgroundImages';
 
 class MainStats extends Component {
 
     state = {
         id: "",
+        characterName: "",
+        house: "",
+        strength: "",
+        bgImage: '',
         houseMembers: [],
         monsters: [],
         fight: {
@@ -40,8 +44,26 @@ class MainStats extends Component {
     componentDidMount() {
         this.loadMonsters();
 
-        let self = this
-        var key = localStorage.getItem("key")
+        let self = this;
+        var key = localStorage.getItem("key");
+
+
+        API.loadUser(key)
+            .then(function (result) {
+                console.log(result.data);
+                self.setState({
+                    characterName: result.data.characterName,
+                    house: result.data.house,
+                    strength: result.data.strength
+                }, function () {
+
+                    
+                });
+            }).catch(err => {
+                alert(err);
+            });
+
+
         if (key) {
 
 
@@ -53,8 +75,11 @@ class MainStats extends Component {
                         house: result.data.house,
                         strength: result.data.strength
                     }, function () {
-
-                        console.log("house:" + self.state.house)
+                        let image = backgroundImages.find(object => {
+                        return object.name === this.state.house;
+                    })
+                    this.setState({ bgImage: image })
+                        
                         API.getHouseMembers(self.state.house)
 
                             .then(function (result) {
@@ -81,13 +106,13 @@ class MainStats extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{ hight: "150vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
                 <Container id="mainContainer">
                     <Row className="justify-content-md-center">
                         <Col md="auto">
                             <Card id="mainCard" style={{ width: '13rem' }}>
-                                <img src={"https://picsum.photos/id/122/200/200"} alt="main-stats" />
+                                <img id="character" src={"https://picsum.photos/id/122/200/200"} alt="main-stats" />
 
                             </Card>
                         </Col>
@@ -108,32 +133,40 @@ class MainStats extends Component {
 
                     <br></br>
 
-                    <Row className="justify-conent-x1-center">
+                    <Row className="justify-content-md-center">
                         <Col xs={2}>
-                            <Link to="/fight?monster=1"><Button onClick={this.fightMonster}>1</Button></Link>
+
+                            <Link to="/fight?monster=1"><Button onClick={this.fightMonster}> Stage 1</Button></Link>
 
                         </Col>
                         <Col xs={2}>
-                            <Link to="/fight?monster=2"><Button onClick={this.fightMonster}>2</Button></Link>
+                            <Link to="/fight?monster=2"><Button onClick={this.fightMonster}> Stage 2</Button></Link>
 
                         </Col>
                         <Col xs={2}>
-                            <Link to="/fight?monster=3"><Button onClick={this.fightMonster}>3</Button></Link>
+                            <Link to="/fight?monster=3"><Button onClick={this.fightMonster}> Stage 3</Button></Link>
 
                         </Col>
                         <Col xs={2}>
-                            <Link to="/fight?monster=4"><Button onClick={this.fightMonster}>4</Button></Link>
+                            <Link to="/fight?monster=4"><Button onClick={this.fightMonster}>  Stage 4</Button></Link>
+
 
                         </Col>
                     </Row>
-
+                    <br></br>
 
                     <Row className="justify-content-md-center">
-                        <Card id="mainCard" style={{ width: '60rem' }}>
+                        <Card id="houseMembers" style={{ width: '60rem' }}>
                             <Col>
-                                {this.state.houseMembers.map(house => (
-                                    <li>{house.user}</li>
-                                ))}
+
+
+                            {this.state.houseMembers.map(house=>(
+                                
+                                <li
+                                key={house.id}>{house.user}</li>
+                            ))}
+
+
                             </Col>
                         </Card>
                     </Row>
