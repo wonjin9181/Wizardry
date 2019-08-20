@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import "./create_user.css";
 import API from "../../utils/API";
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import backgroundImages from '../main-stats/backgroundImages'
 
 class CreateUser extends Component {
@@ -98,6 +98,7 @@ class CreateUser extends Component {
                 <Col sm={10}>
                   <Form.Check
                     inline
+                    checked="true"
                     type="radio"
                     value="fire"
                     onClick={this.handleChange}
@@ -177,7 +178,11 @@ class CreateUser extends Component {
                 disabled={!this.validateForm()}>
 
                 Create account </Button>
-
+              <Link to="/">
+                <Button className="btn">
+                  Login
+                </Button>
+              </Link>
 
             </Form>
           </aside>

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "./main_stats.css";
 import { Link } from "react-router-dom";
 import API from "../../utils/API"
-import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
-import { runInThisContext } from "vm";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+// import { runInThisContext } from "vm";
 import backgroundImages from './backgroundImages';
 
 class MainStats extends Component {
@@ -44,8 +44,8 @@ class MainStats extends Component {
     componentDidMount() {
         this.loadMonsters();
 
-        let self = this
-        var key = localStorage.getItem("key")
+        let self = this;
+        var key = localStorage.getItem("key");
 
 
         API.loadUser(key)
@@ -159,14 +159,25 @@ class MainStats extends Component {
                         <Card id="houseMembers" style={{ width: '25rem' }}>
                         <Col>
 
-                             {this.state.houseMembers.map(house => (
-                                <h5>{house.user}</h5>
+
+
+                            {this.state.houseMembers.map(house=>(
+                                
+                                <li
+                                key={house.id}>{house.user}</li>
                             ))}
-                            
-                        </Col>
+
+
+                            </Col>
+
                         </Card>
                     </Row>
-
+                    <Link to="/">
+                        <Button className="logoutBtn" variant="primary">
+                            Logout
+                           </Button>
+                    </Link>
+            
                 </Container>
             </div>
         );

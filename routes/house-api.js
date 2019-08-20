@@ -9,7 +9,7 @@ module.exports = function (app) {
             }
         })
             .then(function (dbHouse) {
-                console.log(dbHouse)
+                // console.log(dbHouse)
                 res.json(dbHouse)
             })
             .catch(function (err) {
@@ -18,7 +18,7 @@ module.exports = function (app) {
     })
 
     app.post("/api/house", function (req, res) {
-        console.log("this:"+ req.body.house)
+        // console.log("this:"+ req.body.house)
         db.House.create({
                 houseName: req.body.house,
                 user: req.body.username

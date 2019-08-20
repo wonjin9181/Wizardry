@@ -15,11 +15,11 @@ module.exports = function(app) {
     })
 
     app.get("/api/monsters/:id", function(req, res){
-        console.log(req.params.id)
+        // console.log(req.params.id)
         const { id } = req.params;
         db.Monsters.findOne({ where: { id } })
         .then(function(dbMonster){
-            console.log("dbMonster", dbMonster)
+            // console.log("dbMonster", dbMonster)
             res.json(dbMonster)
         })
         .catch(function(err){
