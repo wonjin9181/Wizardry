@@ -14,6 +14,7 @@ import "./fight.css";
 import API from "../../utils/API";
 import { timingSafeEqual } from "crypto";
 import fighterImages from './fighterImages';
+import Code from './code'
 
 class Fight extends Component {
   state = {
@@ -24,7 +25,8 @@ class Fight extends Component {
     monsterName: "",
     monsterImg: "",
     withdraw: false,
-    fight: false
+    fight: false,
+    fightCode: ""
 
   };
 
@@ -46,13 +48,13 @@ class Fight extends Component {
     let self = this;
     var key = localStorage.getItem("key");
     API.getOneMonster(id).then(function ({
-      data: { monsterDescription, imageIndex, monsterName, strength }
+      data: { monsterDescription, imageIndex, monsterName, strength, id }
     }) {
       // if imageIndex is an id (from database) that correlates to index value of the id in fightersImage array, then
       //  this.state.imageIndex = fighterImages[imageIndex]
 
       let { src } = fighterImages[imageIndex]; { }
-      self.setState({ monsterDescription, monsterImg: src, monsterName, strength });
+      self.setState({ monsterDescription, monsterImg: src, monsterName, strength, monsterId: id });
 
     });
 
@@ -64,8 +66,15 @@ class Fight extends Component {
           userStrength: result.data.strength
         })
       })
-    //api call to get user
+
+    var code = Code(this.state.monsterId)
+    console.log("+++++" + code)
   };
+
+
+  handleCode = e => {
+
+  }
 
   fight = () => {
 
@@ -78,7 +87,7 @@ class Fight extends Component {
 
     if (userStrength > monsterStrength) {
       this.setState({ userStrength: userStrength + 20 }, function () {
-        let data =[]
+        let data = []
         data.push(this.state.userStrength)
         console.log(data)
         API.updateUser(data, key)
@@ -89,7 +98,7 @@ class Fight extends Component {
 
       })
     }
-    else{
+    else {
       console.log(userStrength)
       alert("you are not strong enough")
     }
