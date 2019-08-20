@@ -3,7 +3,7 @@ import "./main_stats.css";
 import { Link } from "react-router-dom";
 import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { runInThisContext } from "vm";
+// import { runInThisContext } from "vm";
 import backgroundImages from './backgroundImages';
 
 class MainStats extends Component {
@@ -160,7 +160,9 @@ class MainStats extends Component {
                             <Col>
 
                             {this.state.houseMembers.map(house=>(
-                                <li>{house.user}</li>
+                                
+                                <li
+                                key={house.id}>{house.user}</li>
                             ))}
 
                             </Col>
