@@ -14,7 +14,9 @@ import "./fight.css";
 import API from "../../utils/API";
 import { timingSafeEqual } from "crypto";
 import fighterImages from './fighterImages';
+import Code from './code'
 import backgroundImage from '../main-stats/backgroundImages'
+
 
 class Fight extends Component {
   state = {
@@ -25,11 +27,9 @@ class Fight extends Component {
     monsterImg: "",
     bgImage: backgroundImage[5],
     withdraw: false,
-    fight: false
-  };
+    fight: false,
+    fightCode: ""
 
-  castSpell = () => {
-    this.setState({ spell: true });
   };
 
   withdraw = () => {
@@ -44,13 +44,13 @@ class Fight extends Component {
     let self = this;
     var key = localStorage.getItem("key");
     API.getOneMonster(id).then(function ({
-      data: { monsterDescription, imageIndex, monsterName, strength }
+      data: { monsterDescription, imageIndex, monsterName, strength, id }
     }) {
       // if imageIndex is an id (from database) that correlates to index value of the id in fightersImage array, then
       //  this.state.imageIndex = fighterImages[imageIndex]
 
       let { src } = fighterImages[imageIndex]; { }
-      self.setState({ monsterDescription, monsterImg: src, monsterName, strength });
+      self.setState({ monsterDescription, monsterImg: src, monsterName, strength, monsterId: id });
 
     });
 
@@ -62,8 +62,15 @@ class Fight extends Component {
           userStrength: result.data.strength
         })
       })
-    //api call to get user
+
+    var code = Code(this.state.monsterId)
+    console.log("+++++" + code)
   };
+
+
+  handleCode = e => {
+
+  }
 
   fight = () => {
 
@@ -129,6 +136,7 @@ class Fight extends Component {
               </Figure>
             </Col>
 
+
             <Col>
               <Link to="/main">
                 <Button id="fightBtn" onClick={this.fight} variant="primary" size="lg">
@@ -157,6 +165,7 @@ class Fight extends Component {
             </Col>
           </Row>
 
+
         </Container>
       </div >
     );
@@ -165,11 +174,4 @@ class Fight extends Component {
 
 export default Fight;
 
-/* <Row className="justify-content-md-center">
-<Col xs lg="4">
-  <Image className="fighters" src="https://picsum.photos/id/660/200/200" />
-</Col>
-<Col xs lg="4">
-<Image className="fighters" src="https://picsum.photos/id/660/200/200" />
-</Col>
-</Row> */
+
