@@ -18,7 +18,9 @@ export default {
   },
 
 
-
+  getHouseMembers: (data) => {
+    return axios.get("/api/house/" + data)
+  },
 
   createUser: (userData) => {
     console.log("this: " + userData)

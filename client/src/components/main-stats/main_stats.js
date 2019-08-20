@@ -14,6 +14,7 @@ class MainStats extends Component {
         house: "",
         strength: "",
         bgImage: '',
+        houseMembers: [],
         monsters: [],
         fight: {
             monster1: false,
@@ -39,11 +40,13 @@ class MainStats extends Component {
         this.setState({ fightMonster: true })
     };
 
+
     componentDidMount() {
         this.loadMonsters();
 
         let self = this
         var key = localStorage.getItem("key")
+
 
         API.loadUser(key)
             .then(function (result) {
@@ -54,14 +57,47 @@ class MainStats extends Component {
                     strength: result.data.strength
                 }, function () {
 
-                    let image = backgroundImages.find(object => {
-                        return object.name === this.state.house;
-                    })
-                    this.setState({ bgImage: image })
+                    
                 });
             }).catch(err => {
                 alert(err);
             });
+
+
+        if (key) {
+
+
+            API.loadUser(key)
+                .then(function (result) {
+                    // console.log(result.data);
+                    self.setState({
+                        characterName: result.data.characterName,
+                        house: result.data.house,
+                        strength: result.data.strength
+                    }, function () {
+                        let image = backgroundImages.find(object => {
+                        return object.name === this.state.house;
+                    })
+                    this.setState({ bgImage: image })
+                        
+                        API.getHouseMembers(self.state.house)
+
+                            .then(function (result) {
+                                console.log(result.data)
+                                self.setState({
+                                    houseMembers: result.data
+                                })
+                            })
+
+
+                    });
+                }).catch(err => {
+                    alert(err);
+                });
+
+        }
+
+
 
     };
 
@@ -99,6 +135,7 @@ class MainStats extends Component {
 
                     <Row className="justify-content-md-center">
                         <Col xs={2}>
+
                             <Link to="/fight?monster=1"><Button onClick={this.fightMonster}> Stage 1</Button></Link>
 
                         </Col>
@@ -113,6 +150,7 @@ class MainStats extends Component {
                         <Col xs={2}>
                             <Link to="/fight?monster=4"><Button onClick={this.fightMonster}>  Stage 4</Button></Link>
 
+
                         </Col>
                     </Row>
                     <br></br>
@@ -120,10 +158,10 @@ class MainStats extends Component {
                     <Row className="justify-content-md-center">
                         <Card id="houseMembers" style={{ width: '60rem' }}>
                             <Col>
-                                <h3 id="userInfo">House Members</h3>
-                                <h5>1</h5>
-                                <h5>2</h5>
-                                <h5>3</h5>
+
+                            {this.state.houseMembers.map(house=>(
+                                <li>{house.user}</li>
+                            ))}
 
                             </Col>
                         </Card>

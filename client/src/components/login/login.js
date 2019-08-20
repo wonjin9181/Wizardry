@@ -13,11 +13,15 @@ class Login extends Component {
         email: "",
         password: "",
         id: "",
+
         play: false,
         bgImage: backgroundImages[0]
 
     }
+    componentDidMount() {
+        localStorage.clear()
 
+    }
 
 
     validateForm = () => {
@@ -60,6 +64,34 @@ class Login extends Component {
     }
 
 
+                console.log(result)
+                let data = result.data
+                if (result.data.isUser) {
+
+
+                    self.setState({
+                        password: "",
+                        id: data.id
+                    }, function () {
+                        localStorage.setItem("key", self.state.id.toString())
+                    })
+
+                    self.setState({
+                        play: true
+                    })
+                }
+                else {
+                    alert('Incorrect Username and/or Password!');
+                }
+
+            }).catch(err => {
+                alert(err);
+            })
+
+
+    }
+
+
 
 
     render() {
@@ -69,7 +101,7 @@ class Login extends Component {
         }
 
         return (
-            <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
+           <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
                 <Container>
                     <h1>Wizard Game Login</h1>

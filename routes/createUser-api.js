@@ -54,14 +54,14 @@ module.exports = function (app) {
 
 
     app.get("/api/users/:id", function (req, res) {
-        console.log(req.params.id)
+        // console.log(req.params.id)
         db.Users.findAll({
             where: {
                 id: req.params.id
             }
         })
             .then(function (dbUser) {
-                console.log(dbUser)
+                // console.log(dbUser)
                 res.json({
                     characterName: dbUser[0].dataValues.characterName,
                     house: dbUser[0].dataValues.house,
