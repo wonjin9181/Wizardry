@@ -64,32 +64,6 @@ class Login extends Component {
     }
 
 
-                console.log(result)
-                let data = result.data
-                if (result.data.isUser) {
-
-
-                    self.setState({
-                        password: "",
-                        id: data.id
-                    }, function () {
-                        localStorage.setItem("key", self.state.id.toString())
-                    })
-
-                    self.setState({
-                        play: true
-                    })
-                }
-                else {
-                    alert('Incorrect Username and/or Password!');
-                }
-
-            }).catch(err => {
-                alert(err);
-            })
-
-
-    }
 
 
 

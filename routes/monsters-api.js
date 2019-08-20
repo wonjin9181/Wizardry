@@ -1,5 +1,5 @@
 db = require("../models");
-var monsterData = require(__dirname + "/../script/monsters.json")
+var monsterData = require(__dirname + "/../scripts/monsters.json")
 
 
 module.exports = function(app) {
