@@ -18,7 +18,6 @@ import backgroundImage from '../main-stats/backgroundImages'
 
 class Fight extends Component {
   state = {
-    spell: false,
     userStrength: "",
     monsterDescription: "",
     monsterStrength: "",
@@ -77,7 +76,7 @@ class Fight extends Component {
 
     if (userStrength > monsterStrength) {
       this.setState({ userStrength: userStrength + 20 }, function () {
-        let data =[]
+        let data = []
         data.push(this.state.userStrength)
         console.log(data)
         API.updateUser(data, key)
@@ -88,7 +87,7 @@ class Fight extends Component {
 
       })
     }
-    else{
+    else {
       console.log(userStrength)
       alert("you are not strong enough")
     }
@@ -110,6 +109,11 @@ class Fight extends Component {
 
       <div style={{ hight: "100vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
         <Container>
+          <Link to="/main">
+            <Button className="withdrawBtn" onClick={this.withdraw} variant="primary">
+              Withdraw
+           </Button>
+          </Link>
           <Row >
             {/* <Col xs={{ span: 4, offset: 2 }}> */}
             <Col xs={{ span: 4, offset: 1 }}>
@@ -123,17 +127,17 @@ class Fight extends Component {
                 />
                 <Figure.Caption>Monster!</Figure.Caption>
               </Figure>
-                </Col>
+            </Col>
 
-              <Col>
-                <Link to="/main">
-                  <Button id="fightBtn" onClick={this.castSpell} variant="primary" size="lg">
-                    Fight!
+            <Col>
+              <Link to="/main">
+                <Button id="fightBtn" onClick={this.fight} variant="primary" size="lg">
+                  Cast spell!
             </Button>
-                </Link>
-              </Col>
+              </Link>
+            </Col>
 
-            <Col className="justify-content-end"  xs={5}>
+            <Col className="justify-content-end" xs={5}>
               <Figure>
                 <Figure.Image id="fightContainer"
                   width={300}
@@ -143,30 +147,18 @@ class Fight extends Component {
                   className="fighters"
                 />
                 <Figure.Caption className="justify-content-center">
-                   <ul>
-                  <li>Name: {this.state.characterName}</li>
-                  <li>House: {this.state.house}</li>
-                  <li>Strength: {this.state.userStrength}</li>
-                </ul>
-              </Figure.Caption>
+                  <ul>
+                    <li>Name: {this.state.characterName}</li>
+                    <li>House: {this.state.house}</li>
+                    <li>Strength: {this.state.userStrength}</li>
+                  </ul>
+                </Figure.Caption>
               </Figure>
             </Col>
           </Row>
+
+        </Container>
       </div >
-
-
-          <Button onClick={this.fight} variant="primary" size="lg">
-            Fight!
-            </Button>
-        </Row>
-        <Link to="/main">
-          <Button className="withdrawBtn" onClick={this.withdraw} variant="primary">
-            Withdraw
-           </Button>
-        </Link>
-
-      </Container>
-
     );
   }
 }
