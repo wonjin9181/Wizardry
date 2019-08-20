@@ -44,8 +44,8 @@ class MainStats extends Component {
     componentDidMount() {
         this.loadMonsters();
 
-        let self = this
-        var key = localStorage.getItem("key")
+        let self = this;
+        var key = localStorage.getItem("key");
 
 
         API.loadUser(key)

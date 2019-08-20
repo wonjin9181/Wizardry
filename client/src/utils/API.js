@@ -7,7 +7,9 @@ export default {
   },
 
   getOneMonster: (id) => {
+
     // console.log('ID????', id);
+
     return axios.get("/api/monsters/" + id)
 
   },
@@ -27,6 +29,7 @@ export default {
     return axios.get("/api/users/" + userData)
   },
 
+
   updateUser: (userData, id) => {
     console.log(userData)
     return axios.put("/api/users/"+id, userData)
@@ -36,6 +39,7 @@ export default {
   getHouseMembers: (data) => {
     return axios.get("/api/house/" + data)
   },
+
 
   postHouse: (userData) => {
     return axios.post("/api/house", userData)
