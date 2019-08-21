@@ -18,8 +18,7 @@ class Login extends Component {
         bgImage: backgroundImages[0]
 
     }
-
-    componentWillMount() {
+    componentDidMount() {
         localStorage.clear()
 
     }
