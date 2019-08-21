@@ -3,7 +3,7 @@ import { Button, Form, Row, Col, Container, Image } from "react-bootstrap";
 import "./create_user.css";
 import API from "../../utils/API";
 import { Link, Redirect } from 'react-router-dom';
-import backgroundImages from '../main-stats/backgroundImages'
+import backgroundImages from '../main-stats/backgroundImages';
 
 class CreateUser extends Component {
   state = {
@@ -13,9 +13,19 @@ class CreateUser extends Component {
     password: "",
     characterImage: "",
     madeUser: false,
-    bgImage: backgroundImages[0]
+    bgImage: backgroundImages[0],
+    music: false
   };
 
+  // audio = "../../audio/eleven-theme.mp3";
+
+  // backgroundMusic() {
+  //   this.setState({
+  //     music: true
+  //   });
+  //   console.log(this.audio);
+  //   this.audio.backgroundMusic();
+  // };
 
 
   validateForm() {
@@ -80,7 +90,6 @@ class CreateUser extends Component {
       <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
         <Container>
-
           <h1>Wizard Game</h1>
           <aside id="createuser">
             <Form onSubmit={this.handleSubmit}>
