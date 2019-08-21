@@ -17,17 +17,6 @@ class CreateUser extends Component {
     music: false
   };
 
-  // audio = "../../audio/eleven-theme.mp3";
-
-  // backgroundMusic() {
-  //   this.setState({
-  //     music: true
-  //   });
-  //   console.log(this.audio);
-  //   this.audio.backgroundMusic();
-  // };
-
-
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }

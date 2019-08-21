@@ -10,8 +10,8 @@ export default {
     // console.log('ID????', id);
 
     return axios.get("/api/monsters/" + id)
-
   },
+
 
   loginUser: (data) => {
     // console.log("this: " + data)
