@@ -132,6 +132,7 @@ class MainStats extends Component {
                     <Row className="justify-content-md-center">
 
                         <Col xs={2}>
+
                             <Card id="mainCard" style={{ width: '14rem' }}>
                                 <h3 id="userInfo">Monster Info</h3>
                                 <ul>
@@ -183,6 +184,12 @@ class MainStats extends Component {
                     </Row>
 
                     <br></br>
+
+                    <Row id="houseText">
+                        <Col>
+                            <h4>{this.state.house} House Members</h4>
+                        </Col>
+                    </Row>
 
 
                     <Row className="justify-content-md-center">

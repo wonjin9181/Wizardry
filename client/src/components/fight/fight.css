@@ -7,13 +7,22 @@
 }
 
 .withdrawBtn {
+  margin-left: 0px;
+  margin-top: 25px; 
   float: right;
 }
 
 #fightBtn {
-  margin-top: 35vh;
+  margin-top: 40vh;
+  
 }
 
 #letterBtn {
   margin-bottom: 50vh;
+}
+
+@media only screen and (max-width: 600px) {
+  #fightBtn {
+    margin-top: 15vh;
+  }
 }
