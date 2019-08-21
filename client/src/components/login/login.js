@@ -58,7 +58,7 @@ class Login extends Component {
                     self.setState({
                         play: true
                     })
-                
+
                 }
                 else {
                     alert('Incorrect Username and/or Password!');
@@ -77,7 +77,7 @@ class Login extends Component {
         }
 
         return (
-           <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
+            <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
                 <Container>
                     <h1>Wizard Game Login</h1>
