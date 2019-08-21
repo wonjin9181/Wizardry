@@ -16,6 +16,7 @@ import { timingSafeEqual } from "crypto";
 import fighterImages from './fighterImages';
 import Code from './code'
 import backgroundImage from '../main-stats/backgroundImages'
+import fightAvatars from './fightAvatars'
 
 
 class Fight extends Component {
@@ -29,7 +30,8 @@ class Fight extends Component {
     withdraw: false,
     fight: false,
     spellCode: "",
-    code: ""
+    code: "",
+    characterImage: ""
   };
 
   withdraw = () => {
@@ -62,13 +64,15 @@ class Fight extends Component {
 
     API.loadUser(key)
       .then(function (result) {
+        console.log("RESULT", result)
+        let { src } = fightAvatars[result.data.characterImage -1];
         self.setState({
           characterName: result.data.characterName,
           house: result.data.house,
-          userStrength: result.data.strength
+          userStrength: result.data.strength,
+          characterImage: src
         })
       })
-
   };
 
   //renders the spell name
@@ -127,11 +131,10 @@ class Fight extends Component {
       return <Redirect to="/main" />
     }
 
-
     const { monsterImg } = this.state;
+    const { characterImage } = this.state;
     // console.log('state.monsterImg', monsterImg);
     return (
-
       <div style={{ hight: "100vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
         <Container>
           <Link to="/main">
@@ -169,7 +172,7 @@ class Fight extends Component {
                   width={300}
                   height={300}
                   alt="175x175"
-                  src="https://picsum.photos/id/660/300/300"
+                  src={characterImage}
                   className="fighters"
                 />
                 <Figure.Caption className="justify-content-center">
@@ -232,5 +235,3 @@ class Fight extends Component {
 }
 
 export default Fight;
-
-
