@@ -6,6 +6,7 @@ function Code(id) {
     if (num === 1) {
 
         randomNumber()
+        
         console.log(numberCode)
 
         return "babadiboo"

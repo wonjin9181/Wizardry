@@ -1,26 +1,26 @@
 [
     {
-        "monsterName": "fire",
+        "monsterName": "Infernobeast",
         "strength":80,
         "monsterDescription":"Fire Monster",
         "imageIndex": 0
 
     },
     {
-        "monsterName": "ice",
-        "strength":80,
+        "monsterName": "Cursemorph",
+        "strength":160,
         "monsterDescription":"Ice Monster",
         "imageIndex": 1
     },
     {
-        "monsterName": "air",
-        "strength":80,
+        "monsterName": "The Ruthless Doom Swine",
+        "strength":200,
         "monsterDescription":"Air Monster",
         "imageIndex": 2
     },
     {
-        "monsterName": "earth",
-        "strength":120,
+        "monsterName": "The Bruised Deviation",
+        "strength":400,
         "monsterDescription":"Earth Monster",
         "imageIndex": 3
     }
