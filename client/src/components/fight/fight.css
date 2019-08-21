@@ -1,6 +1,5 @@
 #fightContainer {
   margin-top: 100px;
-  margin-bottom: 50vh;
 }
 
 .fighters {
@@ -13,4 +12,9 @@
 
 #fightBtn {
   margin-top: 35vh;
+}
+
+#letterBtn {
+  margin-bottom: 50vh;
+ 
 }

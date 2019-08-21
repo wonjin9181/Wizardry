@@ -166,6 +166,25 @@ class Fight extends Component {
           </Row>
 
 
+          <Row className="justify-content-md-center">
+                        <Col xs={2}>
+                        <Button id = "letterBtn">1</Button>
+                        </Col>
+
+                        <Col xs={2}>
+                        <Button id = "letterBtn">2</Button>
+                        </Col>
+
+                        <Col xs={2}>
+                        <Button id = "letterBtn">3</Button>
+                        </Col>
+
+                        <Col xs={2}>
+                        <Button id = "letterBtn">4</Button>
+                        </Col>
+
+                    </Row>
+
         </Container>
       </div >
     );
