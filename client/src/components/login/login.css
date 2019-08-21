@@ -69,10 +69,15 @@ p {
   left: 15vw;
   right: 15vw;
   bottom: 50vw;
+  text-align: left;
 }
 .btn {
   font-size: 13px;
   margin-left: 20px !important;
+}
+
+.input {
+  font-size: 10px;
 }
 }
 
