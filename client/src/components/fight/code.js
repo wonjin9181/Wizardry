@@ -1,17 +1,17 @@
 function Code(id) {
-    var id = id
-    var code
-    if (id = 1) {
-        return code = "1"
+    let num = id
+    
+    if (num === 1) {
+        return "babadiboo"
     }
-    else if (id = 2) {
-        return code = "12"
+    else if (num === 2) {
+        return "wonwonkalham"
     }
-    else if (id = 3) {
-        return code = "123"
+    else if (num === 3) {
+        return "kalhamwonwonbabadiboo"
     }
-    else if (id = 4) {
-        return code = "1234"
+    else if (num === 4) {
+        return "liditanheigbabadiboowonwonkalham"
     }
 
 }

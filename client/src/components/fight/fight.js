@@ -29,7 +29,7 @@ class Fight extends Component {
     withdraw: false,
     fight: false,
     spellCode: "",
-    code:""
+    code: ""
   };
 
   withdraw = () => {
@@ -50,7 +50,13 @@ class Fight extends Component {
       //  this.state.imageIndex = fighterImages[imageIndex]
 
       let { src } = fighterImages[imageIndex]; { }
-      self.setState({ monsterDescription, monsterImg: src, monsterName, strength, monsterId: id });
+      self.setState({ monsterDescription, monsterImg: src, monsterName, monsterStrength: strength, monsterId: id }, function () {
+        var monsterId = this.state.monsterId
+        console.log(Code(monsterId))
+        var code = Code(monsterId)
+        console.log(code)
+        this.setState({ code })
+      });
 
     });
 
@@ -63,11 +69,9 @@ class Fight extends Component {
         })
       })
 
-    var code = Code(this.state.monsterId)
-    this.setState({code})
   };
 
-
+  //renders the spell name
   handleCode = e => {
     let spellCode = this.state.spellCode + e.target.value
     this.setState({
@@ -76,17 +80,26 @@ class Fight extends Component {
     console.log(this.state.spellCode)
   }
 
+
+  //clears spell name
+  clear = () => {
+    this.setState({ spellCode: "" })
+  }
+
+
+
   fight = () => {
 
     let self = this
-    let userStrength = this.state.userStrength
-    let monsterStrength = this.state.strength
+    let userStrength = parseInt(this.state.userStrength)
+    let monsterStrength = parseInt(this.state.monsterStrength)
     let key = localStorage.getItem("key")
     console.log(userStrength)
+    console.log(monsterStrength)
 
 
     if (userStrength > monsterStrength && this.state.spellCode === this.state.code) {
-      alert("You have defeated "+ self.state.monsterName)
+      alert("You have defeated " + self.state.monsterName)
       this.setState({ userStrength: userStrength + 20 }, function () {
         let data = []
         data.push(this.state.userStrength)
@@ -169,42 +182,48 @@ class Fight extends Component {
               </Figure>
             </Col>
           </Row>
-<p>{this.state.spellCode}</p>
+          <p>{this.state.spellCode}</p>
 
           <Row className="justify-content-md-center">
-                        <Col xs={2}>
-                        <Button 
-                        id = "letterBtn"
-                        value= "1"
-                        onClick={this.handleCode}
-                        >1</Button>
-                        </Col>
+            <Col xs={2}>
+              <Button
+                id="letterBtn"
+                value="kalham"
+                onClick={this.handleCode}
+              >1</Button>
+            </Col>
 
-                        <Col xs={2}>
-                        <Button 
-                        id = "letterBtn"
-                        value="2"
-                        onClick={this.handleCode}
-                        >2</Button>
-                        </Col>
+            <Col xs={2}>
+              <Button
+                id="letterBtn"
+                value="babadiboo"
+                onClick={this.handleCode}
+              >2</Button>
+            </Col>
 
-                        <Col xs={2}>
-                        <Button 
-                        id = "letterBtn"
-                        value="3"
-                        onClick={this.handleCode}
-                        >3</Button>
-                        </Col>
+            <Col xs={2}>
+              <Button
+                id="letterBtn"
+                value="wonwon"
+                onClick={this.handleCode}
+              >3</Button>
+            </Col>
 
-                        <Col xs={2}>
-                        <Button 
-                        id = "letterBtn"
-                        value="4"
-                        onClick={this.handleCode}
-                        >4</Button>
-                        </Col>
+            <Col xs={2}>
+              <Button
+                id="letterBtn"
+                value="liditanheig"
+                onClick={this.handleCode}
+              >4</Button>
+            </Col>
 
-                    </Row>
+            <Col xs={2}>
+              <Button
+                id="letterBtn"
+                onClick={this.clear}
+              >Clear</Button>
+            </Col>
+          </Row>
 
         </Container>
       </div >
