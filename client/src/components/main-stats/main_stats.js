@@ -159,9 +159,11 @@ class MainStats extends Component {
 
 
                     <Row className="justify-content-md-center">
-                        <Card id="houseMembers" style={{ width: '25rem' }}>
-                            <Col>
+                        <Card id="houseMembers">
 
+                        <h5>House Members</h5>
+                        
+                            <Col>
 
 
                                 {this.state.houseMembers.map(house => (
