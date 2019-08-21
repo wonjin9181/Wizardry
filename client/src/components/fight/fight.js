@@ -53,7 +53,7 @@ class Fight extends Component {
       let { src } = fighterImages[imageIndex]; { }
       self.setState({ monsterDescription, monsterImg: src, monsterName, monsterStrength: strength, monsterId: id }, function () {
         var monsterId = this.state.monsterId
-        console.log(Code(monsterId))
+        // console.log(Code(monsterId))
         var code = Code(monsterId)
         console.log(code)
         this.setState({ code })
