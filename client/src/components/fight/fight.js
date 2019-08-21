@@ -28,7 +28,7 @@ class Fight extends Component {
     bgImage: backgroundImage[5],
     withdraw: false,
     fight: false,
-    fightCode: ""
+    spellCode: ""
 
   };
 
@@ -69,7 +69,10 @@ class Fight extends Component {
 
 
   handleCode = e => {
-
+    let spellCode = { ...this.state.spellCode } + e.target.value
+    this.setState({
+      spellCode
+    })
   }
 
   fight = () => {
@@ -81,7 +84,8 @@ class Fight extends Component {
     console.log(userStrength)
 
 
-    if (userStrength > monsterStrength) {
+    if (userStrength > monsterStrength && this.state.spellCode === code) {
+      alert("You have defeated "+ self.state.monsterName)
       this.setState({ userStrength: userStrength + 20 }, function () {
         let data = []
         data.push(this.state.userStrength)
@@ -138,9 +142,9 @@ class Fight extends Component {
 
 
             <Col>
-              
-                <Button id="fightBtn" onClick={this.fight} variant="primary" size="lg">
-                  Cast spell!
+
+              <Button id="fightBtn" onClick={this.fight} variant="primary" size="lg">
+                Cast spell!
             </Button>
 
             </Col>
