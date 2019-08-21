@@ -28,8 +28,8 @@ class Fight extends Component {
     bgImage: backgroundImage[5],
     withdraw: false,
     fight: false,
-    spellCode: ""
-
+    spellCode: "",
+    code:""
   };
 
   withdraw = () => {
@@ -64,15 +64,16 @@ class Fight extends Component {
       })
 
     var code = Code(this.state.monsterId)
-    console.log("+++++" + code)
+    this.setState({code})
   };
 
 
   handleCode = e => {
-    let spellCode = { ...this.state.spellCode } + e.target.value
+    let spellCode = this.state.spellCode + e.target.value
     this.setState({
       spellCode
     })
+    console.log(this.state.spellCode)
   }
 
   fight = () => {
@@ -84,7 +85,7 @@ class Fight extends Component {
     console.log(userStrength)
 
 
-    if (userStrength > monsterStrength && this.state.spellCode === code) {
+    if (userStrength > monsterStrength && this.state.spellCode === this.state.code) {
       alert("You have defeated "+ self.state.monsterName)
       this.setState({ userStrength: userStrength + 20 }, function () {
         let data = []
@@ -168,23 +169,39 @@ class Fight extends Component {
               </Figure>
             </Col>
           </Row>
-
+<p>{this.state.spellCode}</p>
 
           <Row className="justify-content-md-center">
                         <Col xs={2}>
-                        <Button id = "letterBtn">1</Button>
+                        <Button 
+                        id = "letterBtn"
+                        value= "1"
+                        onClick={this.handleCode}
+                        >1</Button>
                         </Col>
 
                         <Col xs={2}>
-                        <Button id = "letterBtn">2</Button>
+                        <Button 
+                        id = "letterBtn"
+                        value="2"
+                        onClick={this.handleCode}
+                        >2</Button>
                         </Col>
 
                         <Col xs={2}>
-                        <Button id = "letterBtn">3</Button>
+                        <Button 
+                        id = "letterBtn"
+                        value="3"
+                        onClick={this.handleCode}
+                        >3</Button>
                         </Col>
 
                         <Col xs={2}>
-                        <Button id = "letterBtn">4</Button>
+                        <Button 
+                        id = "letterBtn"
+                        value="4"
+                        onClick={this.handleCode}
+                        >4</Button>
                         </Col>
 
                     </Row>
