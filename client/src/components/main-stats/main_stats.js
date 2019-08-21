@@ -30,7 +30,7 @@ class MainStats extends Component {
     loadMonsters = () => {
         API.getMonsters()
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 this.setState({ monsters: res.data })
             })
             .catch(err => console.log(err));
@@ -46,25 +46,8 @@ class MainStats extends Component {
         let self = this;
         var key = localStorage.getItem("key");
 
-
-        API.loadUser(key)
-            .then(function (result) {
-                console.log(result.data);
-                self.setState({
-                    characterName: result.data.characterName,
-                    house: result.data.house,
-                    strength: result.data.strength
-                }, function () {
-
-
-                });
-            }).catch(err => {
-                alert(err);
-            });
-
-
         if (key) {
-            console.log(key)
+            // console.log(key)
             API.loadUser(key)
                 .then(function (result) {
 
@@ -84,7 +67,7 @@ class MainStats extends Component {
                         API.getHouseMembers(self.state.house)
 
                             .then(function (result) {
-                                console.log(result.data)
+                                // console.log(result.data)
                                 self.setState({
                                     houseMembers: result.data
                                 })
