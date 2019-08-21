@@ -21,3 +21,9 @@
   margin-bottom: 50vh;
  
 }
+
+@media only screen and (max-width: 600px) {
+  #fightBtn {
+    margin-top: 15vh;
+  }
+}

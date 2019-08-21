@@ -68,7 +68,7 @@ class MainStats extends Component {
             API.loadUser(key)
                 .then(function (result) {
 
-                       let {src} = userAvatars[result.data.characterImage -1]
+                    let { src } = userAvatars[result.data.characterImage - 1]
                     // console.log(result.data);
                     self.setState({
                         characterName: result.data.characterName,
@@ -137,19 +137,19 @@ class MainStats extends Component {
 
                         <Col xs={2}>
 
-                            <Link to="/fight?monster=1"><Button onClick={this.fightMonster}> Stage 1</Button></Link>
+                            <Link to="/fight?monster=1"><Button onClick={this.fightMonster} className="stageBtn"> Stage 1</Button></Link>
 
                         </Col>
                         <Col xs={2}>
-                            <Link to="/fight?monster=2"><Button onClick={this.fightMonster}> Stage 2</Button></Link>
+                            <Link to="/fight?monster=2"><Button onClick={this.fightMonster} className="stageBtn"> Stage 2</Button></Link>
 
                         </Col>
                         <Col xs={2}>
-                            <Link to="/fight?monster=3"><Button onClick={this.fightMonster}> Stage 3</Button></Link>
+                            <Link to="/fight?monster=3"><Button onClick={this.fightMonster} className="stageBtn"> Stage 3</Button></Link>
 
                         </Col>
                         <Col xs={2}>
-                            <Link to="/fight?monster=4"><Button onClick={this.fightMonster}>  Stage 4</Button></Link>
+                            <Link to="/fight?monster=4"><Button onClick={this.fightMonster} className="stageBtn">  Stage 4</Button></Link>
 
 
                         </Col>
@@ -157,13 +157,16 @@ class MainStats extends Component {
 
                     <br></br>
 
+                    <Row id="houseText">
+                        <Col>
+                            <h4>{this.state.house} House Members</h4>
+                        </Col>
+                    </Row>
 
-                    <Row className="justify-content-md-center">
+                    <Row classNameName="justify-content-md-center">
                         <Card id="houseMembers" style={{ width: '25rem' }}>
                             <Col>
 
-
-                                <h4>Members in the house</h4>
                                 {this.state.houseMembers.map(house => (
 
                                     <li
