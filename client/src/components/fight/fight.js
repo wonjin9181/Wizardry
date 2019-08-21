@@ -16,6 +16,7 @@ import { timingSafeEqual } from "crypto";
 import fighterImages from './fighterImages';
 import Code from './code'
 import backgroundImage from '../main-stats/backgroundImages'
+import fightAvatars from './'
 
 
 class Fight extends Component {
@@ -232,5 +233,3 @@ class Fight extends Component {
 }
 
 export default Fight;
-
-

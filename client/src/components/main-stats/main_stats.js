@@ -3,7 +3,7 @@ import "./main_stats.css";
 import { Link } from "react-router-dom";
 import API from "../../utils/API"
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import userAvatars from './userAvatars';
+import userAvatars from '../fight/userAvatars';
 // import { runInThisContext } from "vm";
 import backgroundImages from './backgroundImages';
 
@@ -94,15 +94,15 @@ class MainStats extends Component {
                     </Link>
                     <Row className="justify-content-md-center">
                         <Col md="auto">
-                            <Card id="mainCard" style={{ width: '13rem' }}>
+                            <Card className="mainCard" id="avatar">
 
-                                <img src={characterImage} alt="main-stats" />
+                                <img src={characterImage} alt="main-stats" id="avatar2" />
 
                             </Card>
                         </Col>
 
                         <Col md="auto">
-                            <Card id="mainCard" style={{ width: '18rem' }}>
+                            <Card className="mainCard" style={{ width: '18rem' }}>
                                 <h3 id="userInfo">User Info</h3>
                                 <ul>
                                     <h6>Name: {this.state.characterName}</h6>
