@@ -99,7 +99,7 @@ class MainStats extends Component {
         const { characterImage } = this.state;
         return (
 
-            <div style={{ hight: "150vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
+            <div style={{ hight: "150vh", backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
                 <Container id="mainContainer">
                     <Link to="/">
                         <Button className="logoutBtn" variant="primary">
@@ -141,7 +141,7 @@ class MainStats extends Component {
                                     <h6>Strength: {this.state.monster1.strength}</h6>
                                 </ul>
                             </Card>
-                            <Link to="/fight?monster=1"><Button > Stage 1</Button></Link>
+                            <Link to="/fight?monster=1" ><Button className="stageBtn"> Stage 1</Button></Link>
 
                         </Col>
                         <Col xs={2}>
@@ -153,7 +153,7 @@ class MainStats extends Component {
                                     <h6>Strength: {this.state.monster2.strength}</h6>
                                 </ul>
                             </Card>
-                            <Link to="/fight?monster=2"><Button > Stage 2</Button></Link>
+                            <Link to="/fight?monster=2"><Button className="stageBtn"> Stage 2</Button></Link>
 
                         </Col>
                         <Col xs={2}>
@@ -165,7 +165,7 @@ class MainStats extends Component {
                                     <h6>Strength: {this.state.monster3.strength}</h6>
                                 </ul>
                             </Card>
-                            <Link to="/fight?monster=3"><Button > Stage 3</Button></Link>
+                            <Link to="/fight?monster=3"><Button className="stageBtn"> Stage 3</Button></Link>
 
                         </Col>
                         <Col xs={2}>
@@ -177,7 +177,7 @@ class MainStats extends Component {
                                     <h6>Strength: {this.state.monster4.strength}</h6>
                                 </ul>
                             </Card>
-                            <Link to="/fight?monster=4"><Button >  Stage 4</Button></Link>
+                            <Link to="/fight?monster=4"><Button className="stageBtn">  Stage 4</Button></Link>
 
 
                         </Col>
@@ -185,20 +185,17 @@ class MainStats extends Component {
 
                     <br></br>
 
-                    <Row id="houseText">
-                        <Col>
-                            <h4>{this.state.house} House Members</h4>
-                        </Col>
-                    </Row>
-
+                        <Row className="justify-content-lg-center">
+                            <Card id="houseText">
+                                <Col>
+                                    <h4>{this.state.house} House Members</h4>
+                                </Col>
+                            </Card>
+                        </Row>
 
                     <Row className="justify-content-md-center">
                         <Card id="houseMembers">
-
-                        <h5>House Members</h5>
-                        
                             <Col>
-
 
                                 {this.state.houseMembers.map(house => (
 
@@ -208,7 +205,6 @@ class MainStats extends Component {
 
 
                             </Col>
-
                         </Card>
                     </Row>
 

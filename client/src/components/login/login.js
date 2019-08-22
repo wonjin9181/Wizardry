@@ -76,7 +76,7 @@ class Login extends Component {
         }
 
         return (
-            <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
+            <div style={{ height: '100vh', backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
                 <Container>
                     <h1>Wizard Game Login</h1>
@@ -84,54 +84,59 @@ class Login extends Component {
                     <p>
                         Cast spells to defeat monsters!
                 </p>
-                    <aside id="loginaside">
-                        <Form className="loginForm" onSubmit={this.handleSubmit}>
-                            <Form.Group as={Row} controlId="formHorizontalEmail">
-                                <Form.Label column sm={2}>
-                                    Email
+                <aside id="loginaside"></aside>
+                    {/* <Row > */}
+                        {/* <Col lg= "2"></Col> */}
+                        <Col >
+                            <Form className="loginForm" onSubmit={this.handleSubmit}>
+                                <Form.Group as={Row} controlId="formHorizontalEmail">
+                                    <Form.Label column sm={3}>
+                                        Email
                         </Form.Label>
-                                <Col sm={10}>
-                                    <Form.Control
-                                        autoFocus
-                                        type="email"
-                                        placeholder="Email"
-                                        name="email"
-                                        value={this.state.email}
-                                        onChange={this.handleChange}
-                                    />
-                                </Col>
-                            </Form.Group>
+                                    <Col sm={8}>
+                                        <Form.Control
+                                            autoFocus
+                                            type="email"
+                                            placeholder="Email"
+                                            name="email"
+                                            value={this.state.email}
+                                            onChange={this.handleChange}
+                                        />
+                                    </Col>
+                                </Form.Group>
 
-                            <Form.Group as={Row} controlId="formHorizontalPassword">
-                                <Form.Label column sm={2}>
-                                    Password
+                                <Form.Group as={Row} controlId="formHorizontalPassword">
+                                    <Form.Label column sm={3}>
+                                        Password
                          </Form.Label>
-                                <Col sm={10}>
-                                    <Form.Control
-                                        type="password"
-                                        placeholder="Password"
-                                        name="password"
-                                        value={this.state.password}
-                                        onChange={this.handleChange}
-                                    />
-                                </Col>
-                            </Form.Group>
+                                    <Col sm={8}>
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Password"
+                                            name="password"
+                                            value={this.state.password}
+                                            onChange={this.handleChange}
+                                        />
+                                    </Col>
+                                </Form.Group>
 
-                            <Button
-                                className="btn"
-                                variant="primary"
-                                type="submit"
-                                disabled={!this.validateForm()}>
-                                Play
+                                <Button
+                                    className="btn"
+                                    variant="primary"
+                                    type="submit"
+                                    disabled={!this.validateForm()}>
+                                    Play
                              </Button>
 
-                            <Link to="/createuser">
-                                <Button className="btn" variant="primary">
-                                    Create an account
+                                <Link to="/createuser">
+                                    <Button className="btn" variant="primary">
+                                        Create an account
                            </Button>
-                            </Link>
-                        </Form>
-                    </aside>
+                                </Link>
+                            </Form>
+                        </Col>
+                        {/* <Col lg= "2"></Col>
+                    </Row> */}
                 </Container>
             </div>
         );

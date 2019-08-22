@@ -10,15 +10,20 @@
   margin-left: 0px;
   margin-top: 25px; 
   float: right;
+  background-color: rgb(131, 2, 2);
+  color: white
 }
 
 #fightBtn {
   margin-top: 40vh;
-  
+  background-color: rgb(131, 2, 2);
+  color: white
 }
 
 #letterBtn {
   margin-bottom: 50vh;
+  background-color: rgb(131, 2, 2);
+  color: white
 }
 
 @media only screen and (max-width: 600px) {
