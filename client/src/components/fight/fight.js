@@ -21,7 +21,7 @@ import fightAvatars from './fightAvatars'
 
 class Fight extends Component {
   state = {
-    userStrength: "",
+    characterStrength: "",
     monsterDescription: "",
     monsterStrength: "",
     monsterName: "",
@@ -67,11 +67,11 @@ class Fight extends Component {
     API.loadUser(key)
       .then(function (result) {
         console.log("RESULT", result)
-        let { src } = fightAvatars[result.data.characterImage -1];
+        let { src } = fightAvatars[result.data.characterImage - 1];
         self.setState({
           characterName: result.data.characterName,
           house: result.data.house,
-          userStrength: result.data.strength,
+          characterStrength: result.data.strength,
           characterImage: src
         })
       })
@@ -101,62 +101,73 @@ class Fight extends Component {
   fight = () => {
 
     let self = this
-    let userStrength = parseInt(this.state.userStrength)
+    let characterStrength = parseInt(this.state.characterStrength)
     let monsterStrength = parseInt(this.state.monsterStrength)
     let key = localStorage.getItem("key")
-    console.log(userStrength)
+    console.log(characterStrength)
     console.log(monsterStrength)
 
 
-    if (userStrength > monsterStrength && this.state.spellCode === this.state.code) {
+    if (characterStrength > monsterStrength && this.state.spellCode === this.state.code) {
       alert("Your spell is super effective \nYou have defeated " + self.state.monsterName)
-      this.setState({ userStrength: userStrength + 20 }, function () {
+      this.setState({ characterStrength: characterStrength + 20 }, function () {
         let data = []
-        data.push(this.state.userStrength)
+        data.push(this.state.characterStrength)
         console.log(data)
         API.updateUser(data, key)
           .then(function (result) {
             self.setState({ won: true })
-          
+
           })
 
       })
     }
-    else if (userStrength > monsterStrength){
+    else if (characterStrength > monsterStrength) {
       alert("Your spell is not effective!!!!!")
-      var lives = this.state.lives -1
+      var lives = this.state.lives - 1
       this.setState({
         lives
-      },function(){
-         localStorage.setItem("lives", this.state.lives)
+      }, function () {
+        localStorage.setItem("lives", this.state.lives)
       })
-     
+
     }
     else {
-      console.log(userStrength)
+      console.log(characterStrength)
       alert("You are not strong enough!!!!!")
-      var lives = this.state.lives -1
+      var lives = this.state.lives - 1
       this.setState({
         lives
-      },function(){
-         localStorage.setItem("lives", this.state.lives)
+      }, function () {
+        localStorage.setItem("lives", this.state.lives)
       })
     }
   }
 
+  youLose = () => {
+    let characterStrength = parseInt(this.state.characterStrength)
+    let key = localStorage.getItem("key")
+    let self = this
 
-componentDidUpdate(){
-  if(this.state.lives === 0){
-    
-    this.setState({
-      loses :true
-    },function(){
+    this.setState({ characterStrength: characterStrength - 20 }, function () {
+      let data = []
+      data.push(this.state.characterStrength)
+      console.log(data)
+      API.updateStrength(data, key)
+        .then(function (result) {
+         
+        })
+    })
+    this.setState({ loses: true }, function () {
       alert("You have lost")
     })
   }
-}
+
 
   render() {
+    if (this.state.lives === 0) {
+      this.youLose()
+    }
 
     if (this.state.won === true) {
       return <Redirect to="/main" />
@@ -213,7 +224,7 @@ componentDidUpdate(){
                   <ul>
                     <li>Name: {this.state.characterName}</li>
                     <li>House: {this.state.house}</li>
-                    <li>Strength: {this.state.userStrength}</li>
+                    <li>Strength: {this.state.characterStrength}</li>
                     <li>Lives: {this.state.lives}</li>
                   </ul>
                 </Figure.Caption>
@@ -223,7 +234,7 @@ componentDidUpdate(){
           <p>{this.state.spellCode}</p>
 
 
-        
+
           <Row className="justify-content-md-center">
             <Col xs={2}>
               <Button
