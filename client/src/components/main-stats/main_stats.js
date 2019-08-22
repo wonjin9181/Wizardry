@@ -116,12 +116,12 @@ class MainStats extends Component {
                         </Col>
 
                         <Col md="auto">
-                            <Card className="mainCard" style={{ width: '18rem' }}>
-                                <h3 id="userInfo">User Info</h3>
+                            <Card className="mainCard" style={{ width: '15rem' }}>
+                                <h2 id="userInfo">User Info</h2>
                                 <ul>
-                                    <h6>Name: {this.state.characterName}</h6>
-                                    <h6>House: {this.state.house}</h6>
-                                    <h6>Strength: {this.state.characterStrength}</h6>
+                                    <h6><strong>Name: </strong>{this.state.characterName}</h6>
+                                    <h6><strong>House: </strong>{this.state.house}</h6>
+                                    <h6><strong>Strength: </strong>{this.state.characterStrength}</h6>
                                 </ul>
                             </Card>
                         </Col>
@@ -133,67 +133,65 @@ class MainStats extends Component {
 
                         <Col s={4}>
 
-                            <Card id="monsterCard" style={{ width: '14rem' }}>
+                            <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Monster Info</h3>
                                 <ul>
-                                    <h6>Name: {this.state.monster1.monsterName}</h6>
-                                    <br></br>
-                                    <h6>Description: {this.state.monster1.monsterDescription}</h6>
-                                    <h6>Strength: {this.state.monster1.strength}</h6>
+                                    <h6><strong>Name:</strong> {this.state.monster1.monsterName}</h6>
+                                    <h6><strong>Description: </strong> {this.state.monster1.monsterDescription}</h6>
+                                    <h6><strong>Strength:</strong> {this.state.monster1.strength}</h6>
                                 </ul>
+                                <Link to="/fight?monster=1" ><Button className="stageBtn"> Stage 1</Button></Link>
                             </Card>
-                            <Link to="/fight?monster=1" ><Button className="stageBtn"> Stage 1</Button></Link>
 
                         </Col>
                         <Col s={4}>
-                            <Card id="monsterCard" style={{ width: '14rem' }}>
+                            <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Monster Info</h3>
                                 <ul>
-                                    <h6>Name: {this.state.monster2.monsterName}</h6>
-                                    <br></br>
-                                    <h6>Description: {this.state.monster2.monsterDescription}</h6>
-                                    <h6>Strength: {this.state.monster2.strength}</h6>
+                                    <h6><strong>Name: </strong>{this.state.monster2.monsterName}</h6>
+                                    <h6><strong>Description: </strong>{this.state.monster2.monsterDescription}</h6>
+                                    <h6><strong>Strength:</strong> {this.state.monster2.strength}</h6>
                                 </ul>
+                                <Link to="/fight?monster=2"><Button className="stageBtn"> Stage 2</Button></Link>
                             </Card>
-                            <Link to="/fight?monster=2"><Button className="stageBtn"> Stage 2</Button></Link>
 
                         </Col>
                         <Col s={4}>
-                            <Card id="monsterCard" style={{ width: '14rem' }}>
+                            <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Monster Info</h3>
                                 <ul>
-                                    <h6>Name: {this.state.monster3.monsterName}</h6>
-                                    <h6>Description: {this.state.monster3.monsterDescription}</h6>
-                                    <h6>Strength: {this.state.monster3.strength}</h6>
+                                    <h6><strong>Name: </strong>{this.state.monster3.monsterName}</h6>
+                                    <h6><strong>Description: </strong>{this.state.monster3.monsterDescription}</h6>
+                                    <h6><strong>Strength:</strong> {this.state.monster3.strength}</h6>
                                 </ul>
+                                <Link to="/fight?monster=3"><Button className="stageBtn"> Stage 3</Button></Link>
                             </Card>
-                            <Link to="/fight?monster=3"><Button className="stageBtn"> Stage 3</Button></Link>
+
 
                         </Col>
                         <Col s={4}>
-                            <Card id="monsterCard" style={{ width: '14rem' }}>
+                            <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Monster Info</h3>
                                 <ul>
-                                    <h6>Name: {this.state.monster4.monsterName}</h6>
-                                    <h6>Description: {this.state.monster4.monsterDescription}</h6>
-                                    <h6>Strength: {this.state.monster4.strength}</h6>
+                                    <h6><strong>Name: </strong>{this.state.monster4.monsterName}</h6>
+                                    <h6><strong>Description: </strong>{this.state.monster4.monsterDescription}</h6>
+                                    <h6><strong>Strength:</strong> {this.state.monster4.strength}</h6>
                                 </ul>
+                                <Link to="/fight?monster=4"><Button className="stageBtn">  Stage 4</Button></Link>
                             </Card>
-                            <Link to="/fight?monster=4"><Button className="stageBtn">  Stage 4</Button></Link>
-
 
                         </Col>
                     </Row>
 
                     <br></br>
 
-                        <Row className="justify-content-lg-center">
-                            <Card id="houseText">
-                                <Col>
-                                    <h4>{this.state.house} House Members</h4>
-                                </Col>
-                            </Card>
-                        </Row>
+                    <Row className="justify-content-lg-center">
+                        <Card id="houseText">
+                            <Col>
+                                <h4>{this.state.house} House Members</h4>
+                            </Col>
+                        </Card>
+                    </Row>
 
                     <Row className="justify-content-md-center">
                         <Card id="houseMembers">
