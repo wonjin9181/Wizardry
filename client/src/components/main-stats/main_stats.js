@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./main_stats.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import API from "../../utils/API"
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 import userAvatars from '../fight/userAvatars';
 // import { runInThisContext } from "vm";
 import backgroundImages from './backgroundImages';
@@ -24,7 +24,8 @@ class MainStats extends Component {
         monster1: {},
         monster2: {},
         monster3: {},
-        monster4: {}
+        monster4: {},
+        gameover: false
     };
 
     loadMonsters = () => {
@@ -49,7 +50,6 @@ class MainStats extends Component {
             // console.log(key)
             API.loadUser(key)
                 .then(function (result) {
-
                     let { src } = userAvatars[result.data.characterImage - 1]
                     // console.log(result.data);
                     self.setState({
@@ -63,7 +63,17 @@ class MainStats extends Component {
                         })
                         this.setState({ bgImage: image })
 
-                        API.getHouseMembers(self.state.house)
+
+                        if(this.state.characterStrength < 100){
+                            console.log(key)
+                             API.deleteUser(key)
+                             API.deleteHouseUser(key)
+                              this.setState({gameover:true})
+                             alert("Game over")
+                                
+                        }
+                        else{
+                           API.getHouseMembers(self.state.house)
 
                             .then(function (result) {
                                 // console.log(result.data)
@@ -87,8 +97,11 @@ class MainStats extends Component {
                                 })
                             })
 
+                         
+                        }
                     });
-                }).catch(err => {
+                })
+                .catch(err => {
                     alert(err);
                 });
 
@@ -96,6 +109,9 @@ class MainStats extends Component {
     };
 
     render() {
+        if(this.state.gameover === true){
+            return <Redirect to="/" />
+        }
         const { characterImage } = this.state;
         return (
 
@@ -140,7 +156,7 @@ class MainStats extends Component {
                                     <h6><strong>Description: </strong> {this.state.monster1.monsterDescription}</h6>
                                     <h6><strong>Strength:</strong> {this.state.monster1.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=1" ><Button className="stageBtn"> Stage 1</Button></Link>
+                                <Link to="/fight?monster=1"><Button className="stageBtn"><Image src="images/infernobeast-front.png"/></Button></Link>
                             </Card>
 
                         </Col>
@@ -152,7 +168,7 @@ class MainStats extends Component {
                                     <h6><strong>Description: </strong>{this.state.monster2.monsterDescription}</h6>
                                     <h6><strong>Strength:</strong> {this.state.monster2.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=2"><Button className="stageBtn"> Stage 2</Button></Link>
+                                <Link to="/fight?monster=2"><Button className="stageBtn"><Image src="images/leviathan-front.png"/></Button></Link>
                             </Card>
 
                         </Col>
@@ -164,7 +180,7 @@ class MainStats extends Component {
                                     <h6><strong>Description: </strong>{this.state.monster3.monsterDescription}</h6>
                                     <h6><strong>Strength:</strong> {this.state.monster3.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=3"><Button className="stageBtn"> Stage 3</Button></Link>
+                                <Link to="/fight?monster=3"><Button className="stageBtn"><Image src="images/misthawk-front.png"/></Button></Link>
                             </Card>
 
 
@@ -177,7 +193,7 @@ class MainStats extends Component {
                                     <h6><strong>Description: </strong>{this.state.monster4.monsterDescription}</h6>
                                     <h6><strong>Strength:</strong> {this.state.monster4.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=4"><Button className="stageBtn">  Stage 4</Button></Link>
+                                <Link to="/fight?monster=4"><Button className="stageBtn"><Image src="images/onyxbrute-front.png"/></Button></Link>
                             </Card>
 
                         </Col>

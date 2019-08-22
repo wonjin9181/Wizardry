@@ -31,5 +31,16 @@ module.exports = function (app) {
                 console.log(err)
             })
     })
+
+    app.delete("/api/house/users/:id", function(req, res){
+        db.House.destroy({
+            where:{
+                id: req.params.id
+            }
+        })
+        .then(function(result){
+            res.status(200)
+        })
+    })
 }
 
