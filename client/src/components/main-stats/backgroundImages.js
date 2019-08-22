@@ -4,7 +4,7 @@ const backgroundImages = [
     { id: 3, name: 'Water', src: 'images/waterImage.gif' },
     { id: 4, name: 'Air', src: 'images/airImage.gif' },
     { id: 5, name: 'Earth', src: 'images/earthImage.gif' },
-    { id: 6, name: 'fight', src: 'images/fightImage.jpg' }
+    { id: 6, name: 'fight', src: 'images/fightImage.gif' }
 
 ];
 

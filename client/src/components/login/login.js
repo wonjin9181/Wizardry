@@ -84,9 +84,8 @@ class Login extends Component {
                     <p>
                         Cast spells to defeat monsters!
                 </p>
-                <aside id="loginaside"></aside>
-                    {/* <Row > */}
-                        {/* <Col lg= "2"></Col> */}
+                <aside id="loginaside">
+
                         <Col >
                             <Form className="loginForm" onSubmit={this.handleSubmit}>
                                 <Form.Group as={Row} controlId="formHorizontalEmail">
@@ -135,8 +134,7 @@ class Login extends Component {
                                 </Link>
                             </Form>
                         </Col>
-                        {/* <Col lg= "2"></Col>
-                    </Row> */}
+                     </aside>
                 </Container>
             </div>
         );

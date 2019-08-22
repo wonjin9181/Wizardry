@@ -1,16 +1,16 @@
-##loginaside {
+#loginaside {
   position: absolute;
-  top: 30vh;
-  left: 30vw;
-  right: 30vw;
-  bottom: 5vw;
+  top: 40vh;
+  left: 25vw;
+  right: 25vw;
+  bottom: 12vw;
   background-color: rgba(255,255,255,0.5);
   text-align: center;
   padding: 20px;
-  z-index: 9;
-  font-family: "Kalam", cursive;
-  color: rgb(202, 41, 41);
+  z-index: 9
 }
+
+
 /* #loginaside {
   margin-top: 12vh;
   background-color: rgba(255,255,255,0.5);
