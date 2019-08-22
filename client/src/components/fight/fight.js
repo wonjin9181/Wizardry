@@ -228,33 +228,33 @@ componentDidUpdate(){
             <Col xs={2}>
               <Button
                 id="letterBtn"
-                value="kalham"
+                value="haigo"
                 onClick={this.handleCode}
-              >kalham</Button>
+              >haigo</Button>
             </Col>
 
             <Col xs={2}>
               <Button
                 id="letterBtn"
-                value="babadiboo"
+                value="won"
                 onClick={this.handleCode}
-              >babadiboo</Button>
+              >won</Button>
             </Col>
 
             <Col xs={2}>
               <Button
                 id="letterBtn"
-                value="wonwon"
+                value="lidi"
                 onClick={this.handleCode}
-              >wonwon</Button>
+              >lidi</Button>
             </Col>
 
             <Col xs={2}>
               <Button
                 id="letterBtn"
-                value="liditanheig"
+                value="tan"
                 onClick={this.handleCode}
-              >liditanheig</Button>
+              >tan</Button>
             </Col>
 
             <Col xs={2}>
