@@ -5,8 +5,7 @@ import {
   Row,
   Col,
   Figure,
-  Image,
-  ImageProps
+  Card
 } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import "./fight.css";
@@ -54,7 +53,11 @@ class Fight extends Component {
       //  this.state.imageIndex = fighterImages[imageIndex]
 
       let { src } = fighterImages[imageIndex]; { }
-      self.setState({ monsterDescription, monsterImg: src, monsterName, monsterStrength: strength, monsterId: id }, function () {
+      self.setState({
+        monsterDescription, monsterImg: src, monsterName,
+        monsterStrength: strength,
+        monsterId: id
+      }, function () {
         var monsterId = this.state.monsterId
         // console.log(Code(monsterId))
         var code = Code(monsterId)
@@ -67,7 +70,7 @@ class Fight extends Component {
     API.loadUser(key)
       .then(function (result) {
         console.log("RESULT", result)
-        let { src } = fightAvatars[result.data.characterImage -1];
+        let { src } = fightAvatars[result.data.characterImage - 1];
         self.setState({
           characterName: result.data.characterName,
           house: result.data.house,
@@ -117,44 +120,44 @@ class Fight extends Component {
         API.updateUser(data, key)
           .then(function (result) {
             self.setState({ won: true })
-          
+
           })
 
       })
     }
-    else if (userStrength > monsterStrength){
+    else if (userStrength > monsterStrength) {
       alert("Your spell is not effective!!!!!")
-      var lives = this.state.lives -1
+      var lives = this.state.lives - 1
       this.setState({
         lives
-      },function(){
-         localStorage.setItem("lives", this.state.lives)
+      }, function () {
+        localStorage.setItem("lives", this.state.lives)
       })
-     
+
     }
     else {
       console.log(userStrength)
       alert("You are not strong enough!!!!!")
-      var lives = this.state.lives -1
+      var lives = this.state.lives - 1
       this.setState({
         lives
-      },function(){
-         localStorage.setItem("lives", this.state.lives)
+      }, function () {
+        localStorage.setItem("lives", this.state.lives)
       })
     }
   }
 
 
-componentDidUpdate(){
-  if(this.state.lives === 0){
-    
-    this.setState({
-      loses :true
-    },function(){
-      alert("You have lost")
-    })
+  componentDidUpdate() {
+    if (this.state.lives === 0) {
+
+      this.setState({
+        loses: true
+      }, function () {
+        alert("You have lost")
+      })
+    }
   }
-}
 
   render() {
 
@@ -187,7 +190,16 @@ componentDidUpdate(){
                   src={monsterImg}
                   className="fighters"
                 />
-                <Figure.Caption>Monster!</Figure.Caption>
+                <Figure.Caption>
+                  <Card id="monster" style={{ width: '18rem' }}>
+                    <h3><strong>Monster!</strong></h3>
+                    <ul>
+                      <li><strong>Name: </strong>{this.state.monsterName}</li>
+                      <li><strong>Description: </strong>{this.state.monsterDescription}</li>
+                      <li><strong>Strength: </strong>{this.state.monsterStrength}</li>
+                    </ul>
+                  </Card>
+                </Figure.Caption>
               </Figure>
             </Col>
 
@@ -209,13 +221,16 @@ componentDidUpdate(){
                   src={characterImage}
                   className="fighters"
                 />
-                <Figure.Caption className="justify-content-center">
-                  <ul>
-                    <li>Name: {this.state.characterName}</li>
-                    <li>House: {this.state.house}</li>
-                    <li>Strength: {this.state.userStrength}</li>
-                    <li>Lives: {this.state.lives}</li>
-                  </ul>
+                <Figure.Caption>
+                  <Card className="wizard" style={{ width: '18rem' }}>
+                    <h3><strong>Wizard!</strong></h3>
+                    <ul>
+                      <li><strong>Name: </strong>{this.state.characterName}</li>
+                      <li><strong>House: </strong>{this.state.house}</li>
+                      <li><strong>Strength: </strong>{this.state.userStrength}</li>
+                      <li><strong>Lives: </strong>{this.state.lives}</li>
+                    </ul>
+                  </Card>
                 </Figure.Caption>
               </Figure>
             </Col>
@@ -223,7 +238,7 @@ componentDidUpdate(){
           <p>{this.state.spellCode}</p>
 
 
-        
+
           <Row className="justify-content-md-center">
             <Col xs={2}>
               <Button
