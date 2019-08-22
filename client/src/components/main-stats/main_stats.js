@@ -122,8 +122,9 @@ class MainStats extends Component {
                             Logout
                            </Button>
                     </Link>
-                    <Row className="justify-content-md-center">
-                        <Col md="auto">
+
+                    <Row className="justify-content-md-center" id = "userRow">
+                        <Col md="auto" xm={5}>
                             <Card className="mainCard" id="avatar">
 
                                 <img src={characterImage} alt="main-stats" id="avatar2" />
@@ -131,7 +132,7 @@ class MainStats extends Component {
                             </Card>
                         </Col>
 
-                        <Col md="auto">
+                        <Col md="auto" xm={5}>
                             <Card className="mainCard" style={{ width: '15rem' }}>
                                 <h2 id="userInfo">User Info</h2>
                                 <ul>

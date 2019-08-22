@@ -192,8 +192,8 @@ class Fight extends Component {
             <Col xs={{ span: 4, offset: 1 }}>
               <Figure>
                 <Figure.Image id="fightContainer"
-                  width={300}
-                  height={300}
+                  width={200}
+                  height={200}
                   alt="175x175"
                   src={monsterImg}
                   className="fighters"

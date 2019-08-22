@@ -96,11 +96,17 @@ li {
 @media only screen and (max-width: 600px) {
   #mainCard {
     margin-top: 10vh;
-    width: 50px;
-    height: 50px;
-    margin-left: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 10px
   }
+#userRow {
+  flex-wrap: unset 
+}
 
+h2 {
+font-size: 18px
+}
   #houseMembers {
     margin-top: 5vh;
     margin-bottom: 30vh;
