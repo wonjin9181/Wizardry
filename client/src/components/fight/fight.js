@@ -5,14 +5,12 @@ import {
   Row,
   Col,
   Figure,
-  Image,
-  ImageProps
 } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import "./fight.css";
 // import axios from "axios";
 import API from "../../utils/API";
-import { timingSafeEqual } from "crypto";
+// import { timingSafeEqual } from "crypto";
 import fighterImages from './fighterImages';
 import Code from './code'
 import backgroundImage from '../main-stats/backgroundImages'
@@ -135,7 +133,7 @@ class Fight extends Component {
     else {
       console.log(characterStrength)
       alert("You are not strong enough!!!!!")
-      var lives = this.state.lives - 1
+     lives = this.state.lives - 1
       this.setState({
         lives
       }, function () {
@@ -147,7 +145,6 @@ class Fight extends Component {
   youLose = () => {
     let characterStrength = parseInt(this.state.characterStrength)
     let key = localStorage.getItem("key")
-    let self = this
 
     this.setState({ characterStrength: characterStrength - 20 }, function () {
       let data = []
