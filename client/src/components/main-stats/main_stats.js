@@ -43,7 +43,7 @@ class MainStats extends Component {
 
         let self = this;
         var key = localStorage.getItem("key");
-
+        localStorage.setItem("lives", "3")
 
         if (key) {
             // console.log(key)
@@ -121,7 +121,7 @@ class MainStats extends Component {
                                 <ul>
                                     <h6>Name: {this.state.characterName}</h6>
                                     <h6>House: {this.state.house}</h6>
-                                    <h6>Strength: {this.state.strength}</h6>
+                                    <h6>Strength: {this.state.characterStrength}</h6>
                                 </ul>
                             </Card>
                         </Col>

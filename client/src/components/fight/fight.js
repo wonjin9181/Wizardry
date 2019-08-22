@@ -28,7 +28,8 @@ class Fight extends Component {
     monsterImg: "",
     bgImage: backgroundImage[5],
     withdraw: false,
-    fight: false,
+    won: false,
+    loses: false,
     spellCode: "",
     code: "",
     characterImage: ""
@@ -41,6 +42,7 @@ class Fight extends Component {
   };
 
   componentDidMount = () => {
+
     let equ = document.location.search.indexOf("=");
     let id = parseInt(document.location.search.substr(equ + 1));
     let self = this;
@@ -73,6 +75,10 @@ class Fight extends Component {
           characterImage: src
         })
       })
+
+    this.setState({
+      lives: localStorage.getItem("lives")
+    })
   };
 
   //renders the spell name
@@ -103,31 +109,59 @@ class Fight extends Component {
 
 
     if (userStrength > monsterStrength && this.state.spellCode === this.state.code) {
-      alert("You have defeated " + self.state.monsterName)
+      alert("Your spell is super effective \nYou have defeated " + self.state.monsterName)
       this.setState({ userStrength: userStrength + 20 }, function () {
         let data = []
         data.push(this.state.userStrength)
         console.log(data)
         API.updateUser(data, key)
           .then(function (result) {
-            self.setState({ fight: true })
-            console.log(self.state.fight)
+            self.setState({ won: true })
+          
           })
 
       })
     }
+    else if (userStrength > monsterStrength){
+      alert("Your spell is not effective!!!!!")
+      var lives = this.state.lives -1
+      this.setState({
+        lives
+      },function(){
+         localStorage.setItem("lives", this.state.lives)
+      })
+     
+    }
     else {
       console.log(userStrength)
-      alert("you are not strong enough")
+      alert("You are not strong enough!!!!!")
+      var lives = this.state.lives -1
+      this.setState({
+        lives
+      },function(){
+         localStorage.setItem("lives", this.state.lives)
+      })
     }
   }
 
 
-
+componentDidUpdate(){
+  if(this.state.lives === 0){
+    
+    this.setState({
+      loses :true
+    },function(){
+      alert("You have lost")
+    })
+  }
+}
 
   render() {
 
-    if (this.state.fight === true) {
+    if (this.state.won === true) {
+      return <Redirect to="/main" />
+    }
+    if (this.state.loses === true) {
       return <Redirect to="/main" />
     }
 
@@ -180,6 +214,7 @@ class Fight extends Component {
                     <li>Name: {this.state.characterName}</li>
                     <li>House: {this.state.house}</li>
                     <li>Strength: {this.state.userStrength}</li>
+                    <li>Lives: {this.state.lives}</li>
                   </ul>
                 </Figure.Caption>
               </Figure>
@@ -187,13 +222,15 @@ class Fight extends Component {
           </Row>
           <p>{this.state.spellCode}</p>
 
+
+        
           <Row className="justify-content-md-center">
             <Col xs={2}>
               <Button
                 id="letterBtn"
                 value="kalham"
                 onClick={this.handleCode}
-              >1</Button>
+              >kalham</Button>
             </Col>
 
             <Col xs={2}>
@@ -201,7 +238,7 @@ class Fight extends Component {
                 id="letterBtn"
                 value="babadiboo"
                 onClick={this.handleCode}
-              >2</Button>
+              >babadiboo</Button>
             </Col>
 
             <Col xs={2}>
@@ -209,7 +246,7 @@ class Fight extends Component {
                 id="letterBtn"
                 value="wonwon"
                 onClick={this.handleCode}
-              >3</Button>
+              >wonwon</Button>
             </Col>
 
             <Col xs={2}>
@@ -217,7 +254,7 @@ class Fight extends Component {
                 id="letterBtn"
                 value="liditanheig"
                 onClick={this.handleCode}
-              >4</Button>
+              >liditanheig</Button>
             </Col>
 
             <Col xs={2}>
