@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./main_stats.css";
 import { Link } from "react-router-dom";
 import API from "../../utils/API"
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 import userAvatars from '../fight/userAvatars';
 // import { runInThisContext } from "vm";
 import backgroundImages from './backgroundImages';
@@ -140,7 +140,7 @@ class MainStats extends Component {
                                     <h6><strong>Description: </strong> {this.state.monster1.monsterDescription}</h6>
                                     <h6><strong>Strength:</strong> {this.state.monster1.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=1" ><Button className="stageBtn"> Stage 1</Button></Link>
+                                <Link to="/fight?monster=1"><Button className="stageBtn"><Image src="images/infernobeast-front.png"/></Button></Link>
                             </Card>
 
                         </Col>
@@ -152,7 +152,7 @@ class MainStats extends Component {
                                     <h6><strong>Description: </strong>{this.state.monster2.monsterDescription}</h6>
                                     <h6><strong>Strength:</strong> {this.state.monster2.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=2"><Button className="stageBtn"> Stage 2</Button></Link>
+                                <Link to="/fight?monster=2"><Button className="stageBtn"><Image src="images/leviathan-front.png"/></Button></Link>
                             </Card>
 
                         </Col>
@@ -164,7 +164,7 @@ class MainStats extends Component {
                                     <h6><strong>Description: </strong>{this.state.monster3.monsterDescription}</h6>
                                     <h6><strong>Strength:</strong> {this.state.monster3.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=3"><Button className="stageBtn"> Stage 3</Button></Link>
+                                <Link to="/fight?monster=3"><Button className="stageBtn"><Image src="images/misthawk-front.png"/></Button></Link>
                             </Card>
 
 
@@ -177,7 +177,7 @@ class MainStats extends Component {
                                     <h6><strong>Description: </strong>{this.state.monster4.monsterDescription}</h6>
                                     <h6><strong>Strength:</strong> {this.state.monster4.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=4"><Button className="stageBtn">  Stage 4</Button></Link>
+                                <Link to="/fight?monster=4"><Button className="stageBtn"><Image src="images/onyxbrute-front.png"/></Button></Link>
                             </Card>
 
                         </Col>
