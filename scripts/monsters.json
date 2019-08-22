@@ -7,19 +7,19 @@
 
     },
     {
-        "monsterName": "Cursemorph",
+        "monsterName": "Leviathan",
         "strength":160,
-        "monsterDescription":"Ice Monster",
+        "monsterDescription":"Water Monster",
         "imageIndex": 1
     },
     {
-        "monsterName": "The Ruthless Doom Swine",
+        "monsterName": "Mist Hawk",
         "strength":200,
         "monsterDescription":"Air Monster",
         "imageIndex": 2
     },
     {
-        "monsterName": "The Bruised Deviation",
+        "monsterName": "The Onyx Brute",
         "strength":400,
         "monsterDescription":"Earth Monster",
         "imageIndex": 3
