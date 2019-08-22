@@ -2,30 +2,30 @@ var numberCode
 
 function Code(id) {
     let num = id
-    
+
     if (num === 1) {
 
         randomNumber()
-        
+
         console.log(numberCode)
 
-        return "babadiboo"
+        return "lidi"
     }
     else if (num === 2) {
-        return "wonwonkalham"
+        return "wontan"
     }
     else if (num === 3) {
-        return "kalhamwonwonbabadiboo"
+        return "haigowon"
     }
     else if (num === 4) {
-        return "liditanheigbabadiboowonwonkalham"
+        return "lidihaigotan"
     }
 
 }
 
-function randomNumber(){
+function randomNumber() {
     var number = Math.floor(1 + Math.random() * 4)
-    numberCode =+ number
+    numberCode = + number
 }
 
 export default Code
