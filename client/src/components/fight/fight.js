@@ -52,7 +52,7 @@ class Fight extends Component {
       // if imageIndex is an id (from database) that correlates to index value of the id in fightersImage array, then
       //  this.state.imageIndex = fighterImages[imageIndex]
 
-      let { src } = fighterImages[imageIndex]; { }
+      let { src } = fighterImages[imageIndex];
       self.setState({
         monsterDescription, monsterImg: src, monsterName,
         monsterStrength: strength,
