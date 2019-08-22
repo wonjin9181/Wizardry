@@ -169,14 +169,14 @@ componentDidUpdate(){
     const { characterImage } = this.state;
     // console.log('state.monsterImg', monsterImg);
     return (
-      <div style={{ hight: "100vh", backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
+      <div style={{ hight: "100vh", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url("${this.state.bgImage.src}")` }}>
         <Container>
           <Link to="/main">
             <Button className="withdrawBtn" onClick={this.withdraw} variant="primary">
               Withdraw
            </Button>
           </Link>
-          <Row >
+          <Row>
             {/* <Col xs={{ span: 4, offset: 2 }}> */}
             <Col xs={{ span: 4, offset: 1 }}>
               <Figure>
@@ -203,8 +203,8 @@ componentDidUpdate(){
             <Col className="justify-content-end" xs={5}>
               <Figure>
                 <Figure.Image id="fightContainer"
-                  width={300}
-                  height={300}
+                  width={200}
+                  height={200}
                   alt="175x175"
                   src={characterImage}
                   className="fighters"
