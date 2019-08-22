@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./main_stats.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import API from "../../utils/API"
 import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 import userAvatars from '../fight/userAvatars';
@@ -24,7 +24,8 @@ class MainStats extends Component {
         monster1: {},
         monster2: {},
         monster3: {},
-        monster4: {}
+        monster4: {},
+        gameover: false
     };
 
     loadMonsters = () => {
@@ -49,7 +50,6 @@ class MainStats extends Component {
             // console.log(key)
             API.loadUser(key)
                 .then(function (result) {
-
                     let { src } = userAvatars[result.data.characterImage - 1]
                     // console.log(result.data);
                     self.setState({
@@ -63,7 +63,17 @@ class MainStats extends Component {
                         })
                         this.setState({ bgImage: image })
 
-                        API.getHouseMembers(self.state.house)
+
+                        if(this.state.characterStrength < 100){
+                            console.log(key)
+                             API.deleteUser(key)
+                             API.deleteHouseUser(key)
+                              this.setState({gameover:true})
+                             alert("Game over")
+                                
+                        }
+                        else{
+                           API.getHouseMembers(self.state.house)
 
                             .then(function (result) {
                                 // console.log(result.data)
@@ -87,8 +97,11 @@ class MainStats extends Component {
                                 })
                             })
 
+                         
+                        }
                     });
-                }).catch(err => {
+                })
+                .catch(err => {
                     alert(err);
                 });
 
@@ -96,6 +109,9 @@ class MainStats extends Component {
     };
 
     render() {
+        if(this.state.gameover === true){
+            return <Redirect to="/" />
+        }
         const { characterImage } = this.state;
         return (
 
