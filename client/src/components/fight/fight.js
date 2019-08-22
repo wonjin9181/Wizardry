@@ -5,6 +5,7 @@ import {
   Row,
   Col,
   Figure,
+  Card
 } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import "./fight.css";
@@ -52,7 +53,11 @@ class Fight extends Component {
       //  this.state.imageIndex = fighterImages[imageIndex]
 
       let { src } = fighterImages[imageIndex]; { }
-      self.setState({ monsterDescription, monsterImg: src, monsterName, monsterStrength: strength, monsterId: id }, function () {
+      self.setState({
+        monsterDescription, monsterImg: src, monsterName,
+        monsterStrength: strength,
+        monsterId: id
+      }, function () {
         var monsterId = this.state.monsterId
         // console.log(Code(monsterId))
         var code = Code(monsterId)
@@ -120,7 +125,9 @@ class Fight extends Component {
 
       })
     }
+
     else if (characterStrength > monsterStrength) {
+
       alert("Your spell is not effective!!!!!")
       var lives = this.state.lives - 1
       this.setState({
@@ -133,7 +140,9 @@ class Fight extends Component {
     else {
       console.log(characterStrength)
       alert("You are not strong enough!!!!!")
+
      lives = this.state.lives - 1
+
       this.setState({
         lives
       }, function () {
@@ -195,7 +204,16 @@ class Fight extends Component {
                   src={monsterImg}
                   className="fighters"
                 />
-                <Figure.Caption>Monster!</Figure.Caption>
+                <Figure.Caption>
+                  <Card id="monster" style={{ width: '18rem' }}>
+                    <h3><strong>Monster!</strong></h3>
+                    <ul>
+                      <li><strong>Name: </strong>{this.state.monsterName}</li>
+                      <li><strong>Description: </strong>{this.state.monsterDescription}</li>
+                      <li><strong>Strength: </strong>{this.state.monsterStrength}</li>
+                    </ul>
+                  </Card>
+                </Figure.Caption>
               </Figure>
             </Col>
 
@@ -217,13 +235,18 @@ class Fight extends Component {
                   src={characterImage}
                   className="fighters"
                 />
-                <Figure.Caption className="justify-content-center">
-                  <ul>
-                    <li>Name: {this.state.characterName}</li>
-                    <li>House: {this.state.house}</li>
-                    <li>Strength: {this.state.characterStrength}</li>
-                    <li>Lives: {this.state.lives}</li>
-                  </ul>
+
+                <Figure.Caption>
+                  <Card className="wizard" style={{ width: '18rem' }}>
+                    <h3><strong>Wizard!</strong></h3>
+                    <ul>
+                      <li><strong>Name: </strong>{this.state.characterName}</li>
+                      <li><strong>House: </strong>{this.state.house}</li>
+                      <li><strong>Strength: </strong>{this.state.characterStrength}</li>
+                      <li><strong>Lives: </strong>{this.state.lives}</li>
+                    </ul>
+                  </Card>
+
                 </Figure.Caption>
               </Figure>
             </Col>
