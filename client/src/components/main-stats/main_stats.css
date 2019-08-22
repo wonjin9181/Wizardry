@@ -6,12 +6,24 @@
   font-family: "Kalam", cursive;
   color: rgb(0, 48, 14);
   margin-top: 15vh;
+}
 
+#monsterCard {
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  font-family: "Kalam", cursive;
+  color: rgb(0, 48, 14);
+}
+
+#monsterInfo {
+  color: lightblue;
+  text-align: left;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 #avatar {
   height: 180px;
-  width: 150px
+  width: 150px;
 }
 
 #avatar2 {
@@ -21,13 +33,13 @@
 
 .logoutBtn {
   margin-left: 0px;
-  margin-top: 25px; 
+  margin-top: 25px;
   float: right;
 }
 
 .stageBtn {
   background-color: rgb(131, 2, 2);
-  color: white
+  color: white;
 }
 
 h6 {
@@ -44,7 +56,7 @@ h6 {
   margin-bottom: 30vh;
   overflow-y: scroll;
   width: 300px;
-  height: 100px
+  height: 100px;
 }
 
 li {
@@ -68,12 +80,11 @@ li {
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-
 @media only screen and (max-width: 600px) {
   #mainCard {
     margin-top: 10vh;
     width: 100px;
-    margin-left: 20px
+    margin-left: 20px;
   }
 
   #houseMembers {
