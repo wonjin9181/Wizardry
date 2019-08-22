@@ -135,7 +135,7 @@ class Fight extends Component {
     const { characterImage } = this.state;
     // console.log('state.monsterImg', monsterImg);
     return (
-      <div style={{ hight: "100vh", backgroundImage: `url("${this.state.bgImage.src}")` }}>
+      <div style={{ hight: "100vh", backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
         <Container>
           <Link to="/main">
             <Button className="withdrawBtn" onClick={this.withdraw} variant="primary">
