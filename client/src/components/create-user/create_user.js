@@ -76,7 +76,7 @@ class CreateUser extends Component {
     }
 
     return (
-      <div style={{ height: '100vh', backgroundImage: `url("${this.state.bgImage.src}")` }}>
+      <div style={{ height: "100vh",  backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
         <Container>
           <h1>Wizard Game</h1>

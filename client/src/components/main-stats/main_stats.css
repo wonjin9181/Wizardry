@@ -68,6 +68,13 @@ li {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
+#houseText {
+  color: lightblue;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  background-color: transparent;
+
+}
+
 #character {
   width: 150px;
   display: block;
