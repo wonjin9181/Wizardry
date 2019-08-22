@@ -150,7 +150,7 @@ class MainStats extends Component {
                         <Col s={4}>
 
                             <Card id="monsterCard" style={{ width: '15rem' }}>
-                                <h3 id="monsterInfo">Monster Info</h3>
+                                <h3 id="monsterInfo">Stage 1</h3>
                                 <ul>
                                     <h6><strong>Name:</strong> {this.state.monster1.monsterName}</h6>
                                     <h6><strong>Description: </strong> {this.state.monster1.monsterDescription}</h6>
@@ -162,7 +162,7 @@ class MainStats extends Component {
                         </Col>
                         <Col s={4}>
                             <Card id="monsterCard" style={{ width: '15rem' }}>
-                                <h3 id="monsterInfo">Monster Info</h3>
+                                <h3 id="monsterInfo">Stage 2</h3>
                                 <ul>
                                     <h6><strong>Name: </strong>{this.state.monster2.monsterName}</h6>
                                     <h6><strong>Description: </strong>{this.state.monster2.monsterDescription}</h6>
@@ -174,7 +174,7 @@ class MainStats extends Component {
                         </Col>
                         <Col s={4}>
                             <Card id="monsterCard" style={{ width: '15rem' }}>
-                                <h3 id="monsterInfo">Monster Info</h3>
+                                <h3 id="monsterInfo">Stage 3</h3>
                                 <ul>
                                     <h6><strong>Name: </strong>{this.state.monster3.monsterName}</h6>
                                     <h6><strong>Description: </strong>{this.state.monster3.monsterDescription}</h6>
@@ -187,7 +187,7 @@ class MainStats extends Component {
                         </Col>
                         <Col s={4}>
                             <Card id="monsterCard" style={{ width: '15rem' }}>
-                                <h3 id="monsterInfo">Monster Info</h3>
+                                <h3 id="monsterInfo">Stage 4</h3>
                                 <ul>
                                     <h6><strong>Name: </strong>{this.state.monster4.monsterName}</h6>
                                     <h6><strong>Description: </strong>{this.state.monster4.monsterDescription}</h6>
