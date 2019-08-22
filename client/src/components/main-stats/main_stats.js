@@ -43,7 +43,7 @@ class MainStats extends Component {
 
         let self = this;
         var key = localStorage.getItem("key");
-
+        localStorage.setItem("lives", "3")
 
         if (key) {
             // console.log(key)
