@@ -74,10 +74,10 @@ p {
  }
   #loginaside {
     position: absolute;
-    top: 20vh;
-    left: 3vw;
-    right: 5vw;
-    bottom: 60vw;
+    top: 25vh;
+    left: 10vw;
+    right: 10vw;
+    bottom: 70vw;
     padding: 20px;
     z-index: 9;
     text-align: left;

@@ -50,9 +50,6 @@ module.exports = function (app) {
     })
 
 
-
-
-
     app.get("/api/users/:id", function (req, res) {
         // console.log(req.params.id)
         db.Users.findAll({
@@ -75,24 +72,18 @@ module.exports = function (app) {
             })
     })
 
-    // app.put("/api/users/:id", function(req, res){
 
-    //     db.User.update(
-    //         {
-    //             strength = req.body.strength
-    //         },
-    //         {
-    //             where: req.params.id
-    //         }
-    //     )
-    //     .then(function(rowUpdated){
-    //         res.json(rowUpdated)
-    //     })
-    //     .catch(function(err){
-    //         console.log(err)
-    //     })
-    // })
-
+    app.delete("/api/users/:id", function (req, res){
+        console.log(req.params.id)
+        db.Users.destroy({
+            where:{
+                id: req.params.id
+            }
+        })
+        .then(function(result){
+            res.status(200)
+        })
+    })
 
 }
 

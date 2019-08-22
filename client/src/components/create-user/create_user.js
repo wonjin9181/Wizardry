@@ -18,7 +18,7 @@ class CreateUser extends Component {
   };
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    return this.state.email.length > 0 && this.state.password.length > 0 && this.state.username.length > 0 && this.state.house !== "waterfall" && this.state.characterImage > 0;
   }
 
   handleChange = event => {
@@ -76,10 +76,10 @@ class CreateUser extends Component {
     }
 
     return (
-      <div style={{ height: "100vh",  backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
+      <div style={{ height: "100vh", backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
         <Container>
-          <h1>Wizard Game</h1>
+              <h1 id = "centerText">Wizard Game</h1>
           <aside id="createuser">
             <Form onSubmit={this.handleSubmit}>
               <Form.Group as={Row} controlId="formHorizontalName">

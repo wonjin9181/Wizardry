@@ -11,7 +11,7 @@ import { Link, Redirect } from "react-router-dom";
 import "./fight.css";
 // import axios from "axios";
 import API from "../../utils/API";
-import { timingSafeEqual } from "crypto";
+// import { timingSafeEqual } from "crypto";
 import fighterImages from './fighterImages';
 import Code from './code'
 import backgroundImage from '../main-stats/backgroundImages'
@@ -20,7 +20,7 @@ import fightAvatars from './fightAvatars'
 
 class Fight extends Component {
   state = {
-    userStrength: "",
+    characterStrength: "",
     monsterDescription: "",
     monsterStrength: "",
     monsterName: "",
@@ -74,7 +74,7 @@ class Fight extends Component {
         self.setState({
           characterName: result.data.characterName,
           house: result.data.house,
-          userStrength: result.data.strength,
+          characterStrength: result.data.strength,
           characterImage: src
         })
       })
@@ -104,18 +104,18 @@ class Fight extends Component {
   fight = () => {
 
     let self = this
-    let userStrength = parseInt(this.state.userStrength)
+    let characterStrength = parseInt(this.state.characterStrength)
     let monsterStrength = parseInt(this.state.monsterStrength)
     let key = localStorage.getItem("key")
-    console.log(userStrength)
+    console.log(characterStrength)
     console.log(monsterStrength)
 
 
-    if (userStrength > monsterStrength && this.state.spellCode === this.state.code) {
+    if (characterStrength > monsterStrength && this.state.spellCode === this.state.code) {
       alert("Your spell is super effective \nYou have defeated " + self.state.monsterName)
-      this.setState({ userStrength: userStrength + 20 }, function () {
+      this.setState({ characterStrength: characterStrength + 20 }, function () {
         let data = []
-        data.push(this.state.userStrength)
+        data.push(this.state.characterStrength)
         console.log(data)
         API.updateUser(data, key)
           .then(function (result) {
@@ -125,7 +125,9 @@ class Fight extends Component {
 
       })
     }
-    else if (userStrength > monsterStrength) {
+
+    else if (characterStrength > monsterStrength) {
+
       alert("Your spell is not effective!!!!!")
       var lives = this.state.lives - 1
       this.setState({
@@ -136,9 +138,11 @@ class Fight extends Component {
 
     }
     else {
-      console.log(userStrength)
+      console.log(characterStrength)
       alert("You are not strong enough!!!!!")
-      var lives = this.state.lives - 1
+
+     lives = this.state.lives - 1
+
       this.setState({
         lives
       }, function () {
@@ -147,19 +151,29 @@ class Fight extends Component {
     }
   }
 
+  youLose = () => {
+    let characterStrength = parseInt(this.state.characterStrength)
+    let key = localStorage.getItem("key")
 
-  componentDidUpdate() {
-    if (this.state.lives === 0) {
-
-      this.setState({
-        loses: true
-      }, function () {
-        alert("You have lost")
-      })
-    }
+    this.setState({ characterStrength: characterStrength - 20 }, function () {
+      let data = []
+      data.push(this.state.characterStrength)
+      console.log(data)
+      API.updateStrength(data, key)
+        .then(function (result) {
+         
+        })
+    })
+    this.setState({ loses: true }, function () {
+      alert("You have lost")
+    })
   }
 
+
   render() {
+    if (this.state.lives === 0) {
+      this.youLose()
+    }
 
     if (this.state.won === true) {
       return <Redirect to="/main" />
@@ -172,14 +186,14 @@ class Fight extends Component {
     const { characterImage } = this.state;
     // console.log('state.monsterImg', monsterImg);
     return (
-      <div style={{ hight: "100vh", backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
+      <div style={{ hight: "100vh", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url("${this.state.bgImage.src}")` }}>
         <Container>
           <Link to="/main">
             <Button className="withdrawBtn" onClick={this.withdraw} variant="primary">
               Withdraw
            </Button>
           </Link>
-          <Row >
+          <Row>
             {/* <Col xs={{ span: 4, offset: 2 }}> */}
             <Col xs={{ span: 4, offset: 1 }}>
               <Figure>
@@ -215,22 +229,24 @@ class Fight extends Component {
             <Col className="justify-content-end" xs={5}>
               <Figure>
                 <Figure.Image id="fightContainer"
-                  width={300}
-                  height={300}
+                  width={200}
+                  height={200}
                   alt="175x175"
                   src={characterImage}
                   className="fighters"
                 />
+
                 <Figure.Caption>
                   <Card className="wizard" style={{ width: '18rem' }}>
                     <h3><strong>Wizard!</strong></h3>
                     <ul>
                       <li><strong>Name: </strong>{this.state.characterName}</li>
                       <li><strong>House: </strong>{this.state.house}</li>
-                      <li><strong>Strength: </strong>{this.state.userStrength}</li>
+                      <li><strong>Strength: </strong>{this.state.characterStrength}</li>
                       <li><strong>Lives: </strong>{this.state.lives}</li>
                     </ul>
                   </Card>
+
                 </Figure.Caption>
               </Figure>
             </Col>
