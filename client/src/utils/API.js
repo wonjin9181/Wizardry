@@ -35,22 +35,22 @@ export default {
   },
 
   updateUser: (userData, id) => {
-    console.log(userData)
+    // console.log(userData)
     return axios.put("/api/users/" + id, userData)
   },
 
   updateStrength: (userData, id) => {
-    console.log(userData, id)
+    // console.log(userData, id)
     return axios.put("/api/users/strength/" + id, userData)
   },
 
   deleteUser: (id) => {
-    console.log(id)
+    // console.log(id)
     return axios.delete("/api/users/" + id)
   },
 
   deleteHouseUser: (id) => {
-    console.log(id)
+    // console.log(id)
     return axios.delete("/api/house/users/" + id)
   },
 

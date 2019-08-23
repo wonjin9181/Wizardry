@@ -6,6 +6,10 @@ import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 import userAvatars from '../fight/userAvatars';
 // import { runInThisContext } from "vm";
 import backgroundImages from './backgroundImages';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 
 class MainStats extends Component {
@@ -72,7 +76,7 @@ class MainStats extends Component {
                              API.deleteUser(key)
                              API.deleteHouseUser(key)
                               this.setState({gameover:true})
-                             alert("Game over")
+                             MySwal.fire("Game over")
                                 
                         }
                         else{
@@ -103,7 +107,7 @@ class MainStats extends Component {
                     });
                 })
                 .catch(err => {
-                    alert(err);
+                    MySwal.fire(err);
                 });
 
         }

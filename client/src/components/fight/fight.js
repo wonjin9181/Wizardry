@@ -16,6 +16,10 @@ import fighterImages from './fighterImages';
 import Code from './code'
 import backgroundImage from '../main-stats/backgroundImages'
 import fightAvatars from './fightAvatars'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 
 class Fight extends Component {
@@ -110,7 +114,7 @@ class Fight extends Component {
 
 
     if (characterStrength > monsterStrength && this.state.spellCode === this.state.code) {
-      alert("Your spell is super effective \nYou have defeated " + self.state.monsterName)
+      MySwal.fire("Your spell is super effective \nYou have defeated " + self.state.monsterName)
       this.setState({ characterStrength: characterStrength + 20 }, function () {
         let data = []
         data.push(this.state.characterStrength)
@@ -124,9 +128,9 @@ class Fight extends Component {
       })
     }
 
-    else if (characterStrength > monsterStrength) {
+    else if (characterStrength > monsterStrength || this.state.spellCode !== this.state.code) {
 
-      alert("Your spell is not effective!!!!!")
+      MySwal.fire("Your spell is not effective!!!!!")
       var lives = this.state.lives - 1
       this.setState({
         lives
@@ -137,7 +141,7 @@ class Fight extends Component {
     }
     else {
       console.log(characterStrength)
-      alert("You are not strong enough!!!!!")
+      MySwal.fire("You are not strong enough!!!!!")
 
       lives = this.state.lives - 1
 
@@ -163,7 +167,7 @@ class Fight extends Component {
         })
     })
     this.setState({ loses: true }, function () {
-      alert("You have lost")
+      MySwal.fire("You have lost")
     })
   }
 
