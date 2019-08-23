@@ -13,10 +13,9 @@ import "./fight.css";
 import API from "../../utils/API";
 // import { timingSafeEqual } from "crypto";
 import fighterImages from './fighterImages';
-import Code from './code'
-import backgroundImage from '../main-stats/backgroundImages'
-import fightAvatars from './fightAvatars'
-
+import Spells from './spells';
+import backgroundImage from '../main-stats/backgroundImages';
+import fightAvatars from './fightAvatars';
 
 class Fight extends Component {
   state = {
@@ -30,7 +29,28 @@ class Fight extends Component {
     won: false,
     loses: false,
     spellCode: "",
-    code: "",
+    spellStrength: "",
+    spells: [
+      {
+        spell: [{
+          name: "spell1",
+          power: 100
+        },
+        {
+          name: "spell2",
+          power: 180
+        },
+        {
+          name: "spell3",
+          power: 220
+        },
+        {
+          name: "spell4",
+          power: 410
+        }]
+      }
+    ],
+    house: "",
     characterImage: ""
   };
 
@@ -60,8 +80,7 @@ class Fight extends Component {
       }, function () {
         var monsterId = this.state.monsterId
         // console.log(Code(monsterId))
-        var code = Code(monsterId)
-        this.setState({ code })
+
       });
 
     });
@@ -69,13 +88,25 @@ class Fight extends Component {
     API.loadUser(key)
       .then(function (result) {
         let { src } = fightAvatars[result.data.characterImage - 1];
+
         self.setState({
           characterName: result.data.characterName,
           house: result.data.house,
           characterStrength: result.data.strength,
           characterImage: src
-        })
-      })
+        }, function () {
+          console.log(this.state.house);
+          var spells = Spells(this.state.house)
+          console.log(spells)
+          self.setState({
+            spells
+          }, function () {
+            console.log(self.state.spells[0].spell[0].name)
+          });
+
+        });
+
+      });
 
     this.setState({
       lives: localStorage.getItem("lives")
@@ -84,11 +115,14 @@ class Fight extends Component {
 
   //renders the spell name
   handleCode = e => {
-    let spellCode = this.state.spellCode + e.target.value
+    let spellCode = e.target.name
+    let spellStrength = e.target.value
+
     this.setState({
-      spellCode
+      spellCode: spellCode,
+      spellStrength: spellStrength
     })
-    console.log(this.state.spellCode)
+
   }
 
 
@@ -104,42 +138,41 @@ class Fight extends Component {
     let self = this
     let characterStrength = parseInt(this.state.characterStrength)
     let monsterStrength = parseInt(this.state.monsterStrength)
+    let spellStrength = parseInt(this.state.spellStrength)
     let key = localStorage.getItem("key")
     console.log(characterStrength)
     console.log(monsterStrength)
+    console.log(spellStrength);
 
 
-    if (characterStrength > monsterStrength && this.state.spellCode === this.state.code) {
+    if ((spellStrength + characterStrength) > monsterStrength) {
       alert("Your spell is super effective \nYou have defeated " + self.state.monsterName)
-      this.setState({ characterStrength: characterStrength + 20 }, function () {
+      this.setState({
+        characterStrength: characterStrength + 40
+      }, function () {
         let data = []
         data.push(this.state.characterStrength)
         console.log(data)
         API.updateUser(data, key)
           .then(function (result) {
-            self.setState({ won: true })
+            self.setState({
+              won: true
+            })
+            var winningScore = 400;
+            if (characterStrength > winningScore) {
+              alert("You won!")
+            }
 
           })
 
       })
     }
 
-    else if (characterStrength > monsterStrength) {
-
-      alert("Your spell is not effective!!!!!")
-      var lives = this.state.lives - 1
-      this.setState({
-        lives
-      }, function () {
-        localStorage.setItem("lives", this.state.lives)
-      })
-
-    }
     else {
       console.log(characterStrength)
       alert("You are not strong enough!!!!!")
 
-     lives = this.state.lives - 1
+      let lives = this.state.lives - 1
 
       this.setState({
         lives
@@ -159,13 +192,15 @@ class Fight extends Component {
       console.log(data)
       API.updateStrength(data, key)
         .then(function (result) {
-         
+
         })
     })
     this.setState({ loses: true }, function () {
       alert("You have lost")
     })
   }
+
+  
 
 
   render() {
@@ -182,6 +217,7 @@ class Fight extends Component {
 
     const { monsterImg } = this.state;
     const { characterImage } = this.state;
+    // const { spells } = this.state;
     // console.log('state.monsterImg', monsterImg);
     return (
       <div style={{ hight: "100vh", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url("${this.state.bgImage.src}")` }}>
@@ -252,36 +288,40 @@ class Fight extends Component {
 
 
           <Row className="justify-content-md-center">
-            <Col xs={2}>
+            <Col xs={3}>
               <Button
                 id="letterBtn"
-                value="haigo"
+                name={this.state.spells[0].spell[0].name}
+                value={this.state.spells[0].spell[0].value}
                 onClick={this.handleCode}
-              >haigo</Button>
+              >{this.state.spells[0].spell[0].name}</Button>
             </Col>
 
-            <Col xs={2}>
+            <Col xs={3}>
               <Button
                 id="letterBtn"
-                value="won"
+                name={this.state.spells[0].spell[1].name}
+                value={this.state.spells[0].spell[1].value}
                 onClick={this.handleCode}
-              >won</Button>
+              >{this.state.spells[0].spell[1].name}</Button>
             </Col>
 
-            <Col xs={2}>
+            <Col xs={3}>
               <Button
                 id="letterBtn"
-                value="lidi"
+                name={this.state.spells[0].spell[2].name}
+                value={this.state.spells[0].spell[2].value}
                 onClick={this.handleCode}
-              >lidi</Button>
+              >{this.state.spells[0].spell[2].name}</Button>
             </Col>
 
-            <Col xs={2}>
+            <Col xs={3}>
               <Button
                 id="letterBtn"
-                value="tan"
+                name={this.state.spells[0].spell[3].name}
+                value={this.state.spells[0].spell[3].value}
                 onClick={this.handleCode}
-              >tan</Button>
+              >{this.state.spells[0].spell[3].name}</Button>
             </Col>
 
             <Col xs={2}>
