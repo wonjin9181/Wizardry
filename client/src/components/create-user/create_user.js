@@ -209,6 +209,46 @@ class CreateUser extends Component {
                   />
                 </Col>
               </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm={1}>
+                </Form.Label>
+                <Col>
+                  <Image
+                    type="image"
+                    name="characterImage-5"
+                    value="1"
+                    onClick={this.handleChange}
+                    src="images/gamora-front.png"
+                    thumbnail
+                  />
+                </Col>
+                <Col>
+                  <Image
+                    name="characterImage-6"
+                    onClick={this.handleChange}
+                    src="images/drow-front.png"
+                    thumbnail
+                  />
+                </Col>
+                <Col>
+                  <Image
+                    type="image"
+                    name="characterImage-7"
+                    onClick={this.handleChange}
+                    src="images/rydia-front.png"
+                    thumbnail
+                  />
+                </Col>
+                <Col>
+                  <Image
+                    type="image"
+                    name="characterImage-8"
+                    onClick={this.handleChange}
+                    src="images/bluemage-front.png"
+                    thumbnail
+                  />
+                </Col>
+              </Form.Group>
 
               <Button
                 id="createUserBtn"
