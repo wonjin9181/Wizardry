@@ -51,10 +51,7 @@ class CreateUser extends Component {
     let self = this;
     event.preventDefault();
 
-    console.log(this.state);
-
     API.createUser(this.state).then(function (result) {
-      console.log(result);
       if (!result.data) {
         alert("Email already exists!");
       } else {
@@ -66,7 +63,6 @@ class CreateUser extends Component {
 
 
     API.postHouse(this.state).then(function (result) {
-      console.log(result);
     });
   };
 

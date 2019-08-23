@@ -40,7 +40,6 @@ class MainStats extends Component {
 
 
     componentDidMount() {
-        console.log('1')
         this.loadMonsters();
 
         let self = this;
@@ -48,17 +47,13 @@ class MainStats extends Component {
         localStorage.setItem("lives", "3")
 
         if (key) {
-            console.log('2')
             let image = backgroundImages.find(object => {
                 return object.name === this.state.house;
             })
-            console.log(image)
             this.setState({ bgImage: image })
             // console.log(key)
             API.loadUser(key)
                 .then(function (result) {
-                    console.log(result)
-                    console.log('3')
 
                     let { src } = userAvatars[result.data.characterImage - 1]
                     // console.log(result.data);
@@ -71,12 +66,9 @@ class MainStats extends Component {
                         let image = backgroundImages.find(object => {
                             return object.name === this.state.house;
                         })
-                        console.log(image)
                         this.setState({ bgImage: image })
 
-
                         if(this.state.characterStrength < 100){
-                            console.log(key)
                              API.deleteUser(key)
                              API.deleteHouseUser(key)
                               this.setState({gameover:true})
@@ -94,14 +86,12 @@ class MainStats extends Component {
 
                                     API.getMonsters()
                                         .then(res => {
-                                            console.log(res.data)
                                             self.setState({
                                                 monster1: res.data[0],
                                                 monster2: res.data[1],
                                                 monster3: res.data[2],
                                                 monster4: res.data[3]
                                             })
-                                            console.log(self.state.monster1.monsterDescription)
                                         })
                                         .catch(err => console.log(err));
 

@@ -61,7 +61,6 @@ class Fight extends Component {
         var monsterId = this.state.monsterId
         // console.log(Code(monsterId))
         var code = Code(monsterId)
-        console.log(code)
         this.setState({ code })
       });
 
@@ -69,7 +68,6 @@ class Fight extends Component {
 
     API.loadUser(key)
       .then(function (result) {
-        console.log("RESULT", result)
         let { src } = fightAvatars[result.data.characterImage - 1];
         self.setState({
           characterName: result.data.characterName,
