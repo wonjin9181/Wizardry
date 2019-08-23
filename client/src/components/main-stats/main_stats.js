@@ -6,6 +6,10 @@ import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 import userAvatars from '../fight/userAvatars';
 // import { runInThisContext } from "vm";
 import backgroundImages from './backgroundImages';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 
 class MainStats extends Component {
@@ -72,7 +76,7 @@ class MainStats extends Component {
                              API.deleteUser(key)
                              API.deleteHouseUser(key)
                               this.setState({gameover:true})
-                             alert("Game over")
+                             MySwal.fire("Game over")
                                 
                         }
                         else{
@@ -103,7 +107,7 @@ class MainStats extends Component {
                     });
                 })
                 .catch(err => {
-                    alert(err);
+                    MySwal.fire(err);
                 });
 
         }
@@ -125,8 +129,8 @@ class MainStats extends Component {
                            </Button>
                     </Link>
 
-                    <Row className="justify-content-md-center" id = "userRow">
-                        <Col md="auto" xm={5}>
+                    <Row className="justify-content-md-center" id = "userRow" >
+                        <Col md="auto" xm={5} >
                             <Card className="mainCard" id="avatar">
 
                                 <img src={characterImage} alt="main-stats" id="avatar2" />
@@ -203,12 +207,10 @@ class MainStats extends Component {
 
                     <br></br>
 
-                    <Row className="justify-content-lg-center">
-                        <Card id="houseText">
+                    <Row className="text-center"  id="houseText">
                             <Col>
                                 <h4>{this.state.house} House Members</h4>
                             </Col>
-                        </Card>
                     </Row>
 
                     <Row className="justify-content-md-center">

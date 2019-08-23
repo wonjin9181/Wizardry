@@ -4,6 +4,10 @@ import "./create_user.css";
 import API from "../../utils/API";
 import { Link, Redirect } from 'react-router-dom';
 import backgroundImages from '../main-stats/backgroundImages';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 class CreateUser extends Component {
   state = {
@@ -53,17 +57,19 @@ class CreateUser extends Component {
 
     API.createUser(this.state).then(function (result) {
       if (!result.data) {
-        alert("Email already exists!");
+        MySwal.fire("Email already exists!");
       } else {
         self.setState({
           madeUser: true
+        }, function () {
+          API.postHouse(this.state).then(function (result) {
+          });
         });
       }
     });
 
 
-    API.postHouse(this.state).then(function (result) {
-    });
+
   };
 
   render() {
@@ -75,7 +81,7 @@ class CreateUser extends Component {
       <div style={{ height: "100vh", backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
 
         <Container>
-              <h1 id = "centerText">Wizard Game</h1>
+          <h1 id="centerText">Wizard Game</h1>
           <aside id="createuser">
             <Form onSubmit={this.handleSubmit}>
               <Form.Group as={Row} controlId="formHorizontalName">
@@ -205,6 +211,46 @@ class CreateUser extends Component {
                     name="characterImage-4"
                     onClick={this.handleChange}
                     src="images/spritey.png"
+                    thumbnail
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm={1}>
+                </Form.Label>
+                <Col>
+                  <Image
+                    type="image"
+                    name="characterImage-5"
+                    value="1"
+                    onClick={this.handleChange}
+                    src="images/gamora-front.png"
+                    thumbnail
+                  />
+                </Col>
+                <Col>
+                  <Image
+                    name="characterImage-6"
+                    onClick={this.handleChange}
+                    src="images/drow-front.png"
+                    thumbnail
+                  />
+                </Col>
+                <Col>
+                  <Image
+                    type="image"
+                    name="characterImage-7"
+                    onClick={this.handleChange}
+                    src="images/rydia-front.png"
+                    thumbnail
+                  />
+                </Col>
+                <Col>
+                  <Image
+                    type="image"
+                    name="characterImage-8"
+                    onClick={this.handleChange}
+                    src="images/bluemage-front.png"
                     thumbnail
                   />
                 </Col>

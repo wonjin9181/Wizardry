@@ -16,6 +16,10 @@ import fighterImages from './fighterImages';
 import Spells from './spells';
 import backgroundImage from '../main-stats/backgroundImages';
 import fightAvatars from './fightAvatars';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 class Fight extends Component {
   state = {
@@ -146,7 +150,7 @@ class Fight extends Component {
 
 
     if ((spellStrength + characterStrength) > monsterStrength) {
-      alert("Your spell is super effective \nYou have defeated " + self.state.monsterName)
+      MySwal.fire("Your spell is super effective \nYou have defeated " + self.state.monsterName)
       this.setState({
         characterStrength: characterStrength + 40
       }, function () {
@@ -170,7 +174,7 @@ class Fight extends Component {
 
     else {
       console.log(characterStrength)
-      alert("You are not strong enough!!!!!")
+      MySwal.fire("You are not strong enough!!!!!")
 
       let lives = this.state.lives - 1
 
@@ -196,7 +200,7 @@ class Fight extends Component {
         })
     })
     this.setState({ loses: true }, function () {
-      alert("You have lost")
+      MySwal.fire("You have lost")
     })
   }
 
@@ -227,62 +231,73 @@ class Fight extends Component {
               Withdraw
            </Button>
           </Link>
+
           <Row>
-            {/* <Col xs={{ span: 4, offset: 2 }}> */}
-            <Col xs={{ span: 4, offset: 1 }}>
+            <Col lg={3} md={2} ></Col>
+
+            <Col lg={6} md={4} xs={6} className="justify-content">
               <Figure>
-                <Figure.Image id="fightContainer"
+                <Figure.Image id="fightMonster"
                   width={200}
                   height={200}
                   alt="175x175"
                   src={monsterImg}
-                  className="fighters"
+                  className="text-center"
                 />
-                <Figure.Caption>
-                  <Card id="monster" style={{ width: '18rem' }}>
-                    <h3><strong>{this.state.monsterName}</strong></h3>
-                    <ul>
-                      <li><strong>{this.state.monsterDescription}</strong></li>
-                      <li><strong>Strength: </strong>{this.state.monsterStrength}</li>
-                    </ul>
-                  </Card>
-                </Figure.Caption>
+              </Figure>
+            </Col >
+
+            <Col lg={3} md={4} xs={6}>
+              <Figure>
+                <Figure.Image id="fightavatar"
+                  width={100}
+                  height={100}
+                  alt="175x175"
+                  src={characterImage}
+                  className="text-center"
+                />
               </Figure>
             </Col>
 
+            <Col lg={0} md={2} ></Col>
+          </Row>
 
+          <Row className="text-center" >
             <Col>
-
               <Button id="fightBtn" onClick={this.fight} variant="primary" size="lg">
                 Cast spell!
             </Button>
-
             </Col>
 
-            <Col className="justify-content-end" xs={5}>
-              <Figure>
-                <Figure.Image id="fightContainer"
-                  width={200}
-                  height={200}
-                  alt="175x175"
-                  src={characterImage}
-                  className="fighters"
-                />
-
-                <Figure.Caption>
-                  <Card className="wizard" style={{ width: '18rem' }}>
-                    <h3>{this.state.characterName}</h3>
-                    <ul>
-                      <li><strong>House of {this.state.house}</strong></li>
-                      <li><strong>Strength: </strong>{this.state.characterStrength}</li>
-                      <li><strong>Lives: </strong>{this.state.lives}</li>
-                    </ul>
-                  </Card>
-
-                </Figure.Caption>
-              </Figure>
-            </Col>
           </Row>
+
+          <Row>
+            <Col lg={3} md={2} ></Col>
+
+            <Col lg={4} md={4} xs={6}>
+              <Card id="monster" style={{ width: '200px' }}>
+                <h3><strong>{this.state.monsterName}</strong></h3>
+                <ul>
+                  <li><strong>{this.state.monsterDescription}</strong></li>
+                  <li><strong>Strength: </strong>{this.state.monsterStrength}</li>
+                </ul>
+              </Card>
+            </Col>
+
+            <Col lg={4} md={4} xs={6}>
+              <Card className="wizard" style={{ width: '200px' }}>
+                <h3>{this.state.characterName}</h3>
+                <ul>
+                  <li><strong>House of {this.state.house}</strong></li>
+                  <li><strong>Strength: </strong>{this.state.characterStrength}</li>
+                  <li><strong>Lives: </strong>{this.state.lives}</li>
+                </ul>
+              </Card>
+            </Col>
+            <Col lg={1} md={2} ></Col>
+
+          </Row>
+
           <p>{this.state.spellCode}</p>
 
 
