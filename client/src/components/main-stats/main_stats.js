@@ -13,9 +13,9 @@ class MainStats extends Component {
     state = {
         id: "",
         characterName: "",
-        house: "",
+        house: "waterfall",
         characterStrength: "",
-        bgImage: '',
+        bgImage: "",
         houseMembers: [],
         monsters: [],
         monsterStrength: "",
@@ -40,6 +40,7 @@ class MainStats extends Component {
 
 
     componentDidMount() {
+        console.log('1')
         this.loadMonsters();
 
         let self = this;
@@ -47,9 +48,18 @@ class MainStats extends Component {
         localStorage.setItem("lives", "3")
 
         if (key) {
+            console.log('2')
+            let image = backgroundImages.find(object => {
+                return object.name === this.state.house;
+            })
+            console.log(image)
+            this.setState({ bgImage: image })
             // console.log(key)
             API.loadUser(key)
                 .then(function (result) {
+                    console.log(result)
+                    console.log('3')
+
                     let { src } = userAvatars[result.data.characterImage - 1]
                     // console.log(result.data);
                     self.setState({
@@ -61,6 +71,7 @@ class MainStats extends Component {
                         let image = backgroundImages.find(object => {
                             return object.name === this.state.house;
                         })
+                        console.log(image)
                         this.setState({ bgImage: image })
 
 
@@ -113,6 +124,7 @@ class MainStats extends Component {
             return <Redirect to="/" />
         }
         const { characterImage } = this.state;
+        
         return (
 
             <div style={{ hight: "150vh", backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
@@ -134,10 +146,9 @@ class MainStats extends Component {
 
                         <Col md="auto" xm={5}>
                             <Card className="mainCard" style={{ width: '15rem' }}>
-                                <h2 id="userInfo">User Info</h2>
+                                <h2 id="userInfo">{this.state.characterName}</h2>
                                 <ul>
-                                    <h6><strong>Name: </strong>{this.state.characterName}</h6>
-                                    <h6><strong>House: </strong>{this.state.house}</h6>
+                                    <h6><strong>House of {this.state.house} </strong></h6>
                                     <h6><strong>Strength: </strong>{this.state.characterStrength}</h6>
                                 </ul>
                             </Card>
@@ -153,8 +164,8 @@ class MainStats extends Component {
                             <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Stage 1</h3>
                                 <ul>
-                                    <h6><strong>Name:</strong> {this.state.monster1.monsterName}</h6>
-                                    <h6><strong>Description: </strong> {this.state.monster1.monsterDescription}</h6>
+                                    <h6 className="main-monsterName"><strong>{this.state.monster1.monsterName}</strong></h6>
+                                    <h6><strong>{this.state.monster1.monsterDescription}</strong> </h6>
                                     <h6><strong>Strength:</strong> {this.state.monster1.strength}</h6>
                                 </ul>
                                 <Link to="/fight?monster=1"><Button className="stageBtn"><Image src="images/infernobeast-front.png"/></Button></Link>
@@ -165,8 +176,8 @@ class MainStats extends Component {
                             <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Stage 2</h3>
                                 <ul>
-                                    <h6><strong>Name: </strong>{this.state.monster2.monsterName}</h6>
-                                    <h6><strong>Description: </strong>{this.state.monster2.monsterDescription}</h6>
+                                <h6 className="main-monsterName"><strong>{this.state.monster2.monsterName}</strong></h6>
+                                    <h6><strong>{this.state.monster2.monsterDescription}</strong> </h6>
                                     <h6><strong>Strength:</strong> {this.state.monster2.strength}</h6>
                                 </ul>
                                 <Link to="/fight?monster=2"><Button className="stageBtn"><Image src="images/leviathan-front.png"/></Button></Link>
@@ -177,8 +188,8 @@ class MainStats extends Component {
                             <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Stage 3</h3>
                                 <ul>
-                                    <h6><strong>Name: </strong>{this.state.monster3.monsterName}</h6>
-                                    <h6><strong>Description: </strong>{this.state.monster3.monsterDescription}</h6>
+                                <h6 className="main-monsterName"><strong>{this.state.monster3.monsterName}</strong></h6>
+                                    <h6><strong>{this.state.monster3.monsterDescription}</strong> </h6>
                                     <h6><strong>Strength:</strong> {this.state.monster3.strength}</h6>
                                 </ul>
                                 <Link to="/fight?monster=3"><Button className="stageBtn"><Image src="images/misthawk-front.png"/></Button></Link>
@@ -190,8 +201,8 @@ class MainStats extends Component {
                             <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Stage 4</h3>
                                 <ul>
-                                    <h6><strong>Name: </strong>{this.state.monster4.monsterName}</h6>
-                                    <h6><strong>Description: </strong>{this.state.monster4.monsterDescription}</h6>
+                                <h6 className="main-monsterName"><strong>{this.state.monster4.monsterName}</strong></h6>
+                                    <h6><strong>{this.state.monster4.monsterDescription}</strong> </h6>
                                     <h6><strong>Strength:</strong> {this.state.monster4.strength}</h6>
                                 </ul>
                                 <Link to="/fight?monster=4"><Button className="stageBtn"><Image src="images/onyxbrute-front.png"/></Button></Link>

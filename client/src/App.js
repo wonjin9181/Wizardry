@@ -10,7 +10,18 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
 
+  stall = async function() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      },2000)
+    })
+  }
 
+  componentDidMount = async function() {
+    await this.stall();
+    console.log('Component did mount')
+  }
 
   render() {
     return (
@@ -27,7 +38,7 @@ class App extends Component {
           />} />
 
 
-          <Route exact path="/main" component={() => <MainStats
+          <Route exact path="/main" component={(props) => <MainStats {...props}
           />} />
 
 

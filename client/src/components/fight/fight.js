@@ -206,10 +206,9 @@ class Fight extends Component {
                 />
                 <Figure.Caption>
                   <Card id="monster" style={{ width: '18rem' }}>
-                    <h3><strong>Monster!</strong></h3>
+                    <h3><strong>{this.state.monsterName}</strong></h3>
                     <ul>
-                      <li><strong>Name: </strong>{this.state.monsterName}</li>
-                      <li><strong>Description: </strong>{this.state.monsterDescription}</li>
+                      <li><strong>{this.state.monsterDescription}</strong></li>
                       <li><strong>Strength: </strong>{this.state.monsterStrength}</li>
                     </ul>
                   </Card>
@@ -238,10 +237,9 @@ class Fight extends Component {
 
                 <Figure.Caption>
                   <Card className="wizard" style={{ width: '18rem' }}>
-                    <h3><strong>Wizard!</strong></h3>
+                    <h3>{this.state.characterName}</h3>
                     <ul>
-                      <li><strong>Name: </strong>{this.state.characterName}</li>
-                      <li><strong>House: </strong>{this.state.house}</li>
+                      <li><strong>House of {this.state.house}</strong></li>
                       <li><strong>Strength: </strong>{this.state.characterStrength}</li>
                       <li><strong>Lives: </strong>{this.state.lives}</li>
                     </ul>
