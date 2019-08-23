@@ -20,7 +20,6 @@ class Login extends Component {
     }
     componentDidMount() {
         localStorage.clear()
-
     }
 
     validateForm = () => {
@@ -37,27 +36,19 @@ class Login extends Component {
     handleSubmit = event => {
         let self = this;
         event.preventDefault();
-        console.log(this.state)
 
         API.loginUser(this.state)
             .then(function (result) {
-
-                console.log("RESULTSSSSS", result)
                 let data = result.data
                 if (result.data.isUser) {
 
-                    self.setState({
-                        play: true,
+                    self.setState({       
                         password: "",
-                        id: data.id
+                        id: data.id,
+                        play: true
                     }, function () {
                         localStorage.setItem("key", self.state.id.toString())
                     })
-
-                    self.setState({
-                        play: true
-                    })
-
                 }
                 else {
                     alert('Incorrect Username and/or Password!');

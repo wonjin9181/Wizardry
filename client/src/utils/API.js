@@ -30,9 +30,7 @@ export default {
 
   loadUser: (userData) => {
     // console.log("this: " + userData)
-    console.log('load user 1')
     let rval = axios.get("/api/users/" + userData)
-    console.log('load user 2')
     return rval;
   },
 
