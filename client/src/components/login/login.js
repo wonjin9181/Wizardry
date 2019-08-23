@@ -5,7 +5,10 @@ import "./login.css"
 import { Link, Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import backgroundImages from '../main-stats/backgroundImages';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
+const MySwal = withReactContent(Swal)
 
 class Login extends Component {
 
@@ -51,11 +54,11 @@ class Login extends Component {
                     })
                 }
                 else {
-                    alert('Incorrect Username and/or Password!');
+                    MySwal.fire('Incorrect Username and/or Password!');
                 }
 
             }).catch(err => {
-                alert(err);
+                MySwal.fire(err);
             })
 
     }
