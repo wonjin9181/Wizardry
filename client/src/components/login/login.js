@@ -118,7 +118,7 @@ class Login extends Component {
                                     variant="primary"
                                     type="submit"
                                     disabled={!this.validateForm()}>
-                                    Play
+                                    Login
                              </Button>
 
                                 <Link to="/createuser">

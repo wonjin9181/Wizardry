@@ -13,11 +13,11 @@
   color: darkred;
 }
 
-li{
+li {
   font-size: 20px;
 }
 
-h3{
+h3 {
   text-align: center;
   color: indigo;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
@@ -37,13 +37,16 @@ h3{
   float: right;
   background-color: rgb(131, 2, 2);
   color: white;
-
 }
 
 #fightBtn {
   background-color: rgb(131, 2, 2);
   color: white;
-  margin-top: -20vh
+  margin-top: -20vh;
+}
+
+p {
+  text-align: center;
 }
 
 #letterBtn {
@@ -61,8 +64,7 @@ h3{
     width: 100px;
   }
 
-  li{
+  li {
     font-size: 15px;
   }
-  
 }

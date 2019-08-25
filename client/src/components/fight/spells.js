@@ -9,19 +9,19 @@ function Spells(house) {
                 spell: [
                     {
                         name: "Fireball",
-                        value: 100
+                        value: 10
                     },
                     {
                         name: "Cloud of Ash",
-                        value: 180
+                        value: 20
                     },
                     {
                         name: "Lava Cannon",
-                        value: 220
+                        value: 30
                     },
                     {
                         name: "Rain of Fire",
-                        value: 410
+                        value: 40
                     }]
             }
         ]
@@ -32,19 +32,19 @@ function Spells(house) {
             {
                 spell: [{
                     name: "Ice Blast",
-                    value: 100
+                    value: 10
                 },
                 {
                     name: "Acid Rain",
-                    value: 180
+                    value: 20
                 },
                 {
                     name: "Water Lasso",
-                    value: 220
+                    value: 30
                 },
                 {
                     name: "Tsunami",
-                    value: 410
+                    value: 40
                 }]
             }]
         return waterSpells
@@ -54,19 +54,19 @@ function Spells(house) {
             {
                 spell: [{
                     name: "Wind Gust",
-                    value: 100
+                    value: 10
                 },
                 {
-                    name: "Air Spell",
-                    value: 180
+                    name: "Air Strike",
+                    value: 20
                 },
                 {
                     name: "Tornado",
-                    value: 220
+                    value: 30
                 },
                 {
                     name: "Dark Storm",
-                    value: 410
+                    value: 40
                 }]
             }
         ]
@@ -77,19 +77,19 @@ function Spells(house) {
             {
                 spell: [{
                     name: "Quicksand",
-                    value: 100
+                    value: 10
                 },
                 {
                     name: "Rock Slide",
-                    value: 180
+                    value: 20
                 },
                 {
-                    name: "Earth Spell",
-                    value: 220
+                    name: "Sand Storm",
+                    value: 30
                 },
                 {
                     name: "Earthquake",
-                    value: 410
+                    value: 40
                 }]
             }
         ]
