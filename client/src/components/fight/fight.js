@@ -137,10 +137,6 @@ class Fight extends Component {
             self.setState({
               won: true
             })
-            var winningScore = 400;
-            if (characterStrength > winningScore) {
-              alert("You won!")
-            }
           })
       })
     }
@@ -170,9 +166,6 @@ class Fight extends Component {
     })
     this.setState({ loses: true })
   }
-
-  
-
 
   render() {
     if (this.state.lives === 0) {
