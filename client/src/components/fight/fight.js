@@ -82,8 +82,6 @@ class Fight extends Component {
         monsterStrength: strength,
         monsterId: id
       }, function () {
-        var monsterId = this.state.monsterId
-        // console.log(Code(monsterId))
 
       });
 
@@ -162,13 +160,7 @@ class Fight extends Component {
             self.setState({
               won: true
             })
-            var winningScore = 400;
-            if (characterStrength > winningScore) {
-              alert("You won!")
-            }
-
           })
-
       })
     }
 
@@ -196,16 +188,12 @@ class Fight extends Component {
       console.log(data)
       API.updateStrength(data, key)
         .then(function (result) {
-
         })
     })
     this.setState({ loses: true }, function () {
       MySwal.fire("You have lost")
     })
   }
-
-  
-
 
   render() {
     if (this.state.lives === 0) {

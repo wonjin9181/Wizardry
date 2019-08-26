@@ -72,37 +72,44 @@ class MainStats extends Component {
                         })
                         this.setState({ bgImage: image })
 
-                        if(this.state.characterStrength < 100){
-                             API.deleteUser(key)
-                             API.deleteHouseUser(key)
-                              this.setState({gameover:true})
-                             MySwal.fire("Game over")
-                                
+                        if (this.state.characterStrength < 100) {
+                            API.deleteUser(key)
+                            API.deleteHouseUser(key)
+                            this.setState({ gameover: true })
+                            MySwal.fire("Game over")
+
                         }
-                        else{
-                           API.getHouseMembers(self.state.house)
+                        else if (this.state.characterStrength >= 400) {
+                            API.deleteUser(key)
+                            API.deleteHouseUser(key)
+                            this.setState({ gameover: true })
+                            MySwal.fire("You win!")
 
-                            .then(function (result) {
-                                // console.log(result.data)
-                                self.setState({
-                                    houseMembers: result.data
-                                }, function () {
+                        }
+                        else {
+                            API.getHouseMembers(self.state.house)
 
-                                    API.getMonsters()
-                                        .then(res => {
-                                            self.setState({
-                                                monster1: res.data[0],
-                                                monster2: res.data[1],
-                                                monster3: res.data[2],
-                                                monster4: res.data[3]
+                                .then(function (result) {
+                                    // console.log(result.data)
+                                    self.setState({
+                                        houseMembers: result.data
+                                    }, function () {
+
+                                        API.getMonsters()
+                                            .then(res => {
+                                                self.setState({
+                                                    monster1: res.data[0],
+                                                    monster2: res.data[1],
+                                                    monster3: res.data[2],
+                                                    monster4: res.data[3]
+                                                })
                                             })
-                                        })
-                                        .catch(err => console.log(err));
+                                            .catch(err => console.log(err));
 
+                                    })
                                 })
-                            })
 
-                         
+
                         }
                     });
                 })
@@ -114,11 +121,17 @@ class MainStats extends Component {
     };
 
     render() {
-        if(this.state.gameover === true){
+        if (this.state.gameover === true) {
             return <Redirect to="/" />
         }
+
+        if (this.state.characterStrength >= 400) {
+
+            return <Redirect to="/" />
+        }
+
         const { characterImage } = this.state;
-        
+
         return (
 
             <div style={{ hight: "150vh", backgroundSize: "cover", backgroundImage: `url("${this.state.bgImage.src}")` }}>
@@ -129,7 +142,7 @@ class MainStats extends Component {
                            </Button>
                     </Link>
 
-                    <Row className="justify-content-md-center" id = "userRow" >
+                    <Row className="justify-content-md-center" id="userRow" >
                         <Col md="auto" xm={5} >
                             <Card className="mainCard" id="avatar">
 
@@ -162,7 +175,7 @@ class MainStats extends Component {
                                     <h6><strong>{this.state.monster1.monsterDescription}</strong> </h6>
                                     <h6><strong>Strength:</strong> {this.state.monster1.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=1"><Button className="stageBtn"><Image src="images/infernobeast-front.png"/></Button></Link>
+                                <Link to="/fight?monster=1"><Button className="stageBtn"><Image src="images/infernobeast-front.png" /></Button></Link>
                             </Card>
 
                         </Col>
@@ -170,11 +183,11 @@ class MainStats extends Component {
                             <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Stage 2</h3>
                                 <ul>
-                                <h6 className="main-monsterName"><strong>{this.state.monster2.monsterName}</strong></h6>
+                                    <h6 className="main-monsterName"><strong>{this.state.monster2.monsterName}</strong></h6>
                                     <h6><strong>{this.state.monster2.monsterDescription}</strong> </h6>
                                     <h6><strong>Strength:</strong> {this.state.monster2.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=2"><Button className="stageBtn"><Image src="images/leviathan-front.png"/></Button></Link>
+                                <Link to="/fight?monster=2"><Button className="stageBtn"><Image src="images/leviathan-front.png" /></Button></Link>
                             </Card>
 
                         </Col>
@@ -182,11 +195,11 @@ class MainStats extends Component {
                             <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Stage 3</h3>
                                 <ul>
-                                <h6 className="main-monsterName"><strong>{this.state.monster3.monsterName}</strong></h6>
+                                    <h6 className="main-monsterName"><strong>{this.state.monster3.monsterName}</strong></h6>
                                     <h6><strong>{this.state.monster3.monsterDescription}</strong> </h6>
                                     <h6><strong>Strength:</strong> {this.state.monster3.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=3"><Button className="stageBtn"><Image src="images/misthawk-front.png"/></Button></Link>
+                                <Link to="/fight?monster=3"><Button className="stageBtn"><Image src="images/misthawk-front.png" /></Button></Link>
                             </Card>
 
 
@@ -195,11 +208,11 @@ class MainStats extends Component {
                             <Card id="monsterCard" style={{ width: '15rem' }}>
                                 <h3 id="monsterInfo">Stage 4</h3>
                                 <ul>
-                                <h6 className="main-monsterName"><strong>{this.state.monster4.monsterName}</strong></h6>
+                                    <h6 className="main-monsterName"><strong>{this.state.monster4.monsterName}</strong></h6>
                                     <h6><strong>{this.state.monster4.monsterDescription}</strong> </h6>
                                     <h6><strong>Strength:</strong> {this.state.monster4.strength}</h6>
                                 </ul>
-                                <Link to="/fight?monster=4"><Button className="stageBtn"><Image src="images/onyxbrute-front.png"/></Button></Link>
+                                <Link to="/fight?monster=4"><Button className="stageBtn"><Image src="images/onyxbrute-front.png" /></Button></Link>
                             </Card>
 
                         </Col>
@@ -207,10 +220,10 @@ class MainStats extends Component {
 
                     <br></br>
 
-                    <Row className="text-center"  id="houseText">
-                            <Col>
-                                <h4>{this.state.house} House Members</h4>
-                            </Col>
+                    <Row className="text-center" id="houseText">
+                        <Col>
+                            <h4>{this.state.house} House Members</h4>
+                        </Col>
                     </Row>
 
                     <Row className="justify-content-md-center">
