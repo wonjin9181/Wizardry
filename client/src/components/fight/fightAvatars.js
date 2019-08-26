@@ -6,8 +6,7 @@ const fightAvatars = [
     { src: 'images/gamora-fight.png'},
     { src: 'images/drow-fight.png'},
     { src: 'images/rydia-fight.png'},
-    { src: 'images/bluemage-fight.png'}
-    
+    { src: 'images/bluemage-fight.png'}  
 ];
 
 module.exports = fightAvatars;

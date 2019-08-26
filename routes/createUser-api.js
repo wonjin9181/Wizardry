@@ -1,7 +1,5 @@
 db = require("../models")
 
-const { hashedPassword } = require('../util/passwordService')
-
 module.exports = function (app) {
 
     app.post("/api/users", async function (req, res) {
@@ -18,9 +16,6 @@ module.exports = function (app) {
             }
         })
             .then(function (results) {
-                console.log("------" + results)
-                //when result comes out as []
-                //it creates user
                 if (results.length === 0) {
                     db.Users.create({
                         email: req.body.email,
@@ -38,8 +33,6 @@ module.exports = function (app) {
                             console.log(err)
                         })
                 }
-                //when we get a user
-                //we send status 404?
                 else {
                     console.log("username exists")
                     res.end()
@@ -49,32 +42,26 @@ module.exports = function (app) {
 
     })
 
-
     app.get("/api/users/:id", function (req, res) {
-        // console.log(req.params.id)
         db.Users.findAll({
             where: {
                 id: req.params.id
             }
         })
             .then(function (dbUser) {
-
                 res.json({
                     characterName: dbUser[0].dataValues.characterName,
                     house: dbUser[0].dataValues.house,
                     strength: dbUser[0].dataValues.strength,
                     characterImage: dbUser[0].dataValues.characterImage
                 })
-            
             })
             .catch(function (err) {
                 throw err;
             })
     })
 
-
     app.delete("/api/users/:id", function (req, res){
-        console.log(req.params.id)
         db.Users.destroy({
             where:{
                 id: req.params.id
@@ -87,9 +74,7 @@ module.exports = function (app) {
 
 }
 
-
 const crypto = require('crypto');
-
 
 function PasswordHasher() {
 }

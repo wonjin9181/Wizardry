@@ -1,8 +1,6 @@
 
 function Spells(house) {
 
-    console.log(house);
-
     if (house === "Fire") {
         const fireSpells = [
             {
