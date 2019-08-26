@@ -1,20 +1,21 @@
    #createuser {
-     position: absolute;
-     top: 30vh;
-     left: 30vw;
-     right: 30vw;
-     bottom: 5vw;
-     background-color: rgba(255, 255, 255, 0.5);
-     text-align: center;
-     padding: 20px;
-     z-index: 9;
-     font-family: "Kalam", cursive;
-     color: rgb(202, 41, 41);
-   }
+    position: absolute;
+    top: 24vh;
+    left: 30vw;
+    right: 30vw;
+    bottom: 2vw;
+    background-color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 20px;
+    z-index: 9;
+    font-family: "Kalam", cursive;
+    color: rgb(202, 41, 41);
+  }
 
-   .avatarImage image:hover {
-     filter: brightness(50%);
-   }
+  #centerText {
+text-align: center;
+padding-top: 8vh 
+  }
 
    #centerText {
      text-align: center;
