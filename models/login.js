@@ -4,8 +4,8 @@ module.exports = function (sequelize, DataTypes) {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                len: [1,20]
+            validate:{
+                len:[1]
             }
         },
         hash:DataTypes.STRING,

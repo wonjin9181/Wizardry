@@ -1,34 +1,38 @@
    #createuser {
-    position: absolute;
-    top: 30vh;
-    left: 30vw;
-    right: 30vw;
-    bottom: 5vw;
-    background-color: rgba(255,255,255,0.5);
-    text-align: center;
-    padding: 20px;
-    z-index: 9;
-    font-family: "Kalam", cursive;
-    color: rgb(202, 41, 41);
-  }
+     position: absolute;
+     top: 30vh;
+     left: 30vw;
+     right: 30vw;
+     bottom: 5vw;
+     background-color: rgba(255, 255, 255, 0.5);
+     text-align: center;
+     padding: 20px;
+     z-index: 9;
+     font-family: "Kalam", cursive;
+     color: rgb(202, 41, 41);
+   }
 
-  #centerText {
-text-align: center;
-padding-top: 10vh 
-  }
+   .avatarImage image:hover {
+     filter: brightness(50%);
+   }
 
-  #createuser:hover {
-    box-shadow: 0 10px 18px 0 rgba(0, 0, 0, 0.24),0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
+   #centerText {
+     text-align: center;
+     padding-top: 10vh
+   }
 
-  @media only screen and (max-width: 600px) {
-    #createuser {
-      position: absolute;
-      top: 20vh;
-      left: 10vw;
-      right: 10vw;
-      bottom: 1vw;
-      padding: 20px;
-      z-index: 9;
-    } 
-  }
+   #createuser:hover {
+     box-shadow: 0 10px 18px 0 rgba(0, 0, 0, 0.24), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   }
+
+   @media only screen and (max-width: 600px) {
+     #createuser {
+       position: absolute;
+       top: 20vh;
+       left: 10vw;
+       right: 10vw;
+       bottom: 1vw;
+       padding: 20px;
+       z-index: 9;
+     }
+   }

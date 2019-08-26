@@ -179,6 +179,7 @@ class CreateUser extends Component {
                 </Form.Label>
                 <Col>
                   <Image
+                  className="avatarImage"
                     type="image"
                     name="characterImage-1"
                     value="1"
@@ -189,6 +190,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
                   <Image
+                  className="avatarImage"
                     name="characterImage-2"
                     onClick={this.handleChange}
                     src="images/blackwizard.png"
@@ -197,6 +199,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
                   <Image
+                  className="avatarImage"
                     type="image"
                     name="characterImage-3"
                     onClick={this.handleChange}
@@ -206,6 +209,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
                   <Image
+                  className="avatarImage"
                     type="image"
                     name="characterImage-4"
                     onClick={this.handleChange}
@@ -219,6 +223,7 @@ class CreateUser extends Component {
                 </Form.Label>
                 <Col>
                   <Image
+                    className="avatarImage"
                     type="image"
                     name="characterImage-5"
                     value="1"
@@ -229,6 +234,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
                   <Image
+                  className="avatarImage"
                     name="characterImage-6"
                     onClick={this.handleChange}
                     src="images/drow-front.png"
@@ -237,6 +243,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
                   <Image
+                  className="avatarImage"
                     type="image"
                     name="characterImage-7"
                     onClick={this.handleChange}
@@ -246,6 +253,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
                   <Image
+                  className="avatarImage"
                     type="image"
                     name="characterImage-8"
                     onClick={this.handleChange}
