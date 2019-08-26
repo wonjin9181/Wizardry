@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Row, Col, Container, Image } from "react-bootstrap";
+import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import "./create_user.css";
 import API from "../../utils/API";
 import { Link, Redirect } from 'react-router-dom';
@@ -18,7 +18,7 @@ class CreateUser extends Component {
     characterImage: "",
     madeUser: false,
     bgImage: backgroundImages[0],
-    music: false
+    music: false,
   };
 
   validateForm() {
@@ -30,6 +30,7 @@ class CreateUser extends Component {
     let selected = event.target.name.split("-"); // 'characterImage-1' > ['characterImage','1']
     let [characterImage] = selected; // storing index 0 in variable 'characterImage'
     let [imgId] = selected.reverse(); // reverse array and THEN store index 0 in variable imgId (which when reversed is the #!)
+    // event.target.style.backgroundColor = '#ccc'
 
     if (characterImage === "characterImage") {
       this.setState({
@@ -178,39 +179,38 @@ class CreateUser extends Component {
                   Avatar
                 </Form.Label>
                 <Col>
-                  <Image
+
+                  <Form.Check
                     type="image"
                     name="characterImage-1"
                     value="1"
                     onClick={this.handleChange}
                     src="images/rincewind.png"
-                    thumbnail
                   />
                 </Col>
                 <Col>
-                  <Image
+                  <Form.Check
+                    type="image"
                     name="characterImage-2"
                     onClick={this.handleChange}
                     src="images/blackwizard.png"
-                    thumbnail
+
                   />
                 </Col>
                 <Col>
-                  <Image
+                  <Form.Check
                     type="image"
                     name="characterImage-3"
                     onClick={this.handleChange}
                     src="images/killer.png"
-                    thumbnail
                   />
                 </Col>
                 <Col>
-                  <Image
+                  <Form.Check
                     type="image"
                     name="characterImage-4"
                     onClick={this.handleChange}
                     src="images/spritey.png"
-                    thumbnail
                   />
                 </Col>
               </Form.Group>
@@ -218,39 +218,36 @@ class CreateUser extends Component {
                 <Form.Label column sm={1}>
                 </Form.Label>
                 <Col>
-                  <Image
+                  <Form.Check
                     type="image"
                     name="characterImage-5"
                     value="1"
                     onClick={this.handleChange}
                     src="images/gamora-front.png"
-                    thumbnail
                   />
                 </Col>
                 <Col>
-                  <Image
+                  <Form.Check
+                    type="image"
                     name="characterImage-6"
                     onClick={this.handleChange}
                     src="images/drow-front.png"
-                    thumbnail
                   />
                 </Col>
                 <Col>
-                  <Image
+                  <Form.Check
                     type="image"
                     name="characterImage-7"
                     onClick={this.handleChange}
                     src="images/rydia-front.png"
-                    thumbnail
                   />
                 </Col>
                 <Col>
-                  <Image
+                  <Form.Check
                     type="image"
                     name="characterImage-8"
                     onClick={this.handleChange}
                     src="images/bluemage-front.png"
-                    thumbnail
                   />
                 </Col>
               </Form.Group>
