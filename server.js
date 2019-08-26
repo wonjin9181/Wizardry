@@ -4,14 +4,11 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 var cookieParser = require("cookie-parser")
-// const mysql = require("mysql")
 const db = require("./models")
 
-// Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
@@ -24,12 +21,9 @@ require('./routes/house-api')(app);
 require('./routes/login-api')(app);
 require('./routes/fight-api')(app)
 
-// Send every request to the React app
-// Define any API routes before this runs
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
-
 
 const syncOptions = { force: false };
 

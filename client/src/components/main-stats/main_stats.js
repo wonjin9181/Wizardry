@@ -11,9 +11,7 @@ import withReactContent from 'sweetalert2-react-content'
 
 const MySwal = withReactContent(Swal)
 
-
 class MainStats extends Component {
-
     state = {
         id: "",
         characterName: "",
@@ -37,7 +35,6 @@ class MainStats extends Component {
             .then(res => {
                 // console.log(res.data)
                 this.setState({ monsters: res.data })
-
             })
             .catch(err => console.log(err));
     };
@@ -45,7 +42,6 @@ class MainStats extends Component {
 
     componentDidMount() {
         this.loadMonsters();
-
         let self = this;
         var key = localStorage.getItem("key");
         localStorage.setItem("lives", "3")
@@ -55,12 +51,10 @@ class MainStats extends Component {
                 return object.name === this.state.house;
             })
             this.setState({ bgImage: image })
-            // console.log(key)
             API.loadUser(key)
                 .then(function (result) {
 
                     let { src } = userAvatars[result.data.characterImage - 1]
-                    // console.log(result.data);
                     self.setState({
                         characterName: result.data.characterName,
                         house: result.data.house,
@@ -71,23 +65,19 @@ class MainStats extends Component {
                             return object.name === this.state.house;
                         })
                         this.setState({ bgImage: image })
-
                         if(this.state.characterStrength < 100){
                              API.deleteUser(key)
                              API.deleteHouseUser(key)
                               this.setState({gameover:true})
-                             MySwal.fire("Game over")
-                                
+                             MySwal.fire("Game over")                           
                         }
                         else{
                            API.getHouseMembers(self.state.house)
-
                             .then(function (result) {
                                 // console.log(result.data)
                                 self.setState({
                                     houseMembers: result.data
                                 }, function () {
-
                                     API.getMonsters()
                                         .then(res => {
                                             self.setState({
@@ -98,18 +88,14 @@ class MainStats extends Component {
                                             })
                                         })
                                         .catch(err => console.log(err));
-
                                 })
                             })
-
-                         
                         }
                     });
                 })
                 .catch(err => {
                     MySwal.fire(err);
                 });
-
         }
     };
 

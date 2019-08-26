@@ -39,12 +39,10 @@ class Login extends Component {
     handleSubmit = event => {
         let self = this;
         event.preventDefault();
-
         API.loginUser(this.state)
             .then(function (result) {
                 let data = result.data
                 if (result.data.isUser) {
-
                     self.setState({       
                         password: "",
                         id: data.id,
@@ -56,11 +54,9 @@ class Login extends Component {
                 else {
                     MySwal.fire('Incorrect Username and/or Password!');
                 }
-
             }).catch(err => {
                 MySwal.fire(err);
             })
-
     }
 
     render() {
