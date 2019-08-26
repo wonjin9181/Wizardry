@@ -73,16 +73,11 @@ class Fight extends Component {
     API.getOneMonster(id).then(function ({
       data: { monsterDescription, imageIndex, monsterName, strength, id }
     }) {
-      // if imageIndex is an id (from database) that correlates to index value of the id in fightersImage array, then
-      //  this.state.imageIndex = fighterImages[imageIndex]
-
       let { src } = fighterImages[imageIndex];
       self.setState({
         monsterDescription, monsterImg: src, monsterName,
         monsterStrength: strength,
         monsterId: id
-      }, function () {
-
       });
 
     });
@@ -90,24 +85,17 @@ class Fight extends Component {
     API.loadUser(key)
       .then(function (result) {
         let { src } = fightAvatars[result.data.characterImage - 1];
-
         self.setState({
           characterName: result.data.characterName,
           house: result.data.house,
           characterStrength: result.data.strength,
           characterImage: src
         }, function () {
-          console.log(this.state.house);
           var spells = Spells(this.state.house)
-          console.log(spells)
           self.setState({
             spells
-          }, function () {
-            console.log(self.state.spells[0].spell[0].name)
           });
-
         });
-
       });
 
     this.setState({
@@ -115,7 +103,6 @@ class Fight extends Component {
     })
   };
 
-  //renders the spell name
   handleCode = e => {
     let spellCode = e.target.name
     let spellStrength = e.target.value
@@ -127,25 +114,16 @@ class Fight extends Component {
 
   }
 
-
-  //clears spell name
   clear = () => {
     this.setState({ spellCode: "" })
   }
 
-
-
   fight = () => {
-
     let self = this
     let characterStrength = parseInt(this.state.characterStrength)
     let monsterStrength = parseInt(this.state.monsterStrength)
     let spellStrength = parseInt(this.state.spellStrength)
     let key = localStorage.getItem("key")
-    console.log(characterStrength)
-    console.log(monsterStrength)
-    console.log(spellStrength);
-
 
     if ((spellStrength + characterStrength) > monsterStrength) {
       MySwal.fire("Your spell is super effective \nYou have defeated " + self.state.monsterName)
@@ -154,7 +132,6 @@ class Fight extends Component {
       }, function () {
         let data = []
         data.push(this.state.characterStrength)
-        console.log(data)
         API.updateUser(data, key)
           .then(function (result) {
             self.setState({
@@ -165,9 +142,7 @@ class Fight extends Component {
     }
 
     else {
-      console.log(characterStrength)
       MySwal.fire("You are not strong enough!!!!!")
-
       let lives = this.state.lives - 1
 
       this.setState({
@@ -181,25 +156,21 @@ class Fight extends Component {
   youLose = () => {
     let characterStrength = parseInt(this.state.characterStrength)
     let key = localStorage.getItem("key")
-
+    MySwal.fire("You have lost")
     this.setState({ characterStrength: characterStrength - 20 }, function () {
       let data = []
       data.push(this.state.characterStrength)
-      console.log(data)
       API.updateStrength(data, key)
         .then(function (result) {
         })
     })
-    this.setState({ loses: true }, function () {
-      MySwal.fire("You have lost")
-    })
+    this.setState({ loses: true })
   }
 
   render() {
     if (this.state.lives === 0) {
       this.youLose()
     }
-
     if (this.state.won === true) {
       return <Redirect to="/main" />
     }
@@ -209,8 +180,6 @@ class Fight extends Component {
 
     const { monsterImg } = this.state;
     const { characterImage } = this.state;
-    // const { spells } = this.state;
-    // console.log('state.monsterImg', monsterImg);
     return (
       <div style={{ hight: "100vh", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url("${this.state.bgImage.src}")` }}>
         <Container>

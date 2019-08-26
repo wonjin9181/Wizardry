@@ -54,7 +54,6 @@ class CreateUser extends Component {
   handleSubmit = event => {
     let self = this;
     event.preventDefault();
-
     API.createUser(this.state).then(function (result) {
       if (!result.data) {
         MySwal.fire("Email already exists!");

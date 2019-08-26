@@ -1,9 +1,7 @@
 db = require("../models");
 var monsterData = require(__dirname + "/../scripts/monsters.json")
 
-
 module.exports = function (app) {
-
     app.get("/api/monsters", function (req, res) {
         db.Monsters.findAll({})
             .then(function (dbMonsters) {
@@ -28,11 +26,9 @@ module.exports = function (app) {
     })
 
     app.get("/api/monsters/:id", function (req, res) {
-        // console.log(req.params.id)
         const { id } = req.params;
         db.Monsters.findOne({ where: { id } })
             .then(function (dbMonster) {
-                // console.log("dbMonster", dbMonster)
                 res.json(dbMonster)
             })
             .catch(function (err) {
