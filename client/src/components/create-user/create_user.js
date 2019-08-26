@@ -189,8 +189,10 @@ class CreateUser extends Component {
                   />
                 </Col>
                 <Col>
+
                   <Form.Check
                     type="image"
+
                     name="characterImage-2"
                     onClick={this.handleChange}
                     src="images/blackwizard.png"
@@ -198,7 +200,9 @@ class CreateUser extends Component {
                   />
                 </Col>
                 <Col>
+
                   <Form.Check
+
                     type="image"
                     name="characterImage-3"
                     onClick={this.handleChange}
@@ -206,7 +210,9 @@ class CreateUser extends Component {
                   />
                 </Col>
                 <Col>
+
                   <Form.Check
+
                     type="image"
                     name="characterImage-4"
                     onClick={this.handleChange}
@@ -218,7 +224,9 @@ class CreateUser extends Component {
                 <Form.Label column sm={1}>
                 </Form.Label>
                 <Col>
+
                   <Form.Check
+
                     type="image"
                     name="characterImage-5"
                     value="1"
@@ -227,15 +235,19 @@ class CreateUser extends Component {
                   />
                 </Col>
                 <Col>
+
                   <Form.Check
                     type="image"
+
                     name="characterImage-6"
                     onClick={this.handleChange}
                     src="images/drow-front.png"
                   />
                 </Col>
                 <Col>
+
                   <Form.Check
+
                     type="image"
                     name="characterImage-7"
                     onClick={this.handleChange}
@@ -243,7 +255,9 @@ class CreateUser extends Component {
                   />
                 </Col>
                 <Col>
+
                   <Form.Check
+
                     type="image"
                     name="characterImage-8"
                     onClick={this.handleChange}

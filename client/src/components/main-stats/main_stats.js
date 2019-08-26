@@ -44,7 +44,7 @@ class MainStats extends Component {
         this.loadMonsters();
         let self = this;
         var key = localStorage.getItem("key");
-        localStorage.setItem("lives", "3")
+        localStorage.setItem("lives", "2")
 
         if (key) {
             let image = backgroundImages.find(object => {
