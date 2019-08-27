@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Row, Col, Container } from "react-bootstrap";
+import { Button, Form, Row, Col, Container, Image } from "react-bootstrap";
 import "./create_user.css";
 import API from "../../utils/API";
 import { Link, Redirect } from 'react-router-dom';
@@ -180,7 +180,7 @@ class CreateUser extends Component {
                 </Form.Label>
                 <Col>
 
-                  <Form.Check
+                  <Image
                     type="image"
                     name="characterImage-1"
                     value="1"
@@ -190,7 +190,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
 
-                  <Form.Check
+                  <Image
                     type="image"
 
                     name="characterImage-2"
@@ -201,7 +201,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
 
-                  <Form.Check
+                  <Image
 
                     type="image"
                     name="characterImage-3"
@@ -211,7 +211,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
 
-                  <Form.Check
+                  <Image
 
                     type="image"
                     name="characterImage-4"
@@ -225,7 +225,7 @@ class CreateUser extends Component {
                 </Form.Label>
                 <Col>
 
-                  <Form.Check
+                  <Image
 
                     type="image"
                     name="characterImage-5"
@@ -236,7 +236,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
 
-                  <Form.Check
+                  <Image
                     type="image"
 
                     name="characterImage-6"
@@ -246,7 +246,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
 
-                  <Form.Check
+                  <Image
 
                     type="image"
                     name="characterImage-7"
@@ -256,7 +256,7 @@ class CreateUser extends Component {
                 </Col>
                 <Col>
 
-                  <Form.Check
+                  <Image
 
                     type="image"
                     name="characterImage-8"
